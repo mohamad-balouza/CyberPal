@@ -15,3 +15,4 @@ class User(Base):
 
     user_type = relationship("User_type", back_populates="user")
     flags_used_by_user = relationship("Used_flag", back_populates="user_that_used")
+    uploaded_file = relationship("Openvpn_file", back_populates="user_that_uploaded")
