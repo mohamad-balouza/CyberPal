@@ -12,7 +12,7 @@ class User(Base):
     email = Column(String, unique=True, index=True, nullable=False)
     hashed_password = Column(String, nullable=False)
     is_active = Column(Boolean(), default=True)
-    user_type_id = Column(Integer, ForeignKey("user_types.id"), index=True, default="Beginner")
+    user_type_id = Column(Integer, ForeignKey("user_types.id"), index=True, default=1)
 
     user_type = relationship("User_type", back_populates="user")
     flags_used_by_user = relationship("Used_flag", back_populates="user_that_used")
