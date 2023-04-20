@@ -14,9 +14,6 @@ class FavoriteScriptUpdate(FavoriteScriptBase):
     pass
 
 class FavoriteScriptInDBBase(FavoriteScriptBase):
-    user_who_favorited_id: int | None = None
-    script_favorited_id: int | None = None
-
     class Config:
         orm_mode = True
 
