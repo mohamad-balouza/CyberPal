@@ -10,6 +10,7 @@ class Script(Base):
     __tablename__ = "scripts"
 
     id = Column(Integer, primary_key=True, index=True)
+    script_title = Column(String, nullable=False)
     script_content = Column(String, nullable=False)
     author_id = Column(Integer, ForeignKey("users.id"))
 
