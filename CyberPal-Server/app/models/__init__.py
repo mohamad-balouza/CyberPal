@@ -7,3 +7,4 @@ from .openvpn_file import Openvpn_file
 from .schedule import Schedule
 from .script import Script
 from .favorite_script import Favorite_script
+from .scheduled_flag import Scheduled_flag

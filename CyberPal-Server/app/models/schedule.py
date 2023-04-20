@@ -11,8 +11,7 @@ class Schedule(Base):
     schedule_type = Column(String, nullable=False)
     title = Column(String, nullable=False)
     email_contents = Column(String, nullable=True)
-    tools_used_id = Column(Integer, ForeignKey("tools.id"), nullable=True)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
 
     user_schedule = relationship("User", back_populates="schedules")
-    tools_in_schedule = relationship("Tool", back_populates="schedule_tools")
+    appointed_flags_in_schedule = relationship("Schedule_flag", back_populates="schedule_appointed")

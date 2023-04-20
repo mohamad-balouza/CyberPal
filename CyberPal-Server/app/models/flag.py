@@ -8,9 +8,10 @@ class Flag(Base):
     __tablename__ = "flags"
 
     id = Column(Integer, primary_key=True, index=True)
-    flag_name = Column(String, index=True, unique=True)
+    flag_name = Column(String, index=True)
     flag_description = Column(String)
     tool_id = Column(Integer, ForeignKey("tools.id"), index=True)
 
     tool = relationship("Tool", back_populates="flags")
     which_user_used = relationship("Used_flag", back_populates="flag_that_was_used")
+    scheduled_flags = relationship("Scheduled_flag", back_populates="flag_that_was_scheduled")
