@@ -1,6 +1,6 @@
 from pydantic import BaseModel, EmailStr
 from typing import List, Optional
-from app.schemas import UserType, OpenvpnFile, Script
+from app.schemas import UserType, OpenvpnFile, Script, FavoriteScript
 
 
 class UserBase(BaseModel):
@@ -26,6 +26,7 @@ class User(UserInDBBase):
     user_type: Optional[UserType]
     uploaded_file: Optional[OpenvpnFile]
     scripts: Optional[List[Script]]
+    favorited_scripts: Optional[List[FavoriteScript]]
 
 class UserInDB(UserInDBBase):
     hashed_password: str
