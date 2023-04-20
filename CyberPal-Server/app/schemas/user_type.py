@@ -12,7 +12,7 @@ class UserTypeUpdate(UserTypeBase):
     pass
 
 class UserTypeInDBBase(UserTypeBase):
-    id: Optional[int] = None
+    id: int | None = None
 
     class Config:
         orm_mode = True
