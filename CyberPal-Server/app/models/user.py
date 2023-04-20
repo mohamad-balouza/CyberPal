@@ -14,3 +14,4 @@ class User(Base):
     user_type_id = Column(Integer, ForeignKey("user_types.id"), index=True, default="Beginner")
 
     user_type = relationship("User_type", back_populates="user")
+    flags_used_by_user = relationship("Used_flag", back_populates="user_that_used")
