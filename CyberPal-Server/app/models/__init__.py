@@ -4,3 +4,4 @@ from .tool import Tool
 from .flag import Flag
 from .used_flag import Used_flag
 from .openvpn_file import Openvpn_file
+from .schedule import Schedule
