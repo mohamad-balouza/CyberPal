@@ -3,12 +3,12 @@ from typing_extensions import Annotated
 from app.core import config
 from functools import lru_cache
 from app.database.database import engine
-from app.models import item
-
+from app.models import Base
 
 app = FastAPI()
 
-item.Base.metadata.create_all(bind=engine)
+# Creating the tables in the database
+Base.metadata.create_all(bind=engine)
 
 @lru_cache()
 def get_settings():
