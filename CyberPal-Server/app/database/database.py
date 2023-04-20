@@ -4,8 +4,6 @@ from sqlalchemy.orm import sessionmaker
 from app.core.config import settings
 
 
-
-print(settings.DB_TYPE)
 SQLALCHEMY_DATABASE_URL = f"{settings.DB_TYPE}://{settings.DB_USERNAME}:{settings.DB_PASSWORD}@{settings.DB_SERVER}/{settings.DB_NAME}"
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)

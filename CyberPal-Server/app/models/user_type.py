@@ -1,0 +1,13 @@
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
+from sqlalchemy.orm import relationship
+
+from app.database.database import Base
+
+
+class User_type(Base):
+    __tablename__ = "user_types"
+
+    id = Column(Integer, primary_key=True, index=True)
+    type = Column(String, nullable=False, index=True)
+
+    user = relationship("User", back_populates="user_type")
