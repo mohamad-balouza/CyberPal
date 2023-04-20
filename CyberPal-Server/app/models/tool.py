@@ -11,3 +11,4 @@ class Tool(Base):
     tool_name = Column(String, nullable=False, index=True)
     image_url = Column(String, nullable=False)
 
+    flags = relationship("Flag", back_populates="tool")
