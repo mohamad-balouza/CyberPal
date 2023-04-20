@@ -2,6 +2,7 @@ from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 
 from app.database.database import Base
+from app.models.favorite_script import Favorite_script
 
 class User(Base):
     __tablename__ = "users"
@@ -18,3 +19,4 @@ class User(Base):
     uploaded_file = relationship("Openvpn_file", back_populates="user_that_uploaded")
     schedules = relationship("Schedule", back_populates="user_schedule")
     scripts = relationship("Script", back_populates="author")
+    favorited_scripts = relationship("Script", secondary=Favorite_script, back_populates="user_who_favorited")

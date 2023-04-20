@@ -6,3 +6,4 @@ from .used_flag import Used_flag
 from .openvpn_file import Openvpn_file
 from .schedule import Schedule
 from .script import Script
+from .favorite_script import Favorite_script
