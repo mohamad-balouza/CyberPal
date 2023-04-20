@@ -4,10 +4,10 @@ from sqlalchemy.orm import relationship
 from app.database.database import Base
 
 
-class User_type(Base):
-    __tablename__ = "user_types"
+class Tool(Base):
+    __tablename__ = "tools"
 
     id = Column(Integer, primary_key=True, index=True)
-    type = Column(String, nullable=False, index=True)
+    tool_name = Column(String, nullable=False, index=True)
+    image_url = Column(String, nullable=False)
 
-    user = relationship("User", back_populates="user_type")
