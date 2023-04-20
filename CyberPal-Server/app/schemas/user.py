@@ -1,5 +1,6 @@
 from pydantic import BaseModel, EmailStr
 from typing import List, Optional
+from app.schemas import UserType
 
 
 class UserBase(BaseModel):
@@ -22,7 +23,7 @@ class UserInDBBase(UserBase):
         orm_mode = True
 
 class User(UserInDBBase):
-    pass
+    user_type: Optional[UserType]
 
 class UserInDB(UserInDBBase):
     hashed_password: str
