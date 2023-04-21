@@ -12,7 +12,7 @@ class CrudBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
     def __init__(self, model: Type[ModelType]):
         self.model = model
 
-    def get(self, db: Session, id: Any) -> ModelType:
+    def get_by_id(self, db: Session, id: Any) -> ModelType:
         return db.query(self.model).filter(self.model.id == id).first()
     
     def get_multiple(self, db: Session, offset: int = 0, limit: int = 100) ->List[ModelType]:
