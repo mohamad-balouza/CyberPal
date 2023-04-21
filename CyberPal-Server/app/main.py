@@ -5,6 +5,7 @@ from functools import lru_cache
 from app.database.database import engine
 from app.models import Base
 from app.api.api_v1.api_routers import api_router
+from starlette.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
@@ -16,6 +17,14 @@ def get_settings():
     return config.Settings()
 
 app.include_router(api_router, prefix=config.settings.API_V1_STR)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost", "http://localhost:3000", "http://localhost:8080" "http://localhost:8000"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/info")
 async def info(settings: Annotated[config.Settings, Depends(get_settings)]):
