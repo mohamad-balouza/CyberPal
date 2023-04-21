@@ -1,3 +1,4 @@
+from.token import Token, TokenPayload
 from .user import User, UserCreate, UserUpdate, UserInDB
 from .user_type import UserType, UserTypeCreate, UserTypeUpdate, UserTypeInDB
 from .openvpn_file import OpenvpnFile, OpenvpnFileCreate, OpenvpnFileUpdate, OpenvpnFileInDB
