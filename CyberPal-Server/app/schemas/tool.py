@@ -1,6 +1,6 @@
 from pydantic import BaseModel, FilePath
 from typing import Optional, List
-from app.schemas import Flag
+from app.schemas.flag import Flag
 
 class ToolBase(BaseModel):
     tool_name: str | None = None

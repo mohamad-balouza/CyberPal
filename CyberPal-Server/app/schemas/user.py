@@ -1,6 +1,11 @@
 from pydantic import BaseModel, EmailStr
 from typing import List, Optional
-from app.schemas import UserType, OpenvpnFile, Script, FavoriteScript, UsedFlag, Schedule
+from app.schemas.user_type import UserType
+from app.schemas.openvpn_file import OpenvpnFile
+from app.schemas.script import Script
+from app.schemas.favorite_script import FavoriteScript
+from app.schemas.used_flag import UsedFlag
+from app.schemas.schedule import Schedule
 
 
 class UserBase(BaseModel):

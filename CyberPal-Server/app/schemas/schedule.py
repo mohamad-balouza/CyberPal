@@ -1,6 +1,7 @@
 from pydantic import BaseModel, FutureDate
 from typing import Optional, List
-from app.schemas import User, ScheduledFlag
+from app.schemas.user import User
+from app.schemas.scheduled_flag import ScheduledFlag
 
 class ScheduleBase(BaseModel):
     date_and_time: FutureDate | None = None

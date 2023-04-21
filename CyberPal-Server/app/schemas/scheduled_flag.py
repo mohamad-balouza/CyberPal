@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from typing import Optional
-from app.schemas import Flag, Schedule
+from app.schemas.flag import Flag
+from app.schemas.schedule import Schedule
 
 class ScheduledFlagBase(BaseModel):
     flag_contents: str | None = None

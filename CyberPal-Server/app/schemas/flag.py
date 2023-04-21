@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from typing import Optional, List
-from app.schemas import Tool
+from app.schemas.tool import Tool
 
 
 class FlagBase(BaseModel):

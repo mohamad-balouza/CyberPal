@@ -1,6 +1,8 @@
 from pydantic import BaseModel
 from typing import Optional
-from app.schemas import User, Script
+from app.schemas.user import User
+from app.schemas.script import Script
+
 
 class FavoriteScriptBase(BaseModel):
     user_who_favorited_id: int | None = None

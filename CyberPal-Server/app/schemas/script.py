@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from typing import Optional, List
-from app.schemas import User
+from app.schemas.user import User
 
 class ScriptBase(BaseModel):
     script_title: str | None = None

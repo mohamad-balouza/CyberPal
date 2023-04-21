@@ -1,6 +1,6 @@
 from pydantic import BaseModel, FilePath
 from typing import Optional
-from app.schemas import User
+from app.schemas.user import User
 
 class OpenvpnFileBase(BaseModel):
     file_url: FilePath

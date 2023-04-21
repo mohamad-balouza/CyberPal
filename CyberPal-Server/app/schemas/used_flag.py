@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from typing import Optional
-from app.schemas import Flag, User
+from app.schemas.flag import Flag
+from app.schemas.user import User
 
 class UsedFlagBase(BaseModel):
     flag_contents: str | None = None
