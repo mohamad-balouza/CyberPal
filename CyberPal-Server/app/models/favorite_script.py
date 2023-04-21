@@ -4,7 +4,7 @@ from sqlalchemy.orm import relationship
 from app.database.database import Base
 
 
-class Favorite_script(Base):
+class FavoriteScript(Base):
     __tablename__ = "favorite_scripts"
 
     user_who_favorited_id = Column(Integer, ForeignKey("users.id"), primary_key=True)

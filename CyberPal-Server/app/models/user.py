@@ -2,7 +2,7 @@ from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 
 from app.database.database import Base
-from app.models.favorite_script import Favorite_script
+from app.models.favorite_script import FavoriteScript
 
 class User(Base):
     __tablename__ = "users"
@@ -14,9 +14,9 @@ class User(Base):
     is_active = Column(Boolean(), default=True)
     user_type_id = Column(Integer, ForeignKey("user_types.id"), index=True, default=1)
 
-    user_type = relationship("User_type", back_populates="user")
-    flags_used_by_user = relationship("Used_flag", back_populates="user_that_used")
-    uploaded_file = relationship("Openvpn_file", back_populates="user_that_uploaded")
+    user_type = relationship("UserType", back_populates="user")
+    flags_used_by_user = relationship("UsedFlag", back_populates="user_that_used")
+    uploaded_file = relationship("OpenvpnFile", back_populates="user_that_uploaded")
     schedules = relationship("Schedule", back_populates="user_schedule")
     scripts = relationship("Script", back_populates="author")
-    favorited_scripts = relationship("Script", secondary=Favorite_script, back_populates="user_who_favorited")
+    favorited_scripts = relationship("Script", secondary=FavoriteScript, back_populates="user_who_favorited")

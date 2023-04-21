@@ -4,7 +4,7 @@ from sqlalchemy.orm import relationship
 from app.database.database import Base
 
 
-class Openvpn_file(Base):
+class OpenvpnFile(Base):
     __tablename__ = "openvpn_files"
 
     id = Column(Integer, primary_key=True, index=True)

@@ -14,4 +14,4 @@ class Schedule(Base):
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
 
     user_schedule = relationship("User", back_populates="schedules")
-    appointed_flags_in_schedule = relationship("Schedule_flag", back_populates="schedule_appointed")
+    appointed_flags_in_schedule = relationship("ScheduleFlag", back_populates="schedule_appointed")

@@ -4,7 +4,7 @@ from sqlalchemy.orm import relationship
 from app.database.database import Base
 
 
-class Scheduled_flag(Base):
+class ScheduledFlag(Base):
     __tablename__ = "scheduled_flags"
 
     flag_contents = Column(String)

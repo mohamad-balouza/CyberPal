@@ -4,7 +4,7 @@ from sqlalchemy.orm import relationship
 from app.database.database import Base
 
 
-class User_type(Base):
+class UserType(Base):
     __tablename__ = "user_types"
 
     id = Column(Integer, primary_key=True, index=True)

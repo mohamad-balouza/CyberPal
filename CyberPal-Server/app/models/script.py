@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 
 from app.database.database import Base
-from app.models.favorite_script import Favorite_script
+from app.models.favorite_script import FavoriteScript
 
 
 
@@ -15,4 +15,4 @@ class Script(Base):
     author_id = Column(Integer, ForeignKey("users.id"))
 
     author = relationship("User", back_populates="scripts")
-    user_who_favorited = relationship("User", secondary=Favorite_script, back_populates="favorited_scripts")
+    user_who_favorited = relationship("User", secondary=FavoriteScript, back_populates="favorited_scripts")

@@ -4,7 +4,7 @@ from sqlalchemy.orm import relationship
 from app.database.database import Base
 
 
-class Used_flag(Base):
+class UsedFlag(Base):
     __tablename__ = "used_flags"
 
     flag_contents = Column(String)

@@ -13,5 +13,5 @@ class Flag(Base):
     tool_id = Column(Integer, ForeignKey("tools.id"), index=True)
 
     tool = relationship("Tool", back_populates="flags")
-    which_user_used = relationship("Used_flag", back_populates="flag_that_was_used")
-    scheduled_flags = relationship("Scheduled_flag", back_populates="flag_that_was_scheduled")
+    which_user_used = relationship("UsedFlag", back_populates="flag_that_was_used")
+    scheduled_flags = relationship("ScheduledFlag", back_populates="flag_that_was_scheduled")
