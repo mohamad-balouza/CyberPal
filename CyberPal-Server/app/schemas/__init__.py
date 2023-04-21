@@ -6,3 +6,4 @@ from .favorite_script import FavoriteScript
 from .tool import Tool
 from .flag import Flag
 from .used_flag import UsedFlag
+from .schedule import Schedule
