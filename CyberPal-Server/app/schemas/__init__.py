@@ -4,3 +4,4 @@ from .openvpn_file import OpenvpnFile
 from .script import Script
 from .favorite_script import FavoriteScript
 from .tool import Tool
+from .flag import Flag
