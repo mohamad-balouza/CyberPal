@@ -1,6 +1,6 @@
 from pydantic import BaseModel, FutureDate
 from typing import Optional, List
-from app.schemas import User
+from app.schemas import User, ScheduledFlag
 
 class ScheduleBase(BaseModel):
     date_and_time: FutureDate | None = None
@@ -26,6 +26,7 @@ class ScheduleInDBBase(ScheduleBase):
 
 class Schedule(ScheduleInDBBase):
     user_schedule: Optional[User]
+    appointed_flags_in_schedule: Optional[List[ScheduledFlag]]
 
 class ScheduleInDB(ScheduleInDBBase):
     pass

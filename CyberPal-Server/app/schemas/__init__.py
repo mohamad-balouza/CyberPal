@@ -7,3 +7,4 @@ from .tool import Tool
 from .flag import Flag
 from .used_flag import UsedFlag
 from .schedule import Schedule
+from .scheduled_flag import ScheduledFlag
