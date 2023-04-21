@@ -11,6 +11,8 @@ class Settings(BaseSettings):
     DB_NAME: str
     DB_SERVER: str
 
+    API_V1_STR: str
+
     class Config:
         env_file = ".env"
 
