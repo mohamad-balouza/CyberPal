@@ -1,8 +1,5 @@
 from pydantic import BaseModel
-from typing import Optional, List, TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from app.schemas.user import User
+from typing import Optional, List
 
 class ScriptBase(BaseModel):
     script_title: str | None = None
@@ -24,8 +21,11 @@ class ScriptInDBBase(ScriptBase):
         orm_mode = True
 
 class Script(ScriptInDBBase):
-    author: Optional["User"]
+    author: Optional["UserInDBBase"]
 
 
 class ScriptInDB(ScriptInDBBase):
     pass
+
+from app.schemas.user import UserInDBBase
+Script.update_forward_refs()

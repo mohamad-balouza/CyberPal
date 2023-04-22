@@ -24,10 +24,10 @@ class UserInDBBase(UserBase):
 class User(UserInDBBase):
     user_type: Optional["UserTypeInDBBase"]
     uploaded_file: Optional["OpenvpnFileInDBBase"]
-    # scripts: Optional[List[ScriptInDBBase]]
-    # favorited_scripts: Optional[List[FavoriteScriptInDBBase]]
-    # flags_used_by_user: Optional[List[UsedFlagInDBBase]]
-    # schedules: Optional[List[ScheduleInDBBase]]
+    scripts: Optional[List["ScriptInDBBase"]]
+    # favorited_scripts: Optional[List["FavoriteScriptInDBBase"]]
+    # flags_used_by_user: Optional[List["UsedFlagInDBBase"]]
+    # schedules: Optional[List["ScheduleInDBBase"]]
 
 class UserInDB(UserInDBBase):
     hashed_password: str
@@ -35,7 +35,7 @@ class UserInDB(UserInDBBase):
 
 from app.schemas.user_type import UserTypeInDBBase
 from app.schemas.openvpn_file import OpenvpnFileInDBBase
-# from app.schemas.script import ScriptInDBBase
+from app.schemas.script import ScriptInDBBase
 # from app.schemas.favorite_script import FavoriteScriptInDBBase
 # from app.schemas.used_flag import UsedFlagInDBBase
 # from app.schemas.schedule import ScheduleInDBBase
