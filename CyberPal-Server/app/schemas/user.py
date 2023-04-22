@@ -1,11 +1,5 @@
 from pydantic import BaseModel, EmailStr
-from typing import List, Optional, TYPE_CHECKING, ForwardRef
-
-# from app.schemas.openvpn_file import OpenvpnFileInDBBase
-# from app.schemas.script import ScriptInDBBase
-# from app.schemas.favorite_script import FavoriteScriptInDBBase
-# from app.schemas.used_flag import UsedFlagInDBBase
-# from app.schemas.schedule import ScheduleInDBBase
+from typing import List, Optional
 
 
 class UserBase(BaseModel):
@@ -29,7 +23,7 @@ class UserInDBBase(UserBase):
 
 class User(UserInDBBase):
     user_type: Optional["UserTypeInDBBase"]
-    # uploaded_file: Optional[OpenvpnFileInDBBase]
+    uploaded_file: Optional["OpenvpnFileInDBBase"]
     # scripts: Optional[List[ScriptInDBBase]]
     # favorited_scripts: Optional[List[FavoriteScriptInDBBase]]
     # flags_used_by_user: Optional[List[UsedFlagInDBBase]]
@@ -40,4 +34,9 @@ class UserInDB(UserInDBBase):
 
 
 from app.schemas.user_type import UserTypeInDBBase
+from app.schemas.openvpn_file import OpenvpnFileInDBBase
+# from app.schemas.script import ScriptInDBBase
+# from app.schemas.favorite_script import FavoriteScriptInDBBase
+# from app.schemas.used_flag import UsedFlagInDBBase
+# from app.schemas.schedule import ScheduleInDBBase
 User.update_forward_refs()

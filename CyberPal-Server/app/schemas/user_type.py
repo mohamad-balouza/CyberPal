@@ -1,8 +1,5 @@
 from pydantic import BaseModel
-from typing import Optional, List, TYPE_CHECKING, ForwardRef
-
-# if TYPE_CHECKING:
-#     from app.schemas.user import UserBase
+from typing import Optional, List
 
 class UserTypeBase(BaseModel):
     type: str | None = None
@@ -22,10 +19,10 @@ class UserTypeInDBBase(UserTypeBase):
 class UserType(UserTypeInDBBase):
     user: Optional[List["UserInDBBase"]]
     
-    
 
 class UserTypeInDB(UserTypeInDBBase):
     pass
+
 
 from app.schemas.user import UserInDBBase
 UserType.update_forward_refs()
