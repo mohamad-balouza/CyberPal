@@ -1,8 +1,5 @@
 from pydantic import BaseModel, FilePath
-from typing import Optional, List, TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from app.schemas.flag import Flag
+from typing import Optional, List
 
 class ToolBase(BaseModel):
     tool_name: str | None = None
@@ -22,7 +19,11 @@ class ToolInDBBase(ToolBase):
         orm_mode = True
 
 class Tool(ToolInDBBase):
-    flags: Optional[List["Flag"]]
+    flags: Optional[List["FlagInDBBase"]]
 
 class ToolInDB(ToolInDBBase):
     pass
+
+
+from app.schemas.flag import FlagInDBBase
+Tool.update_forward_refs()
