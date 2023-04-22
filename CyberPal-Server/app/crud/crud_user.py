@@ -5,9 +5,7 @@ from sqlalchemy.orm import joinedload, Session
 from typing import List
 
 class CrudUser(CrudBase[User, UserCreate, UserUpdate]):
-    def get_multiple(self, db: Session, offset: int = 0, limit: int = 100) ->List[User]:
-        return db.query(self.model).offset(offset).limit(limit).all()
-
+    pass
 
 
 user = CrudUser(User)
