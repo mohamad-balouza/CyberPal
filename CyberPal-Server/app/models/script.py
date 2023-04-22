@@ -15,4 +15,4 @@ class Script(Base):
     author_id = Column(Integer, ForeignKey("users.id"))
 
     author = relationship("User", back_populates="scripts")
-    user_who_favorited = relationship("User", secondary="FavoriteScript", back_populates="favorited_scripts")
+    user_who_favorited = relationship("User", secondary=FavoriteScript, back_populates="favorited_scripts")

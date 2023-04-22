@@ -19,4 +19,4 @@ class User(Base):
     uploaded_file = relationship("OpenvpnFile", back_populates="user_that_uploaded")
     schedules = relationship("Schedule", back_populates="user_schedule")
     scripts = relationship("Script", back_populates="author")
-    favorited_scripts = relationship("Script", secondary="FavoriteScript", back_populates="user_who_favorited")
+    favorited_scripts = relationship("Script", secondary=FavoriteScript, back_populates="user_who_favorited")

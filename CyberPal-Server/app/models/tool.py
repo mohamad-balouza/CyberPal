@@ -12,4 +12,4 @@ class Tool(Base):
     image_url = Column(String, nullable=False)
 
     flags = relationship("Flag", back_populates="tool")
-    schedule_tools = relationship("Schedule", back_populates="tools_in_schedule")
+    # schedule_tools = relationship("Schedule", back_populates="tools_in_schedule")

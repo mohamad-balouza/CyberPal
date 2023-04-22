@@ -1,18 +1,10 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, Table
-from sqlalchemy.orm import relationship
 
 from app.database.database import Base
-
-
-# class FavoriteScript(Base):
-#     __tablename__ = "favorite_scripts"
-
-#     user_who_favorited_id = Column(Integer, ForeignKey("users.id"), primary_key=True)
-#     script_favorited_id = Column(Integer, ForeignKey("scripts.id"), primary_key=True)
 
 FavoriteScript = Table(
     'FavoriteScript',
     Base.metadata,
-    user_who_favorited_id = Column(Integer, ForeignKey("users.id"), primary_key=True),
-    script_favorited_id = Column(Integer, ForeignKey("scripts.id"), primary_key=True)
+    Column('user_who_favorited_id', Integer, ForeignKey("users.id"), primary_key=True),
+    Column('script_favorited_id', Integer, ForeignKey("scripts.id"), primary_key=True)
 )
