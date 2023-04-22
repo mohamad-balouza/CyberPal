@@ -36,9 +36,16 @@ app.include_router(api_router, prefix=config.settings.API_V1_STR)
 
 from app.api.deps import get_db
 from sqlalchemy.orm import Session
-from app.crud import crud_user_type
+from app.crud import crud_user_type, crud_user
+from app.schemas import user
+from typing import List
 
 @app.get("/user_type")
 async def getUserType(db: Session = Depends(get_db), offset: int = 0, limit: int = 100):
     user_types = crud_user_type.user_type.get_multiple(db, offset=offset, limit=limit)
     return user_types
+
+@app.get("/users", response_model=List[user.User])
+async def getUsers(db: Session = Depends(get_db), offset: int = 0, limit: int = 100):
+    users = crud_user.user.get_multiple(db, offset=offset, limit=limit)
+    return users

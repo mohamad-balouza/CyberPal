@@ -1,8 +1,11 @@
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
+from typing import TYPE_CHECKING
 
 from app.database.database import Base
 
+if TYPE_CHECKING:
+    from app.models.user import User
 
 class UserType(Base):
     __tablename__ = "user_types"

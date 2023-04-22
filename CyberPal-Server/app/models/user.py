@@ -1,8 +1,16 @@
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
+from typing import TYPE_CHECKING
 
 from app.database.database import Base
 from app.models.favorite_script import FavoriteScript
+
+if TYPE_CHECKING:
+    from app.schemas.user_type import UserType
+    from app.schemas.used_flag import UsedFlag
+    from app.schemas.openvpn_file import OpenvpnFile
+    from app.schemas.schedule import Schedule
+    from app.schemas.script import Script
 
 class User(Base):
     __tablename__ = "users"
