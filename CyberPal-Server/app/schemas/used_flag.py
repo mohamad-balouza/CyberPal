@@ -1,9 +1,5 @@
 from pydantic import BaseModel
-from typing import Optional, TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from app.schemas.flag import Flag
-    from app.schemas.user import User
+from typing import Optional
 
 class UsedFlagBase(BaseModel):
     flag_contents: str | None = None
@@ -24,8 +20,12 @@ class UsedFlagInDBBase(UsedFlagBase):
     
 
 class UsedFlag(UsedFlagInDBBase):
-    flag_used: Optional["Flag"]
-    user_who_used: Optional["User"]
+    flag_used: Optional["FlagInDBBase"]
+    user_who_used: Optional["UserInDBBase"]
 
 class UsedFlagInDB(UsedFlagInDBBase):
     pass
+
+from app.schemas.flag import FlagInDBBase
+from app.schemas.user import UserInDBBase
+UsedFlag.update_forward_refs()
