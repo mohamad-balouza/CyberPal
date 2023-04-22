@@ -32,3 +32,13 @@ app.include_router(api_router, prefix=config.settings.API_V1_STR)
 #         "app_name": settings.APP_NAME,
 #         "admin_email": settings.TEMP_EMAIL,
 #     }
+
+
+from app.api.deps import get_db
+from sqlalchemy.orm import Session
+from app.crud import crud_user_type
+
+@app.get("/user_type")
+async def getUserType(db: Session = Depends(get_db), offset: int = 0, limit: int = 100):
+    user_types = crud_user_type.user_type.get_multiple(db, offset=offset, limit=limit)
+    return user_types

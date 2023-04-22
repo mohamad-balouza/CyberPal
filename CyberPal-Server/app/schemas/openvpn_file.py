@@ -1,6 +1,8 @@
 from pydantic import BaseModel, FilePath
-from typing import Optional
-from app.schemas.user import User
+from typing import Optional, TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from app.schemas.user import User
 
 class OpenvpnFileBase(BaseModel):
     file_url: FilePath
@@ -19,7 +21,7 @@ class OpenvpnFileInDBBase(OpenvpnFileBase):
         orm_mode = True
 
 class OpenvpnFile(OpenvpnFileInDBBase):
-    user_that_uploaded: Optional[User]
+    user_that_uploaded: Optional["User"]
 
 class OpenvpnFileInDB(OpenvpnFileInDBBase):
     pass

@@ -1,6 +1,8 @@
 from pydantic import BaseModel
-from typing import Optional, List
-from app.schemas.tool import Tool
+from typing import Optional, List, TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from app.schemas.tool import Tool
 
 
 class FlagBase(BaseModel):
@@ -23,7 +25,7 @@ class FlagInDBBase(FlagBase):
         orm_mode = True
 
 class Flag(FlagInDBBase):
-    tool: Optional[Tool]
+    tool: Optional["Tool"]
 
 
 class FlagInDB(FlagInDBBase):

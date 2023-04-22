@@ -1,7 +1,9 @@
 from pydantic import BaseModel
-from typing import Optional
-from app.schemas.user import User
-from app.schemas.script import Script
+from typing import Optional, TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from app.schemas.user import User
+    from app.schemas.script import Script
 
 
 class FavoriteScriptBase(BaseModel):
@@ -20,8 +22,8 @@ class FavoriteScriptInDBBase(FavoriteScriptBase):
         orm_mode = True
 
 class FavoriteScript(FavoriteScriptInDBBase):
-    user_who_favorited: Optional[User]
-    script_favorited: Optional[Script]
+    user_who_favorited: Optional["User"]
+    script_favorited: Optional["Script"]
 
 class FavoriteScriptInDB(FavoriteScriptInDBBase):
     pass
