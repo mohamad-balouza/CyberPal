@@ -1,9 +1,5 @@
 from pydantic import BaseModel
-from typing import Optional, TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from app.schemas.flag import Flag
-    from app.schemas.schedule import Schedule
+from typing import Optional
 
 class ScheduledFlagBase(BaseModel):
     flag_contents: str | None = None
@@ -23,8 +19,12 @@ class ScheduledFlagInDBBase(ScheduledFlagBase):
         orm_mode = True
 
 class ScheduledFlag(ScheduledFlagInDBBase):
-    flag_scheduled: Optional["Flag"]
-    schedule: Optional["Schedule"]
+    flag_scheduled: Optional["FlagInDBBase"]
+    schedule: Optional["ScheduleInDBBase"]
 
 class ScheduledFlagInDB(ScheduledFlagInDBBase):
     pass
+
+from app.schemas.flag import FlagInDBBase
+from app.schemas.schedule import ScheduleInDBBase
+ScheduledFlag.update_forward_refs()
