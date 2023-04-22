@@ -20,12 +20,12 @@ class UsedFlagInDBBase(UsedFlagBase):
     
 
 class UsedFlag(UsedFlagInDBBase):
-    flag_used: Optional["FlagInDBBase"]
+    flag_used: Optional["Flag"]
     user_who_used: Optional["UserInDBBase"]
 
 class UsedFlagInDB(UsedFlagInDBBase):
     pass
 
-from app.schemas.flag import FlagInDBBase
+from app.schemas.flag import Flag
 from app.schemas.user import UserInDBBase
 UsedFlag.update_forward_refs()

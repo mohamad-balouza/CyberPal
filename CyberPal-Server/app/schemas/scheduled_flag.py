@@ -19,12 +19,12 @@ class ScheduledFlagInDBBase(ScheduledFlagBase):
         orm_mode = True
 
 class ScheduledFlag(ScheduledFlagInDBBase):
-    flag_scheduled: Optional["FlagInDBBase"]
+    flag_scheduled: Optional["Flag"]
     schedule: Optional["ScheduleInDBBase"]
 
 class ScheduledFlagInDB(ScheduledFlagInDBBase):
     pass
 
-from app.schemas.flag import FlagInDBBase
+from app.schemas.flag import Flag
 from app.schemas.schedule import ScheduleInDBBase
 ScheduledFlag.update_forward_refs()
