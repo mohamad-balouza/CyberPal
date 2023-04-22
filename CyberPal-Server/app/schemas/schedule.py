@@ -1,9 +1,5 @@
 from pydantic import BaseModel, FutureDate
-from typing import Optional, List, TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from app.schemas.user import User
-    from app.schemas.scheduled_flag import ScheduledFlag
+from typing import Optional, List
 
 class ScheduleBase(BaseModel):
     date_and_time: FutureDate | None = None
@@ -28,8 +24,12 @@ class ScheduleInDBBase(ScheduleBase):
         orm_mode = True
 
 class Schedule(ScheduleInDBBase):
-    user_schedule: Optional["User"]
-    appointed_flags_in_schedule: Optional[List["ScheduledFlag"]]
+    user_schedule: Optional["UserInDBBase"]
+    appointed_flags_in_schedule: Optional[List["ScheduledFlagInDBBase"]]
 
 class ScheduleInDB(ScheduleInDBBase):
     pass
+
+from app.schemas.user import UserInDBBase
+from app.schemas.scheduled_flag import ScheduledFlagInDBBase
+Schedule.update_forward_refs()

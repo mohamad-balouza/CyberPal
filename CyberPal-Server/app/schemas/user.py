@@ -27,7 +27,7 @@ class User(UserInDBBase):
     scripts: Optional[List["ScriptInDBBase"]]
     favorited_scripts: Optional[List["FavoriteScriptInDBBase"]]
     flags_used_by_user: Optional[List["UsedFlagInDBBase"]]
-    # schedules: Optional[List["ScheduleInDBBase"]]
+    schedules: Optional[List["ScheduleInDBBase"]]
 
 class UserInDB(UserInDBBase):
     hashed_password: str
@@ -38,5 +38,5 @@ from app.schemas.openvpn_file import OpenvpnFileInDBBase
 from app.schemas.script import ScriptInDBBase
 from app.schemas.favorite_script import FavoriteScriptInDBBase
 from app.schemas.used_flag import UsedFlagInDBBase
-# from app.schemas.schedule import ScheduleInDBBase
+from app.schemas.schedule import ScheduleInDBBase
 User.update_forward_refs()
