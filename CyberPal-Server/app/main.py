@@ -12,11 +12,9 @@ app = FastAPI()
 # Creating the tables in the database
 Base.metadata.create_all(bind=engine)
 
-@lru_cache()
-def get_settings():
-    return config.Settings()
-
-app.include_router(api_router, prefix=config.settings.API_V1_STR)
+# @lru_cache()
+# def get_settings():
+#     return config.Settings()
 
 app.add_middleware(
     CORSMiddleware,
@@ -26,9 +24,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/info")
-async def info(settings: Annotated[config.Settings, Depends(get_settings)]):
-    return {
-        "app_name": settings.APP_NAME,
-        "admin_email": settings.TEMP_EMAIL,
-    }
+app.include_router(api_router, prefix=config.settings.API_V1_STR)
+
+# @app.get("/info")
+# async def info(settings: Annotated[config.Settings, Depends(get_settings)]):
+#     return {
+#         "app_name": settings.APP_NAME,
+#         "admin_email": settings.TEMP_EMAIL,
+#     }
