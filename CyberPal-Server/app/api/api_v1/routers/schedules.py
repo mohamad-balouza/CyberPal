@@ -35,3 +35,20 @@ def createSchedule(
         schedule = crud.schedule.createWithAuthor(db, obj_in=schedule_in, user_id=current_user.id)
         
     return schedule
+
+@router.get("/{id}", response_model=schemas.Schedule)
+def getScheduleById(
+    db: Session = Depends(deps.getDb),
+    *, 
+    id: int,
+    current_user: models.User = Depends(deps.getCurrentActiveUser)
+    ) -> Any:
+
+    schedule = crud.schedule.getById(db, id=id)
+
+    if not schedule:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Schedule not found")
+    elif not crud.user.isAdmin(current_user) and (schedule.user_id != current_user.id):
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Not authorized")
+
+    return schedule
