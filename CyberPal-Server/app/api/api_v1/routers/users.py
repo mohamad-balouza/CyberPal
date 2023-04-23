@@ -25,3 +25,9 @@ def create_user(db: Session = Depends(deps.getDb), *, user_in: schemas.UserCreat
 @router.get("/me", response_model=schemas.User)
 def getCurrentUser(db: Session = Depends(deps.getDb), current_user: models.User = Depends(deps.getCurrentActiveUser)) -> Any:
     return current_user
+
+@router.get("/{user_id}", response_model=schemas.User)
+def getUserById(user_id: int, db: Session = Depends(deps.getDb)) -> Any:
+
+    user = crud.user.getById(db, id=user_id)    
+    return user
