@@ -29,5 +29,9 @@ def createScript(
     current_user: models.User = Depends(deps.getCurrentActiveUser)
     ) -> Any:
 
-    script = crud.script.createWithAuthor(db=db, obj_in=script_in, author_id=current_user.id)
+    if crud.user.isAdmin(current_user):
+        script = crud.script.create(db, obj_in=script_in)
+    else:
+        script = crud.script.createWithAuthor(db, obj_in=script_in, author_id=current_user.id)
+        
     return script
