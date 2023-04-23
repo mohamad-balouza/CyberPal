@@ -20,3 +20,14 @@ def getAllScripts(
         scripts = crud.script.getMultipleByAuthor(db, author_id=current_user.id, skip=skip, limit=limit)
 
     return scripts
+
+@router.post("/", response_model=schemas.Tool)
+def createScript(
+    db: Session = Depends(deps.getDb),
+    *, 
+    script_in: schemas.ScriptCreate, 
+    current_user: models.User = Depends(deps.getCurrentActiveUser)
+    ) -> Any:
+
+    script = crud.script.createWithAuthor(db=db, obj_in=script_in, author_id=current_user.id)
+    return script
