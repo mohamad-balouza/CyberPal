@@ -20,3 +20,18 @@ def getAllSchedules(
         schedules = crud.schedule.getMultipleByAuthor(db, user_id=current_user.id, skip=skip, limit=limit)
 
     return schedules
+
+@router.post("/", response_model=schemas.Schedule)
+def createSchedule(
+    db: Session = Depends(deps.getDb),
+    *, 
+    schedule_in: schemas.ScheduleCreate, 
+    current_user: models.User = Depends(deps.getCurrentActiveUser)
+    ) -> Any:
+
+    if crud.user.isAdmin(current_user):
+        schedule = crud.schedule.create(db, obj_in=schedule_in)
+    else:
+        schedule = crud.schedule.createWithAuthor(db, obj_in=schedule_in, user_id=current_user.id)
+        
+    return schedule
