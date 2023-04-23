@@ -14,6 +14,10 @@ class Settings(BaseSettings):
 
     API_V1_STR: str
 
+    ACCESS_TOKEN_EXPIRE_MINUTES: int
+    JWT_SECRET_KEY: str
+    JWT_ALGORITHM: str
+
     class Config:
         env_file = ".env"
 

@@ -13,3 +13,5 @@ python-dotenv
 sqlalchemy
 psycopg2
 pydantic[email]
+python-jose[cryptography]
+passlib[bcrypt]

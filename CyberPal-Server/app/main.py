@@ -26,14 +26,6 @@ app.add_middleware(
 
 app.include_router(api_router, prefix=config.settings.API_V1_STR)
 
-# @app.get("/info")
-# async def info(settings: Annotated[config.Settings, Depends(get_settings)]):
-#     return {
-#         "app_name": settings.APP_NAME,
-#         "admin_email": settings.TEMP_EMAIL,
-#     }
-
-
 from app.api.deps import get_db
 from sqlalchemy.orm import Session
 from app.crud import crud_user_type, crud_user
