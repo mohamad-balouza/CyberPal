@@ -22,3 +22,11 @@ def createTool(
     tool = crud.tool.create(db, obj_in=tool_in)
     return tool
 
+@router.get("/{id}", response_model=schemas.Tool)
+def getToolById(db: Session = Depends(deps.getDb), *, id: int) -> Any:
+
+    tool = crud.tool.getById(db=db, id=id)
+    if not tool:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Tool not found")
+    
+    return tool
