@@ -8,7 +8,7 @@ from fastapi import Depends, HTTPException, status
 from app import models, schemas, crud
 from app.core.config import settings 
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token") #Dummy token for now
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl=f"{settings.API_V1_STR}/login/access-token")
 
 def getDb() -> Generator:
     try:
