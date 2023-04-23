@@ -18,7 +18,6 @@ def getDb() -> Generator:
         db.close()
 
 def getCurrentUser(db: Session = Depends(getDb), token: str = Depends(oauth2_scheme)) -> models.User:
-    
     try:
         payload = jwt.decode(token, settings.JWT_SECRET_KEY, algorithms=[settings.JWT_SECRET_KEY])
         token_data = schemas.TokenPayload(**payload)
@@ -29,3 +28,9 @@ def getCurrentUser(db: Session = Depends(getDb), token: str = Depends(oauth2_sch
     if not user:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
     return user
+
+def getCurrentActiveUser(current_user: models.User = Depends(getCurrentUser),) -> models.User:
+    
+    if not crud.user.isActive(current_user):
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Inactive user")
+    return current_user

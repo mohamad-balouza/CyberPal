@@ -5,7 +5,8 @@ from sqlalchemy.orm import joinedload, Session
 from typing import List
 
 class CrudUser(CrudBase[User, UserCreate, UserUpdate]):
-    pass
+    def isActive(self, user: User) -> bool:
+        return user.is_active
 
 
 user = CrudUser(User)
