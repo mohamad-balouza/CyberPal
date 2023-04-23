@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from typing import Any, List
 from sqlalchemy.orm import Session
-from app import schemas, crud
+from app import schemas, crud, models
 from app.api import deps 
 
 router = APIRouter()
@@ -21,3 +21,7 @@ def create_user(db: Session = Depends(deps.getDb), *, user_in: schemas.UserCreat
     
     user = crud.user.create(db, obj_in=user_in)
     return user
+
+@router.get("/me", response_model=schemas.User)
+def getCurrentUser(db: Session = Depends(deps.getDb), current_user: models.User = Depends(deps.getCurrentActiveUser)) -> Any:
+    return current_user
