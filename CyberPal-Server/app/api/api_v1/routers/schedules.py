@@ -52,3 +52,22 @@ def getScheduleById(
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Not authorized")
 
     return schedule
+
+@router.put("/{id}", response_model=schemas.Schedule)
+def updateScheduleById(
+    db: Session = Depends(deps.getDb),
+    *, 
+    id: int,
+    schedule_in: schemas.ScheduleUpdate, 
+    current_user: models.User = Depends(deps.getCurrentActiveUser)
+    ) -> Any:
+
+    schedule = crud.schedule.getById(db, id=id)
+
+    if not schedule:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Schedule not found")
+    elif not crud.user.isAdmin(current_user) and (schedule.user_id != current_user.id):
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Not authorized")
+    
+    schedule = crud.schedule.update(db, db_obj=schedule, obj_in=schedule_in)
+    return schedule
