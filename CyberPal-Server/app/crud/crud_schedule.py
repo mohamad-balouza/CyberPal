@@ -13,6 +13,9 @@ class CrudSchedule(CrudBase[Schedule, ScheduleCreate, ScheduleUpdate]):
         db.commit()
         db.refresh(db_obj)
         return db_obj
+    
+    def getMultipleByAuthor(self, db: Session, *, user_id: int, skip: int = 0, limit: int = 100) -> List[Schedule]:
+        return db.query(self.model).filter(Schedule.user_id == user_id).offset(skip).limit(limit).all()
 
 
 
