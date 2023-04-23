@@ -35,7 +35,7 @@ def getCurrentActiveUser(current_user: models.User = Depends(getCurrentUser),) -
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Inactive user")
     return current_user
 
-def getCurrentAdmin(current_user: models.User = Depends(getCurrentUser),) -> models.User:
+def getCurrentAdmin(current_user: models.User = Depends(getCurrentUser)) -> models.User:
     
     if not crud.user.isAdmin(current_user):
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="The user is not an admin")
