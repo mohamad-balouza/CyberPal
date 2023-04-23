@@ -13,7 +13,7 @@ def getUsers(db: Session = Depends(deps.getDb), skip: int = 0, limit: int = 100)
     return users
 
 @router.post("/", response_model=schemas.User)
-def create_user(db: Session = Depends(deps.getDb), *, user_in: schemas.UserCreate) -> Any:
+def createUser(db: Session = Depends(deps.getDb), *, user_in: schemas.UserCreate) -> Any:
 
     user = crud.user.getByEmail(db, email=user_in.email)
     if user:
@@ -30,4 +30,20 @@ def getCurrentUser(db: Session = Depends(deps.getDb), current_user: models.User 
 def getUserById(user_id: int, db: Session = Depends(deps.getDb)) -> Any:
 
     user = crud.user.getById(db, id=user_id)    
+    return user
+
+@router.put("/{user_id}", response_model=schemas.User)
+def updateUserById(
+    *,
+    db: Session = Depends(deps.getDb),
+    user_id: int,
+    user_in: schemas.UserUpdate,
+    current_user: models.User = Depends(deps.getCurrentAdmin),
+) -> Any:
+    
+    user = crud.user.get(db, id=user_id)
+    if not user:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="The user with this username does not exist in the system")
+    
+    user = crud.user.update(db, db_obj=user, obj_in=user_in)
     return user
