@@ -11,6 +11,15 @@ def getTools(db: Session = Depends(deps.getDb), skip: int = 0, limit: int = 100)
     tools = crud.tool.getMultiple(db, skip=skip, limit=limit)
     return tools
 
+@router.get("/{id}", response_model=schemas.Tool)
+def getToolById(db: Session = Depends(deps.getDb), *, id: int) -> Any:
+
+    tool = crud.tool.getById(db=db, id=id)
+    if not tool:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Tool not found")
+    
+    return tool
+
 @router.post("/", response_model=schemas.Tool)
 def createTool(
     db: Session = Depends(deps.getDb),
@@ -22,11 +31,18 @@ def createTool(
     tool = crud.tool.create(db, obj_in=tool_in)
     return tool
 
-@router.get("/{id}", response_model=schemas.Tool)
-def getToolById(db: Session = Depends(deps.getDb), *, id: int) -> Any:
+@router.put("/{id}", response_model=schemas.Tool)
+def updateToolByID(
+    db: Session = Depends(deps.getDb),
+    *, 
+    id: int,
+    tool_in: schemas.ToolUpdate,
+    current_user: models.User = Depends(deps.getCurrentAdmin)
+    ) -> Any:
 
     tool = crud.tool.getById(db=db, id=id)
     if not tool:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Tool not found")
     
+    tool = crud.tool.update(db, db_obj= tool, obj_in=tool_in)
     return tool
