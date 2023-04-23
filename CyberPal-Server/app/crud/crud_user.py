@@ -1,9 +1,9 @@
 from app.crud.base import CrudBase
 from app.models.user import User
 from app.schemas.user import UserCreate, UserUpdate
-from app.core.security import getPasswordHash
+from app.core.security import getPasswordHash, verifyPassword
 from sqlalchemy.orm import joinedload, Session
-from typing import List, Type, Dict, Any
+from typing import List, Type, Dict, Any, Optional
 
 class CrudUser(CrudBase[User, UserCreate, UserUpdate]):
     
@@ -39,8 +39,16 @@ class CrudUser(CrudBase[User, UserCreate, UserUpdate]):
             hashed_password = getPasswordHash(update_data["password"])
             del update_data["password"]
             update_data["hashed_password"] = hashed_password
-            
+
         return super().update(db, db_obj=db_obj, obj_in=update_data)
+    
+    def authenticate(self, db: Session, email: str, password: str) -> Optional[User]:
+        user = self.getByEmail(db, email=email)
+        if not user:
+            return None
+        if not verifyPassword(password, user.hashed_password):
+            return None
+        return user
 
 
 user = CrudUser(User)
