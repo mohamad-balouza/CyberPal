@@ -36,6 +36,23 @@ def createScript(
         
     return script
 
+@router.get("/{id}", response_model=schemas.Script)
+def getScriptById(
+    db: Session = Depends(deps.getDb),
+    *, 
+    id: int,
+    current_user: models.User = Depends(deps.getCurrentActiveUser)
+    ) -> Any:
+
+    script = crud.script.getById(db, id=id)
+
+    if not script:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Script not found")
+    elif not crud.user.isAdmin(current_user) and (script.author_id != current_user.id):
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Not authorized")
+
+    return script
+
 @router.put("/{id}", response_model=schemas.Script)
 def updateScriptById(
     db: Session = Depends(deps.getDb),
