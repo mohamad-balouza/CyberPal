@@ -54,3 +54,21 @@ def updateScriptById(
     
     script = crud.script.update(db, db_obj=script, obj_in=script_in)
     return script
+
+@router.delete("/{id}", response_model=schemas.Script)
+def deleteScriptById(
+    db: Session = Depends(deps.getDb),
+    *, 
+    id: int,
+    current_user: models.User = Depends(deps.getCurrentActiveUser)
+    ) -> Any:
+
+    script = crud.script.getById(db, id=id)
+
+    if not script:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Script not found")
+    elif not crud.user.isAdmin(current_user) and (script.author_id != current_user.id):
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Not authorized")
+    
+    script = crud.script.remove(db, id=id)
+    return script
