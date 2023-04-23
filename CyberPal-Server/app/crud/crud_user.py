@@ -25,6 +25,9 @@ class CrudUser(CrudBase[User, UserCreate, UserUpdate]):
         db.commit()
         db.refresh(db_obj)
         return db_obj
+    
+    def getByEmail(self, db: Session, *, email: str) -> User:
+        return db.query(User).filter(User.email == email).first()
 
 
 user = CrudUser(User)
