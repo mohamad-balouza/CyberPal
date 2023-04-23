@@ -2,8 +2,8 @@ from pydantic import BaseModel, FilePath
 from typing import Optional
 
 class OpenvpnFileBase(BaseModel):
-    file_url: FilePath
-    user_id: int
+    file_url: FilePath | None = None
+    user_id: int | None = None
 
 class OpenvpnFileCreate(OpenvpnFileBase):
     pass

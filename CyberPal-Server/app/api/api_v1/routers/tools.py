@@ -46,3 +46,18 @@ def updateToolByID(
     
     tool = crud.tool.update(db, db_obj= tool, obj_in=tool_in)
     return tool
+
+@router.delete("/{id}", response_model=schemas.Tool)
+def deleteToolByID(
+    db: Session = Depends(deps.getDb),
+    *, 
+    id: int,
+    current_user: models.User = Depends(deps.getCurrentAdmin)
+    ) -> Any:
+
+    tool = crud.tool.getById(db=db, id=id)
+    if not tool:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Tool not found")
+    
+    tool = crud.tool.remove(db, id=id)
+    return tool
