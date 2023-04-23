@@ -11,7 +11,12 @@ def getAllScripts(
     db: Session = Depends(deps.getDb), 
     skip: int = 0, 
     limit: int = 100,
-    current_user: models.User = Depends(deps.getCurrentAdmin)
+    current_user: models.User = Depends(deps.getCurrentActiveUser)
     ) -> Any:
-    scripts = crud.script.getMultiple(db, skip=skip, limit=limit)
+
+    if crud.user.isAdmin(current_user):
+        scripts = crud.script.getMultiple(db, skip=skip, limit=limit)
+    else:
+        scripts = crud.script.getMultipleByAuthor(db, author_id=current_user.id, skip=skip, limit=limit)
+
     return scripts
