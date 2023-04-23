@@ -1,9 +1,31 @@
 from typing import Generator
 from app.database.database import SessionLocal
+from fastapi.security import OAuth2PasswordBearer
+from sqlalchemy.orm import Session
+from jose import jwt
+from pydantic import ValidationError
+from fastapi import Depends, HTTPException, status
+from app import models, schemas, crud
+from app.core.config import settings 
 
-def get_db() -> Generator:
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token") #Dummy token for now
+
+def getDb() -> Generator:
     try:
         db = SessionLocal()
         yield db
     finally:
         db.close()
+
+def getCurrentUser(db: Session = Depends(getDb), token: str = Depends(oauth2_scheme)) -> models.User:
+    
+    try:
+        payload = jwt.decode(token, settings.JWT_SECRET_KEY, algorithms=[settings.JWT_SECRET_KEY])
+        token_data = schemas.TokenPayload(**payload)
+    except (jwt.JWTError, ValidationError):
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Invalid credentials")
+    
+    user = crud.user.get(db, id=token_data.sub)
+    if not user:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
+    return user
