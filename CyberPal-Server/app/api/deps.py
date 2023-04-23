@@ -22,7 +22,7 @@ def getCurrentUser(db: Session = Depends(getDb), token: str = Depends(oauth2_sch
         payload = jwt.decode(token, settings.JWT_SECRET_KEY, algorithms=[settings.JWT_SECRET_KEY])
         token_data = schemas.TokenPayload(**payload)
     except (jwt.JWTError, ValidationError):
-        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Invalid credentials")
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid credentials")
     
     user = crud.user.get(db, id=token_data.sub)
     if not user:
@@ -33,4 +33,10 @@ def getCurrentActiveUser(current_user: models.User = Depends(getCurrentUser),) -
     
     if not crud.user.isActive(current_user):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Inactive user")
+    return current_user
+
+def getCurrentAdmin(current_user: models.User = Depends(getCurrentUser),) -> models.User:
+    
+    if not crud.user.isAdmin(current_user):
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="The user is not an admin")
     return current_user
