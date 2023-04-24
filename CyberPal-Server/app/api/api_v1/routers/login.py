@@ -11,7 +11,7 @@ from app.core.security import createAccessToken
 router = APIRouter()
 
 @router.post("/access-token", response_model=schemas.Token)
-def login_access_token(db: Session = Depends(deps.getDb), form_data: OAuth2PasswordRequestForm = Depends()) -> schemas.Token:
+def login_access_token(db: Session = Depends(deps.getDb), form_data: OAuth2PasswordRequestForm = Depends()) -> Any:
     user = crud.user.authenticate(db, email=form_data.username, password=form_data.password)
 
     if not user:

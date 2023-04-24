@@ -11,7 +11,7 @@ class CrudUser(CrudBase[User, UserCreate, UserUpdate]):
         return user.is_active
     
     def isAdmin(self, user: User) -> bool:
-        if user.user_type == 1:
+        if user.user_type_id == 1:
             return True
         return False
     
