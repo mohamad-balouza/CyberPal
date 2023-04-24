@@ -104,3 +104,19 @@ def favoriteScript(
         favorite_script = crud.favorite_script.createWithAuthor(db, obj_in=favorite_script_in, user_who_favorited_id=current_user.id)
         
     return favorite_script
+
+@router.delete("/unfavorite", response_model=schemas.FavoriteScript)
+def unfavoriteScript(
+    db: Session = Depends(deps.getDb),
+    *, 
+    script_favorited_id: int,
+    user_who_favorited_id: int | None = None,
+    current_user: models.User = Depends(deps.getCurrentActiveUser)
+    ) -> Any:
+
+    if crud.user.isAdmin(current_user):
+        favorite_script = crud.favorite_script.remove(db, user_who_favorited_id=user_who_favorited_id, script_favorited_id=script_favorited_id)
+    else:
+        favorite_script = crud.favorite_script.remove(db, user_who_favorited_id=current_user.id, script_favorited_id=script_favorited_id)
+        
+    return favorite_script
