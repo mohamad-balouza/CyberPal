@@ -17,4 +17,12 @@ class CrudFavoriteScript(CrudBase[FavoriteScript, FavoriteScriptCreate, Favorite
     def getMultipleByAuthor(self, db: Session, *, user_who_favorited_id: int, skip: int = 0, limit: int = 100) -> List[FavoriteScript]:
         return db.query(self.model).filter(FavoriteScript.user_who_favorited_id == user_who_favorited_id).offset(skip).limit(limit).all()
 
+    def remove(self, db: Session, user_who_favorited_id: int, script_favorited_id: int) -> FavoriteScript:
+        obj_to_delete = db.query(self.model).filter(FavoriteScript.user_who_favorited_id == user_who_favorited_id, FavoriteScript.script_favorited_id == script_favorited_id).first()
+        db.delete(obj_to_delete)
+        db.commit()
+        return obj_to_delete
+
+
+
 favorite_script = CrudFavoriteScript(FavoriteScript)
