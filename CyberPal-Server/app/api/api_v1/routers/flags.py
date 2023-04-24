@@ -41,3 +41,18 @@ def getUsedFlags(
         used_flags = crud.used_flag.getMultipleByAuthor(db, user_id=current_user.id, skip=skip, limit=limit)
 
     return used_flags
+
+@router.post("/save", response_model=schemas.UsedFlag)
+def saveFlag(
+    db: Session = Depends(deps.getDb),
+    *, 
+    used_flag_in: schemas.UsedFlagCreate, 
+    current_user: models.User = Depends(deps.getCurrentActiveUser)
+    ) -> Any:
+
+    if crud.user.isAdmin(current_user):
+        used_flags = crud.used_flag.create(db, obj_in=used_flag_in)
+    else:
+        used_flags = crud.used_flag.createWithAuthor(db, obj_in=used_flag_in, user_id=current_user.id)
+        
+    return used_flags
