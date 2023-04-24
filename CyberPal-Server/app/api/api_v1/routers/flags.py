@@ -21,3 +21,8 @@ def createFlag(
 
     flag = crud.flag.create(db, obj_in=flag_in)
     return flag
+
+@router.get("/", response_model=List[schemas.Flag])
+def getFlagsByToolId(db: Session = Depends(deps.getDb), *, tool_id: int, skip: int = 0, limit: int = 100) -> Any:
+    flags = crud.flag.getMultipleByToolId(db, tool_id=tool_id, skip=skip, limit=limit)
+    return flags

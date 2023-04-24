@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from app.api.api_v1.routers import users, tools, scripts, schedules, openvpn_files, login
+from app.api.api_v1.routers import users, tools, scripts, schedules, openvpn_files, login, flags
 
 api_router = APIRouter()
 
