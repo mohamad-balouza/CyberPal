@@ -56,3 +56,20 @@ def saveFlag(
         used_flags = crud.used_flag.createWithAuthor(db, obj_in=used_flag_in, user_id=current_user.id)
         
     return used_flags
+
+@router.get("/get_scheduled", response_model=List[schemas.ScheduledFlag])
+def getScheduledFlags(
+    db: Session = Depends(deps.getDb), 
+    *,
+    skip: int = 0, 
+    limit: int = 100,
+    schedule_id: int,
+    current_user: models.User = Depends(deps.getCurrentActiveUser)
+    ) -> Any:
+
+    if crud.user.isAdmin(current_user):
+        scheduled_flags = crud.scheduled_flag.getMultiple(db, skip=skip, limit=limit)
+    else:
+        scheduled_flags = crud.scheduled_flag.getMultipleByScheduleId(db, schedule_id=schedule_id, skip=skip, limit=limit)
+
+    return scheduled_flags

@@ -6,7 +6,7 @@ from fastapi.encoders import jsonable_encoder
 from typing import List
 
 class CrudScheduledFlag(CrudBase[ScheduledFlag, ScheduledFlagCreate, ScheduledFlagUpdate]):
-    def getMultipleByAuthor(self, db: Session, *, schedule_id: int, skip: int = 0, limit: int = 100) -> List[ScheduledFlag]:
+    def getMultipleByScheduleId(self, db: Session, *, schedule_id: int, skip: int = 0, limit: int = 100) -> List[ScheduledFlag]:
         return db.query(self.model).filter(ScheduledFlag.schedule_id == schedule_id).offset(skip).limit(limit).all()
 
 
