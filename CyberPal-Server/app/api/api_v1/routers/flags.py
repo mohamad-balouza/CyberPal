@@ -26,3 +26,18 @@ def createFlag(
 def getFlagsByToolId(db: Session = Depends(deps.getDb), *, tool_id: int, skip: int = 0, limit: int = 100) -> Any:
     flags = crud.flag.getMultipleByToolId(db, tool_id=tool_id, skip=skip, limit=limit)
     return flags
+
+@router.get("/get_used", response_model=List[schemas.UsedFlag])
+def getUsedFlags(
+    db: Session = Depends(deps.getDb), 
+    skip: int = 0, 
+    limit: int = 100,
+    current_user: models.User = Depends(deps.getCurrentActiveUser)
+    ) -> Any:
+
+    if crud.user.isAdmin(current_user):
+        used_flags = crud.used_flag.getMultiple(db, skip=skip, limit=limit)
+    else:
+        used_flags = crud.used_flag.getMultipleByAuthor(db, user_id=current_user.id, skip=skip, limit=limit)
+
+    return used_flags
