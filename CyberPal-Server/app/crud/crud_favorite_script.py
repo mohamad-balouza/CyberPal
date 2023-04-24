@@ -15,6 +15,6 @@ class CrudFavoriteScript(CrudBase[FavoriteScript, FavoriteScriptCreate, Favorite
         return db_obj
     
     def getMultipleByAuthor(self, db: Session, *, user_who_favorited_id: int, skip: int = 0, limit: int = 100) -> List[FavoriteScript]:
-        return db.query(self.model).filter(FavoriteScript.c["user_who_favorited_id"] == user_who_favorited_id).offset(skip).limit(limit).all()
+        return db.query(self.model).filter(FavoriteScript.user_who_favorited_id == user_who_favorited_id).offset(skip).limit(limit).all()
 
 favorite_script = CrudFavoriteScript(FavoriteScript)

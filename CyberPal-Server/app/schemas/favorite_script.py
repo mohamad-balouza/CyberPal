@@ -18,7 +18,7 @@ class FavoriteScriptInDBBase(FavoriteScriptBase):
 
 class FavoriteScript(FavoriteScriptInDBBase):
     user_who_favorited: Optional["UserInDBBase"]
-    script_favorited: Optional["ScriptInDBBase"]
+    favorited_script: Optional["ScriptInDBBase"]
 
 class FavoriteScriptInDB(FavoriteScriptInDBBase):
     pass
