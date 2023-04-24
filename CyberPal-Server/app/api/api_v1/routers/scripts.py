@@ -105,6 +105,22 @@ def favoriteScript(
         
     return favorite_script
 
+@router.get("/get_favorites", response_model=schemas.FavoriteScript)
+def getAllFavoriteScripts(
+    db: Session = Depends(deps.getDb),
+    *, 
+    skip: int = 0,
+    limit: int = 100,
+    current_user: models.User = Depends(deps.getCurrentActiveUser)
+    ) -> Any:
+
+    if crud.user.isAdmin(current_user):
+        favorite_scripts = crud.favorite_script.getMultiple(db, skip=skip, limit=limit)
+    else:
+        favorite_scripts = crud.favorite_script.getMultipleByAuthor(db, user_who_favorited_id=current_user.id, skip=skip, limit=limit)
+
+    return favorite_scripts
+
 @router.delete("/unfavorite", response_model=schemas.FavoriteScript)
 def unfavoriteScript(
     db: Session = Depends(deps.getDb),
