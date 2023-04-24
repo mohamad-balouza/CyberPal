@@ -21,6 +21,52 @@ def getAllScripts(
 
     return scripts
 
+@router.get("/getfav", response_model=List[schemas.FavoriteScript])
+def getAllFavorites(
+    db: Session = Depends(deps.getDb), 
+    skip: int = 0, 
+    limit: int = 100,
+    current_user: models.User = Depends(deps.getCurrentActiveUser)
+    ) -> Any:
+
+    if crud.user.isAdmin(current_user):
+        favorite_scripts = crud.favorite_script.getMultiple(db, skip=skip, limit=limit)
+    else:
+        favorite_scripts = crud.favorite_script.getMultipleByAuthor(db, user_who_favorited_id=current_user.id, skip=skip, limit=limit)
+
+    return favorite_scripts
+
+@router.post("/favorite", response_model=schemas.FavoriteScript)
+def favoriteScript(
+    db: Session = Depends(deps.getDb),
+    *, 
+    favorite_script_in: schemas.FavoriteScriptCreate, 
+    current_user: models.User = Depends(deps.getCurrentActiveUser)
+    ) -> Any:
+
+    if crud.user.isAdmin(current_user):
+        favorite_script = crud.favorite_script.create(db, obj_in=favorite_script_in)
+    else:
+        favorite_script = crud.favorite_script.createWithAuthor(db, obj_in=favorite_script_in, user_who_favorited_id=current_user.id)
+        
+    return favorite_script
+
+@router.delete("/unfavorite", response_model=schemas.FavoriteScript)
+def unfavoriteScript(
+    db: Session = Depends(deps.getDb),
+    *, 
+    script_favorited_id: int,
+    user_who_favorited_id: int | None = None,
+    current_user: models.User = Depends(deps.getCurrentActiveUser)
+    ) -> Any:
+
+    if crud.user.isAdmin(current_user):
+        favorite_script = crud.favorite_script.remove(db, user_who_favorited_id=user_who_favorited_id, script_favorited_id=script_favorited_id)
+    else:
+        favorite_script = crud.favorite_script.remove(db, user_who_favorited_id=current_user.id, script_favorited_id=script_favorited_id)
+        
+    return favorite_script
+
 @router.post("/", response_model=schemas.Script)
 def createScript(
     db: Session = Depends(deps.getDb),
@@ -89,50 +135,3 @@ def deleteScriptById(
     
     script = crud.script.remove(db, id=id)
     return script
-
-@router.post("/favorite", response_model=schemas.FavoriteScript)
-def favoriteScript(
-    db: Session = Depends(deps.getDb),
-    *, 
-    favorite_script_in: schemas.FavoriteScriptCreate, 
-    current_user: models.User = Depends(deps.getCurrentActiveUser)
-    ) -> Any:
-
-    if crud.user.isAdmin(current_user):
-        favorite_script = crud.favorite_script.create(db, obj_in=favorite_script_in)
-    else:
-        favorite_script = crud.favorite_script.createWithAuthor(db, obj_in=favorite_script_in, user_who_favorited_id=current_user.id)
-        
-    return favorite_script
-
-@router.get("/get_favorites", response_model=schemas.FavoriteScript)
-def getAllFavoriteScripts(
-    db: Session = Depends(deps.getDb),
-    *, 
-    skip: int = 0,
-    limit: int = 100,
-    current_user: models.User = Depends(deps.getCurrentActiveUser)
-    ) -> Any:
-
-    if crud.user.isAdmin(current_user):
-        favorite_scripts = crud.favorite_script.getMultiple(db, skip=skip, limit=limit)
-    else:
-        favorite_scripts = crud.favorite_script.getMultipleByAuthor(db, user_who_favorited_id=current_user.id, skip=skip, limit=limit)
-
-    return favorite_scripts
-
-@router.delete("/unfavorite", response_model=schemas.FavoriteScript)
-def unfavoriteScript(
-    db: Session = Depends(deps.getDb),
-    *, 
-    script_favorited_id: int,
-    user_who_favorited_id: int | None = None,
-    current_user: models.User = Depends(deps.getCurrentActiveUser)
-    ) -> Any:
-
-    if crud.user.isAdmin(current_user):
-        favorite_script = crud.favorite_script.remove(db, user_who_favorited_id=user_who_favorited_id, script_favorited_id=script_favorited_id)
-    else:
-        favorite_script = crud.favorite_script.remove(db, user_who_favorited_id=current_user.id, script_favorited_id=script_favorited_id)
-        
-    return favorite_script
