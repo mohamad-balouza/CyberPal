@@ -73,3 +73,15 @@ def getScheduledFlags(
         scheduled_flags = crud.scheduled_flag.getMultipleByScheduleId(db, schedule_id=schedule_id, skip=skip, limit=limit)
 
     return scheduled_flags
+
+@router.post("/schedule", response_model=schemas.ScheduledFlag)
+def scheduleFlag(
+    db: Session = Depends(deps.getDb),
+    *, 
+    scheduled_flag_in: schemas.ScheduledFlagCreate, 
+    current_user: models.User = Depends(deps.getCurrentActiveUser)
+    ) -> Any:
+
+    scheduled_flag = crud.scheduled_flag.create(db, obj_in=scheduled_flag_in)
+        
+    return scheduled_flag
