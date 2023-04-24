@@ -11,3 +11,13 @@ def getFlags(db: Session = Depends(deps.getDb), skip: int = 0, limit: int = 100)
     flags = crud.flag.getMultiple(db, skip=skip, limit=limit)
     return flags
 
+@router.post("/", response_model=schemas.Flag)
+def createFlag(
+    db: Session = Depends(deps.getDb),
+    *, 
+    flag_in: schemas.FlagCreate, 
+    current_user: models.User = Depends(deps.getCurrentAdmin)
+    ) -> Any:
+
+    flag = crud.flag.create(db, obj_in=flag_in)
+    return flag
