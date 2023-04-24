@@ -13,6 +13,9 @@ class CrudUsedFlag(CrudBase[UsedFlag, UsedFlagCreate, UsedFlagUpdate]):
         db.commit()
         db.refresh(db_obj)
         return db_obj
+    
+    def getMultipleByAuthor(self, db: Session, *, user_id: int, skip: int = 0, limit: int = 100) -> List[UsedFlag]:
+        return db.query(self.model).filter(UsedFlag.user_id == user_id).offset(skip).limit(limit).all()
 
 
 
