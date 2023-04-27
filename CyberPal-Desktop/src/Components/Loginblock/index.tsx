@@ -1,14 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react'
 import LoginImage from '../../../assets/LoginImage.svg';
-import { Image } from 'primereact/image';
-import "./index.css";
+import { InputText } from "primereact/inputtext";
+import { Button } from 'primereact/button';                             
+import "./index.css";        
         
 function LoginBlock() {
+  const [value, setValue] = useState('');
+
   return (
     <div className='login-block'>
-        {/* <Image src={LoginImage} width="436.13" height='434.73'/> */}
       <div className='login-image-block'>
         <img src={LoginImage} className='login-image' />
+      </div>
+
+      <div className='login-content-block'>
+        <h3 className='login-title'>Login your account</h3>
+        <span className="p-float-label">
+          <InputText id="Email" value={value} onChange={(e) => setValue(e.target.value)} />
+          <label htmlFor="Email">Email</label>
+        </span>
+        <span className="p-float-label">
+          <InputText id="Password" value={value} onChange={(e) => setValue(e.target.value)} />
+          <label htmlFor="Password">Password</label>
+        </span>
+        <Button label="Login" size='small'/>
+        <p style={{"color":"black"}}>Create Account</p>
       </div>
     </div>
 )
