@@ -1,0 +1,19 @@
+.footer-block{
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+}
+
+.footer-navigation-block{
+    display: flex;
+    gap: 20px;
+    color: var(--purplish_grey);
+    opacity: 0.5;
+}
+
+.socials-block{
+    display: flex;
+    gap: 20px;
+    color: var(--purplish_grey);
+    opacity: 0.5;
+}

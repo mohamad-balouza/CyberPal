@@ -4,6 +4,7 @@ import './index.css'
 import HeroBlock from 'Components/HeroBlock';
 import ExtraInfoBlock from 'Components/ExtraInfoBlock';
 import HomeToolsBlock from 'Components/HomeToolsBlock';
+import Footer from 'Components/Footer';
         
 function LandingPage() {
   return (
@@ -12,6 +13,7 @@ function LandingPage() {
         <HeroBlock />
         <ExtraInfoBlock />
         <HomeToolsBlock />
+        <Footer />
     </div>
   )
 }
