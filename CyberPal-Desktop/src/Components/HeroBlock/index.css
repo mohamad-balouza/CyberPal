@@ -1,9 +1,9 @@
 .hero-block{
-    background-image: url("../../../assets/HeroBackgroundImage.svg");
+    background-image: url("../../../assets/HeroBackgroundImage.png");
     /* height: 100vh; */
     display: flex;
-    padding-left: 64px;
-    padding-right: 64px;
+    align-items: center;
+    padding: 32px 64px 32px 64px;
 }
 
 .hero-content-block{
@@ -11,6 +11,7 @@
     flex-direction: column;
     gap: 24px;
     justify-content: center;
+    width: 50%;
 }
 
 .hero-action-buttons{
@@ -19,5 +20,5 @@
 }
 
 .hero-image{
-    width: 700px;
+    width: 100%;
 }

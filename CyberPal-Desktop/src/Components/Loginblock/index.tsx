@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import LoginImage from '../../../assets/LoginImage.svg';
+import LoginImage from '../../../assets/LoginImage.png';
 import { InputText } from "primereact/inputtext";
 import { Button } from 'primereact/button';                             
 import "./index.css";        

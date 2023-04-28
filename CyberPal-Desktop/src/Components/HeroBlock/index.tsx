@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.css';
-import HeroImage from '../../../assets/HeroImage.svg';
+import HeroImage from '../../../assets/HeroImage.png';
 import { Button } from 'primereact/button';
         
 function HeroBlock() {
