@@ -75,5 +75,6 @@ a {
 a:hover {
   opacity: 1;
   text-decoration: none;
+  cursor: pointer;
 }
 
