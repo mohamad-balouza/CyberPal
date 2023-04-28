@@ -6,7 +6,13 @@
     justify-content: center;
 }
 
-.extra-info-block p {
+.extra-info-block > p {
     width: 30%;
     text-align: center;
+}
+
+.extra-info-cards-block {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
 }

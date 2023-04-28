@@ -1,0 +1,35 @@
+.extra-info-card {
+    margin-top: 64px;
+    position: relative;
+}
+
+.card-image-block{
+    width: 70px;
+    height: 70px;
+    border-radius: 250px;
+    background-color: white;
+    position: absolute;
+    top: -35px;
+    left: 141px;
+}
+
+.card-info-block{
+    background-color: var(--lightish_purple);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 16px;
+    padding: 40px 16px 14px;
+    border-radius: 20px;
+    width: 350px;
+}
+
+.info-cyan{
+    border: 3px solid var(--cyan);
+}
+
+.image-cyan{
+    box-shadow: 0px 4px 30px var(--cyan);
+}
