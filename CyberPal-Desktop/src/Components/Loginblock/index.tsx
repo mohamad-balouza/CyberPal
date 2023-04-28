@@ -14,7 +14,7 @@ function LoginBlock() {
       </div>
 
       <div className='login-content-block'>
-        <h3 className='login-title'>Login your account</h3>
+        <h4 className='login-title'>Login your account</h4>
         <span className="p-float-label">
           <InputText id="Email" value={value} onChange={(e) => setValue(e.target.value)} />
           <label htmlFor="Email">Email</label>
