@@ -33,3 +33,19 @@
 .image-cyan{
     box-shadow: 0px 4px 30px var(--cyan);
 }
+
+.info-pink{
+    border: 3px solid var(--pink);
+}
+
+.image-pink{
+    box-shadow: 0px 4px 30px var(--pink);
+}
+
+.info-blue{
+    border: 3px solid var(--blue);
+}
+
+.image-blue{
+    box-shadow: 0px 4px 30px var(--blue);
+}
