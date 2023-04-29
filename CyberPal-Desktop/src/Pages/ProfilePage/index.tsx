@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from 'Components/Navbar';
 import './index.css';
 import ProfileInfoBlock from 'Components/ProfileInfoBlock';
+import ProfileContentsBlock from 'Components/ProfileContentsBlock';
 
 
 function ProfilePage() {
@@ -10,7 +11,7 @@ function ProfilePage() {
         <Navbar />
         <div className='profile-block'>
             <ProfileInfoBlock />
-            <div className='profile-contents-block'></div>
+            <ProfileContentsBlock />
         </div>
     </div>
   )

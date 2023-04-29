@@ -1,5 +1,6 @@
 import React from 'react';
 import { Avatar } from 'primereact/avatar';
+import './index.css';
 
 
 function ProfileInfoBlock() {
