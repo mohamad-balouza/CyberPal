@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './index.css';
 import { Avatar } from 'primereact/avatar';
 import { NavLink } from 'react-router-dom';
 
 
 function AdminSidebar() {
+    const [activated_item, useActivated_item] = useState("Manage Users");
+
+    const handleActivation = (name) => {
+        useActivated_item(name)
+    }
+    
     const sidebar_manage_data = [
         {
             path:"/",
@@ -64,8 +70,8 @@ function AdminSidebar() {
             <p>Data</p>
             {
                 sidebar_manage_data.map((item, index)=>(
-                    <NavLink to={item.path} key={index} className="link">
-                        <div className='sidebar-item'>
+                    <NavLink to={item.path} key={index} onClick={() => handleActivation(item.name)} className="link">
+                        <div className={item.name == activated_item ? "active" : "sidebar-item"}>
                             <span className={item.icon}></span>
                             <span className="link_text">{item.name}</span>
                         </div>
@@ -77,8 +83,8 @@ function AdminSidebar() {
             <p>Forms</p>
             {
                 sidebar_forms.map((item, index)=>(
-                    <NavLink to={item.path} key={index} className="link">
-                        <div className='sidebar-item'>
+                    <NavLink to={item.path} onClick={() => handleActivation(item.name)} key={index} className="link">
+                        <div className={item.name == activated_item ? "active" : "sidebar-item"}>
                             <span className={item.icon}></span>
                             <span className="link_text">{item.name}</span>
                         </div>

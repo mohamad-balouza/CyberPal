@@ -1,9 +1,11 @@
 .sidebar-block{
     display: flex;
     flex-direction: column;
-    width: 18%;
+    width: 17%;
     padding: 32px;
     gap: 32px;
+    background-color: var(--purple);
+    height: 100vh;
 }
 
 .sidebar-header-block{
@@ -28,4 +30,8 @@
     display: flex;
     gap: 8px;
     margin-top: 4px;
+}
+
+.active{
+    background-color: blue;
 }
