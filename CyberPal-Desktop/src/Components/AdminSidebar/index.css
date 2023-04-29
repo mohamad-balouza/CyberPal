@@ -32,6 +32,10 @@
     margin-top: 4px;
 }
 
-.active{
-    background-color: blue;
+.actived-item{
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+    color: var(--cyan);
+    text-shadow: 0px 0px 30px var(--blue);
 }

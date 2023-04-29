@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 function AdminSidebar() {
     const [activated_item, useActivated_item] = useState("Manage Users");
 
-    const handleActivation = (name) => {
+    const handleActivation = (name: string) => {
         useActivated_item(name)
     }
     
@@ -71,7 +71,7 @@ function AdminSidebar() {
             {
                 sidebar_manage_data.map((item, index)=>(
                     <NavLink to={item.path} key={index} onClick={() => handleActivation(item.name)} className="link">
-                        <div className={item.name == activated_item ? "active" : "sidebar-item"}>
+                        <div className={item.name == activated_item ? "actived-item" : "sidebar-item"}>
                             <span className={item.icon}></span>
                             <span className="link_text">{item.name}</span>
                         </div>
@@ -84,7 +84,7 @@ function AdminSidebar() {
             {
                 sidebar_forms.map((item, index)=>(
                     <NavLink to={item.path} onClick={() => handleActivation(item.name)} key={index} className="link">
-                        <div className={item.name == activated_item ? "active" : "sidebar-item"}>
+                        <div className={item.name == activated_item ? "actived-item" : "sidebar-item"}>
                             <span className={item.icon}></span>
                             <span className="link_text">{item.name}</span>
                         </div>
