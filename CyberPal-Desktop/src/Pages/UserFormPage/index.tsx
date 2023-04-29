@@ -38,6 +38,10 @@ function UserFormPage() {
                     <label htmlFor="isactive">Is Active</label>
                 </div>
             </div>
+            <div className='form-buttons'>
+                <Button label='Add User' style={{flex: "1"}} />
+                <Button label='Update User' style={{flex: "1"}} />
+            </div>
         </div>
       </div>
     </div>
