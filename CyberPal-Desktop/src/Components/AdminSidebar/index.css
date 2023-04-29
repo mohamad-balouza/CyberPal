@@ -1,0 +1,31 @@
+.sidebar-block{
+    display: flex;
+    flex-direction: column;
+    width: 18%;
+    padding: 32px;
+    gap: 32px;
+}
+
+.sidebar-header-block{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+}
+
+.admin-profile-block{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.link{
+    color: white;
+}
+
+.sidebar-item{
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+}

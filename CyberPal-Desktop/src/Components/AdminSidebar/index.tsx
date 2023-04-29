@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import './index.css';
 import { Avatar } from 'primereact/avatar';
 import { NavLink } from 'react-router-dom';
 
@@ -53,34 +54,38 @@ function AdminSidebar() {
   return (
     <div className='sidebar-block'>
         <div className='sidebar-header-block'>
-            <h3>Admin Panel</h3>
+            <h4>Admin Panel</h4>
             <div className='admin-profile-block'>
                 <Avatar label="P" size="xlarge" shape="circle" />
-                <h3>Username</h3>
+                <h4>Username</h4>
             </div>
         </div>
-        <p>Data</p>
-        {
-            sidebar_manage_data.map((item, index)=>(
-                <NavLink to={item.path} key={index} className="link">
-                    <div className='sidebar-item'>
-                        <span className={item.icon}></span>
-                        <span className="link_text">{item.name}</span>
-                    </div>
-                </NavLink>
-            ))
-        }
-        <p>Forms</p>
-        {
-            sidebar_forms.map((item, index)=>(
-                <NavLink to={item.path} key={index} className="link">
-                    <div className='sidebar-item'>
-                        <span className={item.icon}></span>
-                        <span className="link_text">{item.name}</span>
-                    </div>
-                </NavLink>
-            ))
-        }
+        <div className='sidebar-data-block'>
+            <p>Data</p>
+            {
+                sidebar_manage_data.map((item, index)=>(
+                    <NavLink to={item.path} key={index} className="link">
+                        <div className='sidebar-item'>
+                            <span className={item.icon}></span>
+                            <span className="link_text">{item.name}</span>
+                        </div>
+                    </NavLink>
+                ))
+            }
+        </div>
+        <div className='sidebar-forms-block'>
+            <p>Forms</p>
+            {
+                sidebar_forms.map((item, index)=>(
+                    <NavLink to={item.path} key={index} className="link">
+                        <div className='sidebar-item'>
+                            <span className={item.icon}></span>
+                            <span className="link_text">{item.name}</span>
+                        </div>
+                    </NavLink>
+                ))
+            }
+        </div>
     </div>
   )
 }
