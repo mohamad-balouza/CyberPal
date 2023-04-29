@@ -27,6 +27,10 @@ function ToolFormPage() {
                     <label htmlFor="toolimage">Tool Image</label>
                 </div>
             </div>
+            <div className='form-buttons'>
+                <Button label='Add Tool' style={{flex: "1"}} />
+                <Button label='Update Tool' style={{flex: "1"}} />
+            </div>
         </div>
       </div>
     </div>
