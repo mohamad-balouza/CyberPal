@@ -18,7 +18,7 @@ function AdminSidebar() {
             icon:"pi pi-users"
         },
         {
-            path:"/",
+            path:"/admin/manage-tools",
             name:"Manage Tools",
             icon:"pi pi-wrench"
         },

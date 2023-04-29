@@ -7,6 +7,7 @@ import "primereact/resources/primereact.min.css";
 import 'primeicons/primeicons.css';
 import LandingPage from 'Pages/LandingPage';
 import ManageUsersPage from 'Pages/ManageUsersPage';
+import ManageToolsPage from 'Pages/ManageToolsPage';
 
 
 export default function App() {
@@ -16,6 +17,7 @@ export default function App() {
         <Route path="/home" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/" element={<ManageUsersPage />} />
+        <Route path="/admin/manage-tools" element={<ManageToolsPage />} />
       </Routes>
     </Router>
   );
