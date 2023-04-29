@@ -1,0 +1,28 @@
+.profile-info-block{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+}
+
+.profile-details-block{
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-details-block > p{
+    margin: 0;
+    padding: 0;
+}
+
+.profile-details-block > h3{
+    margin: 0;
+    padding: 0;
+}
+
+.profile-details-block > a{
+    margin: 0;
+    padding: 0;
+    color: var(--blue);
+    text-decoration-line: underline;
+}
