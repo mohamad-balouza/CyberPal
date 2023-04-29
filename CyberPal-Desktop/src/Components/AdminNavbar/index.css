@@ -1,0 +1,12 @@
+.admin-navbar{
+    margin-top: 16px;
+    margin-right: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-navigation-icons{
+    display: flex;
+    gap: 16px;
+}
