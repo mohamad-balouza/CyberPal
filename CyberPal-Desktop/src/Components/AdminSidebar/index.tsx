@@ -8,27 +8,27 @@ function AdminSidebar() {
         {
             path:"/",
             name:"Manage Users",
-            icon:"pi pi-check"
+            icon:"pi pi-users"
         },
         {
             path:"/",
             name:"Manage Tools",
-            icon:"pi pi-check"
+            icon:"pi pi-wrench"
         },
         {
             path:"/",
             name:"Manage Tool Flags",
-            icon:"pi pi-check"
+            icon:"pi pi-flag"
         },
         {
             path:"/",
             name:"Manage Schedules",
-            icon:"pi pi-check"
+            icon:"pi pi-clock"
         },
         {
             path:"/",
             name:"Manage Scripts",
-            icon:"pi pi-check"
+            icon:"pi pi-hashtag"
         },
     ]
 
@@ -36,17 +36,17 @@ function AdminSidebar() {
         {
             path:"/",
             name:"User Form",
-            icon:"pi pi-check"
+            icon:"pi pi-user"
         },
         {
             path:"/",
             name:"Tool Form",
-            icon:"pi pi-check"
+            icon:"pi pi-wrench"
         },
         {
             path:"/",
             name:"Flag Form",
-            icon:"pi pi-check"
+            icon:"pi pi-flag"
         }
     ]
 
