@@ -15,7 +15,7 @@ function ProfileContentsBlock() {
         <TabPanel header="Scripts">
           <ScriptsTable />
         </TabPanel>
-        <TabPanel header="Connect VPN">
+        <TabPanel header="Connect VPN" contentStyle={{display: "flex", justifyContent: "center"}}>
           <ConnectVpnTable />
         </TabPanel>
     </TabView>

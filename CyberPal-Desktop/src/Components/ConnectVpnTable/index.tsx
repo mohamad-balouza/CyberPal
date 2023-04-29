@@ -22,8 +22,7 @@ function ConnectVpnTable() {
     return (
         <div className="card">
             <div className="card">
-                <DataTable size='small' tableStyle={{ width: '50rem' }} value={userfile} paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]} paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
-                        currentPageReportTemplate="{first} to {last} of {totalRecords}">
+                <DataTable size='small' tableStyle={{ width: '30rem' }} value={userfile} >
                     <Column field="file_detail" header="OpenVPN Access Details" style={{ width: '50%' }}></Column>
                     <Column field="status" style={{ width: '3%' }}></Column>
                 </DataTable>
