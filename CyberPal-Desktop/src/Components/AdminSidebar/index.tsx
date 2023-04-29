@@ -28,7 +28,7 @@ function AdminSidebar() {
             icon:"pi pi-flag"
         },
         {
-            path:"/",
+            path:"/admin/manage-schedules",
             name:"Manage Schedules",
             icon:"pi pi-clock"
         },
