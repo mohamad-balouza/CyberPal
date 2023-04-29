@@ -3,6 +3,7 @@ import './index.css';
 import { TabView, TabPanel } from 'primereact/tabview';
 import SchedulesTable from 'Components/SchedulesTable';
 import ScriptsTable from 'Components/ScriptsTable';
+import ConnectVpnTable from 'Components/ConnectVpnTable';
         
 
 function ProfileContentsBlock() {
@@ -14,11 +15,8 @@ function ProfileContentsBlock() {
         <TabPanel header="Scripts">
           <ScriptsTable />
         </TabPanel>
-        <TabPanel header="Favorite Scripts">
-
-        </TabPanel>
         <TabPanel header="Connect VPN">
-
+          <ConnectVpnTable />
         </TabPanel>
     </TabView>
   )
