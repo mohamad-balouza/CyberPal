@@ -29,6 +29,10 @@ function UserFormPage() {
                     <InputText id="email" value={email} onChange={(e) => setEmail(e.target.value)}  style={{flex: "1"}}/>
                     <label htmlFor="email">Email</label>
                 </div>
+                <div className="p-float-label" style={{width: "49.2%", display: "flex"}}>
+                    <Password  inputId="password" value={password} onChange={(e) => setPassword(e.target.value)} toggleMask style={{flex: "1"}} inputStyle={{flex: "1"}} panelStyle={{flex: "1"}} />
+                    <label htmlFor="password">Password</label>
+                </div>
                 <div className="p-float-label" style={{flex: "1", display: "flex"}}>
                     <InputText id="usertype" value={usertype} onChange={(e) => setUsertype(e.target.value)}  style={{flex: "1"}}/>
                     <label htmlFor="usertype">User Type</label>
