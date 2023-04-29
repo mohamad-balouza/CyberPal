@@ -27,10 +27,10 @@ function FlagFormPage() {
                     <InputText id="toolid" value={toolid} onChange={(e) => setToolid(e.target.value)}  style={{flex: "1"}}/>
                     <label htmlFor="toolid">Tool ID</label>
                 </div>
-                <span className="p-float-label">
+                <div className="p-float-label">
                     <InputTextarea id="flagdescription" value={flagdescription} onChange={(e) => setflagdescription(e.target.value)} rows={5} cols={30} />
                     <label htmlFor="flagdescription">Flag Description</label>
-                </span>
+                </div>
             </div>
         </div>
       </div>

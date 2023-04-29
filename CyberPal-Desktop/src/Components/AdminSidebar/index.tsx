@@ -51,7 +51,7 @@ function AdminSidebar() {
             icon:"pi pi-wrench"
         },
         {
-            path:"/",
+            path:"/admin/flag-form",
             name:"Flag Form",
             icon:"pi pi-flag"
         }
