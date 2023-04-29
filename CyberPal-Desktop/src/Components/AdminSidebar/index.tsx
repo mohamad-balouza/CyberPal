@@ -13,7 +13,7 @@ function AdminSidebar() {
     
     const sidebar_manage_data = [
         {
-            path:"/",
+            path:"/admin",
             name:"Manage Users",
             icon:"pi pi-users"
         },

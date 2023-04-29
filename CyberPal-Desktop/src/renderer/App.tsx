@@ -22,7 +22,7 @@ export default function App() {
       <Routes>
         <Route path="/home" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/" element={<ManageUsersPage />} />
+        <Route path="/admin" element={<ManageUsersPage />} />
         <Route path="/admin/manage-tools" element={<ManageToolsPage />} />
         <Route path="/admin/manage-flags" element={<ManageFlagsPage />} />
         <Route path="/admin/manage-schedules" element={<ManageSchedulesPage />} />
