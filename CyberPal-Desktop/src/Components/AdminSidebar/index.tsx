@@ -46,7 +46,7 @@ function AdminSidebar() {
             icon:"pi pi-user"
         },
         {
-            path:"/",
+            path:"/admin/tool-form",
             name:"Tool Form",
             icon:"pi pi-wrench"
         },

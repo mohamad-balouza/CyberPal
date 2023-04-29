@@ -6,7 +6,7 @@ import { Password } from 'primereact/password';
 import React, { useState } from 'react';
 import './index.css';
 
-function UserFormPage() {
+function ToolFormPage() {
   const [toolname, setToolname] = useState("");
   const [toolimage, setToolimage] = useState("");
 
@@ -33,4 +33,4 @@ function UserFormPage() {
   )
 }
 
-export default UserFormPage
+export default ToolFormPage

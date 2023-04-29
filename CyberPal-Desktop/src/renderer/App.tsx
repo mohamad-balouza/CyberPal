@@ -12,6 +12,7 @@ import ManageFlagsPage from 'Pages/ManageFlagsPage';
 import ManageSchedulesPage from 'Pages/ManageSchedulesPage';
 import ManageScriptsPage from 'Pages/ManageScriptsPage';
 import UserFormPage from 'Pages/UserFormPage';
+import ToolFormPage from 'Pages/ToolFormPage';
 
 
 export default function App() {
@@ -26,6 +27,7 @@ export default function App() {
         <Route path="/admin/manage-schedules" element={<ManageSchedulesPage />} />
         <Route path="/admin/manage-scripts" element={<ManageScriptsPage />} />
         <Route path="/admin/user-form" element={<UserFormPage />} />
+        <Route path="/admin/tool-form" element={<ToolFormPage />} />
       </Routes>
     </Router>
   );
