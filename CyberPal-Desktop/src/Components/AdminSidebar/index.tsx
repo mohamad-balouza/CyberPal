@@ -41,7 +41,7 @@ function AdminSidebar() {
 
     const sidebar_forms = [
         {
-            path:"/",
+            path:"/admin/user-form",
             name:"User Form",
             icon:"pi pi-user"
         },
