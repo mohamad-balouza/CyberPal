@@ -8,6 +8,7 @@ import 'primeicons/primeicons.css';
 import LandingPage from 'Pages/LandingPage';
 import ManageUsersPage from 'Pages/ManageUsersPage';
 import ManageToolsPage from 'Pages/ManageToolsPage';
+import ManageFlagsPage from 'Pages/ManageFlagsPage';
 
 
 export default function App() {
@@ -18,6 +19,7 @@ export default function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/" element={<ManageUsersPage />} />
         <Route path="/admin/manage-tools" element={<ManageToolsPage />} />
+        <Route path="/admin/manage-flags" element={<ManageFlagsPage />} />
       </Routes>
     </Router>
   );

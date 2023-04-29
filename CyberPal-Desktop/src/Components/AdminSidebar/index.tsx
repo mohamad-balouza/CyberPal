@@ -23,7 +23,7 @@ function AdminSidebar() {
             icon:"pi pi-wrench"
         },
         {
-            path:"/",
+            path:"/admin/manage-flags",
             name:"Manage Tool Flags",
             icon:"pi pi-flag"
         },
