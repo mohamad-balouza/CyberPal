@@ -33,7 +33,7 @@ function AdminSidebar() {
             icon:"pi pi-clock"
         },
         {
-            path:"/",
+            path:"/admin/manage-scripts",
             name:"Manage Scripts",
             icon:"pi pi-hashtag"
         },

@@ -6,22 +6,22 @@ import { Column } from 'primereact/column';
 import React, { useState } from 'react';
 import './index.css';
 
-function ManageFlagsPage() {
-  const [flags, setFlags] = useState([]);
+function ManageScriptsPage() {
+  const [scripts, setScripts] = useState([]);
 
   return (
     <div className='admin-page-block'>
       <AdminSidebar />
       <div className='admin-page-content-block'>
         <AdminNavbar />
-        <h3>Flags</h3>
+        <h3>Scripts</h3>
         <div className="card">
-            <DataTable value={flags} paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]} paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+            <DataTable value={scripts} paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]} paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
                     currentPageReportTemplate="{first} to {last} of {totalRecords}">
                 <Column field="id" header="ID" style={{ width: '10%' }}></Column>
-                <Column field="flag_name" header="Flag Name" style={{ width: '20%' }}></Column>
-                <Column field="tool_id" header="Tool" style={{ width: '20%' }}></Column>
-                <Column field="flag_description" header="Description" style={{ width: '50%' }}></Column>
+                <Column field="script_title" header="Title" style={{ width: '20%' }}></Column>
+                <Column field="author_id" header="Author" style={{ width: '20%' }}></Column>
+                <Column field="script_content" header="Content" style={{ width: '50%' }}></Column>
             </DataTable>
         </div>
       </div>
@@ -29,4 +29,4 @@ function ManageFlagsPage() {
   )
 }
 
-export default ManageFlagsPage
+export default ManageScriptsPage

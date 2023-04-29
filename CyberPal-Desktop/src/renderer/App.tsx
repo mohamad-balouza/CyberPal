@@ -10,6 +10,7 @@ import ManageUsersPage from 'Pages/ManageUsersPage';
 import ManageToolsPage from 'Pages/ManageToolsPage';
 import ManageFlagsPage from 'Pages/ManageFlagsPage';
 import ManageSchedulesPage from 'Pages/ManageSchedulesPage';
+import ManageScriptsPage from 'Pages/ManageScriptsPage';
 
 
 export default function App() {
@@ -22,6 +23,7 @@ export default function App() {
         <Route path="/admin/manage-tools" element={<ManageToolsPage />} />
         <Route path="/admin/manage-flags" element={<ManageFlagsPage />} />
         <Route path="/admin/manage-schedules" element={<ManageSchedulesPage />} />
+        <Route path="/admin/manage-scripts" element={<ManageScriptsPage />} />
       </Routes>
     </Router>
   );
