@@ -32,6 +32,10 @@ function FlagFormPage() {
                     <label htmlFor="flagdescription">Flag Description</label>
                 </div>
             </div>
+            <div className='form-buttons'>
+                <Button label='Add Flag' style={{flex: "1"}} />
+                <Button label='Update Flag' style={{flex: "1"}} />
+            </div>
         </div>
       </div>
     </div>
