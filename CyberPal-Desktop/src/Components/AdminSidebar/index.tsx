@@ -70,6 +70,17 @@ function AdminSidebar() {
                 </NavLink>
             ))
         }
+        <p>Forms</p>
+        {
+            sidebar_forms.map((item, index)=>(
+                <NavLink to={item.path} key={index} className="link">
+                    <div className='sidebar-item'>
+                        <span className={item.icon}></span>
+                        <span className="link_text">{item.name}</span>
+                    </div>
+                </NavLink>
+            ))
+        }
     </div>
   )
 }
