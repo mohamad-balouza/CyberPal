@@ -1,0 +1,13 @@
+.tools-page-block{
+    height: 100vh;
+    overflow-y: hidden;
+}
+
+.tools-page-content-block{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 80%;
+    overflow-y: hidden;
+}
