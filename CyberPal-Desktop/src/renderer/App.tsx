@@ -15,6 +15,7 @@ import UserFormPage from 'Pages/UserFormPage';
 import ToolFormPage from 'Pages/ToolFormPage';
 import FlagFormPage from 'Pages/FlagFormPage';
 import ProfilePage from 'Pages/ProfilePage';
+import ToolsPage from 'Pages/ToolsPage';
 
 
 export default function App() {
@@ -23,7 +24,8 @@ export default function App() {
       <Routes>
         <Route path="/home" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/" element={<ProfilePage />} />
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/" element={<ToolsPage />} />
         <Route path="/admin" element={<ManageUsersPage />} />
         <Route path="/admin/manage-tools" element={<ManageToolsPage />} />
         <Route path="/admin/manage-flags" element={<ManageFlagsPage />} />
