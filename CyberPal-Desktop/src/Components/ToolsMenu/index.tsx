@@ -42,13 +42,13 @@ function ToolsMenu() {
     },
   ];
 
-  const handleItemToggle = (tool_id: number) => {
-    setIsOpen(true)
-    if(tool_id == selectedid && isOpen){
-      setIsOpen(!isOpen)
-    }
-    setSelectedid(tool_id);
-  }
+  // const handleItemToggle = (tool_id: number) => {
+  //   setIsOpen(true)
+  //   if(tool_id == selectedid && isOpen){
+  //     setIsOpen(!isOpen)
+  //   }
+  //   setSelectedid(tool_id);
+  // }
 
   return (
     <div className='tools-menu-block'>
@@ -64,10 +64,10 @@ function ToolsMenu() {
         {tools.map((tool) => (
           <motion.div
                 layout
-                data-isOpen={selectedid == tool.id && isOpen}
+                data-isOpen={selectedid == tool.id}
                 initial={{ borderRadius: 50 }}
                 className="tool-menu-item"
-                onTap={() => handleItemToggle(tool.id)}
+                onTap={() => setSelectedid(tool.id)}
             >
             <motion.div layout className="child">
                 <ToolMenuItem tool_name={tool.name} />
