@@ -21,7 +21,7 @@ function Navbar() {
   }
 
   const handleSignupNavigation = () => {
-    navigate("/register")
+    navigate("/signup")
   }
 
   return (

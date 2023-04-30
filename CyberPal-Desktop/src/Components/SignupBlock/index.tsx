@@ -9,7 +9,6 @@ function SignupBlock() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [verifyPassword, setVerifyPassword] = useState('');
 
   return (
     <div className='login-block'>
@@ -18,7 +17,11 @@ function SignupBlock() {
       </div>
 
       <div className='login-content-block'>
-        <h4 className='login-title'>Login your account</h4>
+        <h4 className='login-title'>Create your account</h4>
+        <div className="p-float-label"  style={{width: "80%", display: "flex"}}>
+          <InputText id="Username" value={username} onChange={(e) => setUsername(e.target.value)} style={{flex: "1"}} />
+          <label htmlFor="Username">Username</label>
+        </div>
         <div className="p-float-label"  style={{width: "80%", display: "flex"}}>
           <InputText id="Email" value={email} onChange={(e) => setEmail(e.target.value)} style={{flex: "1"}} />
           <label htmlFor="Email">Email</label>
@@ -27,8 +30,8 @@ function SignupBlock() {
           <Password inputId="Password" value={password} onChange={(e) => setPassword(e.target.value)} style={{flex: "1"}} inputStyle={{flex: "1"}} panelStyle={{flex: "1"}} toggleMask/>
           <label htmlFor="Password">Password</label>
         </div>
-        <Button label="Login" size='small'/>
-        <a style={{"color":"black"}}>Create Account</a>
+        <Button label="Signup" size='small'/>
+        <a style={{"color":"black"}}>Already Have an Account?</a>
       </div>
     </div>
 )
