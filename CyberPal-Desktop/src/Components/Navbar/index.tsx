@@ -16,18 +16,26 @@ function Navbar() {
     navigate("/")
   }
 
+  const handleToolsNavigation = () => {
+    navigate("/tools")
+  }
+
+  const handleSignupNavigation = () => {
+    navigate("/register")
+  }
+
   return (
     <div className='navbar'>
         <Image src={Logo} width="60" />
         <div className='navigation'>
             <a onClick={handleHomeNavigation}>Home</a>
             <a>About</a>
-            <a>Tools</a>
+            <a onClick={handleToolsNavigation}>Tools</a>
             <a>Advanced</a>
             <a>Contact</a>
         </div>
         <div className='profile-zone'>
-            <a>Signup</a>
+            <a onClick={handleSignupNavigation}>Signup</a>
             <a id='chosen-one' onClick={handleLoginNavigation}>Signin</a>
         </div>
     </div>
