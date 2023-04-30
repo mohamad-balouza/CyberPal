@@ -20,3 +20,7 @@
     width: 200px;
     background-color: violet;
 }
+
+.tool-menu-item[data-isOpen="true"]{
+    width: 400px;
+}
