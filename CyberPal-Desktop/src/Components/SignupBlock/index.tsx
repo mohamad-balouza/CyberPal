@@ -5,9 +5,11 @@ import { Button } from 'primereact/button';
 import { Password } from 'primereact/password';
 import "./index.css";        
         
-function LoginBlock() {
+function SignupBlock() {
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [verifyPassword, setVerifyPassword] = useState('');
 
   return (
     <div className='login-block'>
@@ -32,4 +34,4 @@ function LoginBlock() {
 )
 }
 
-export default LoginBlock
+export default SignupBlock
