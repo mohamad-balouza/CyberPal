@@ -10,4 +10,5 @@
     align-items: center;
     height: 80%;
     overflow-y: hidden;
+    overflow-x: hidden;
 }
