@@ -1,8 +1,16 @@
-import React from 'react'
+import React from 'react';
+import { motion } from "framer-motion";
+import './index.css';
 
 function ToolsMenu() {
   return (
-    <div>ToolsMenu</div>
+    <div className='tools-menu-block'>
+      <motion.div className='tools-menu-carousel'>
+        <div className='tool-menu-item'>Hello</div>
+        <div className='tool-menu-item'>Hello</div>
+        <div className='tool-menu-item'>Hello</div>
+      </motion.div>
+    </div>
   )
 }
 

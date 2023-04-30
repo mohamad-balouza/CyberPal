@@ -1,0 +1,21 @@
+.tools-menu-block{
+    background-color: blue;
+    height: 100%;
+    /* width: 50vw; */
+}
+
+.tools-menu-carousel{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    cursor: grab;
+    gap: 5px;
+    height: 100%;
+}
+
+.tool-menu-item{
+    height: 90%;
+    width: 200px;
+    background-color: violet;
+}
