@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import './index.css';
 import ToolMenuItem from 'Components/ToolMenuItem';
 import { is } from 'immer/dist/internal';
+import ToolMenuContents from 'Components/ToolMenuContents';
 
 function ToolsMenu() {
   const [selectedid, setSelectedid] = useState(null);
@@ -65,12 +66,15 @@ function ToolsMenu() {
           <motion.div
                 layout
                 data-isOpen={selectedid == tool.id}
-                initial={{ borderRadius: 50 }}
+                initial={{ borderRadius: 10 }}
                 className="tool-menu-item"
                 onTap={() => setSelectedid(tool.id)}
             >
             <motion.div layout className="child">
-                <ToolMenuItem tool_name={tool.name} />
+                {selectedid == tool.id ? 
+                  <ToolMenuContents /> :
+                  <ToolMenuItem tool_name={tool.name} /> 
+                } 
             </motion.div>
 
           </motion.div>
