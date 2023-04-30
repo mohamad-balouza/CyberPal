@@ -10,8 +10,8 @@ function ProfilePage() {
     <div>
         <Navbar />
         <div className='profile-block'>
-            <ProfileInfoBlock />
-            <ProfileContentsBlock />
+          <ProfileInfoBlock />
+          <ProfileContentsBlock />
         </div>
     </div>
   )

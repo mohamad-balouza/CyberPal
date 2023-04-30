@@ -7,7 +7,7 @@ function ProfileInfoBlock() {
   return (
     <div className='profile-info-block'>
         <div className='profile-picture-block'>
-            <Avatar label="P" size="xlarge" shape="circle" />
+            <Avatar label="P" size="xlarge" shape="circle" style={{transform: "scale(1.3)"}} />
         </div>
         <div className='profile-details-block'>
             <h3>Username</h3>
