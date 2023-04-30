@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
 
 
-function ToolMenuItem() {
+function ToolMenuItem(props) {
     const [isOpen, setIsOpen] = useState(false);
     const [x, setX] = useState<number | undefined>();
     const [y, setY] = useState<number | undefined>();
@@ -26,22 +26,9 @@ function ToolMenuItem() {
       }, []);
 
     return (
-        <AnimatePresence>
-            <motion.div
-                    layout
-                    data-isOpen={isOpen}
-                    initial={{ borderRadius: 50 }}
-                    className="tool-menu-item"
-                    onTap={() => setIsOpen(!isOpen)}
-                >
-                <motion.div layout className="child">
-                    <div>
-                        {isOpen ? "hello" : "How are you"}  
-                    </div>
-                </motion.div>
-
-            </motion.div>
-        </AnimatePresence>
+        <div>
+            {props.tool_name}
+        </div>
   )
 }
 

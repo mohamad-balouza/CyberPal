@@ -6,14 +6,14 @@ import ToolMenuItem from 'Components/ToolMenuItem';
 function ToolsMenu() {
   const [selectedid, setSelectedid] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
-  const items = [
+  const tools = [
     {
       "id": 1,
       "name": "nmap"
     },
     {
       "id": 2,
-      "name": "nmap"
+      "name": "Metasploit"
     },
     {
       "id": 3,
@@ -27,7 +27,7 @@ function ToolsMenu() {
       "id": 5,
       "name": "nmap"
     }
-  ]
+  ];
 
 
   return (
@@ -39,32 +39,23 @@ function ToolsMenu() {
           onDrag={
             (event, info) => console.log(info.offset.x)
           }
-      >
-        <motion.div
-              layout
-              data-isOpen={isOpen}
-              // initial={{ borderRadius: 50 }}
-              className="tool-menu-item"
-              onTap={() => setIsOpen(!isOpen)}
-          >
-          <motion.div layout className="child">
-              <div>
-                  {isOpen ? "hello" : "How are you"}  
-              </div>
+        >
+
+        {tools.map((tool) => (
+          <motion.div
+                layout
+                data-isOpen={selectedid == tool.id}
+                initial={{ borderRadius: 50 }}
+                className="tool-menu-item"
+                onTap={() => setSelectedid(tool.id)}
+            >
+            <motion.div layout className="child">
+                <ToolMenuItem tool_name={tool.name} />
+            </motion.div>
+
           </motion.div>
+        ))}
 
-        </motion.div>
-
-        <ToolMenuItem />
-        <ToolMenuItem />
-        <ToolMenuItem />
-        <ToolMenuItem />
-        <ToolMenuItem />
-        <ToolMenuItem />
-        <ToolMenuItem />
-        <ToolMenuItem />
-        <ToolMenuItem />
-        <ToolMenuItem />
       </motion.div>
     </div>
   )
