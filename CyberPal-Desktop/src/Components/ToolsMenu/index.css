@@ -23,4 +23,5 @@
 
 .tool-menu-item[data-isOpen="true"]{
     width: 400px;
+    border-radius: 20%;
 }
