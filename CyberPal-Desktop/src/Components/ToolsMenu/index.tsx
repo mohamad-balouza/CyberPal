@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from "framer-motion";
 import './index.css';
 import ToolMenuItem from 'Components/ToolMenuItem';
+import { is } from 'immer/dist/internal';
 
 function ToolsMenu() {
   const [selectedid, setSelectedid] = useState(null);
@@ -26,9 +27,28 @@ function ToolsMenu() {
     {
       "id": 5,
       "name": "nmap"
-    }
+    },
+    {
+      "id": 6,
+      "name": "nmap"
+    },
+    {
+      "id": 7,
+      "name": "nmap"
+    },
+    {
+      "id": 8,
+      "name": "nmap"
+    },
   ];
 
+  const handleItemToggle = (tool_id: number) => {
+    setIsOpen(true)
+    if(tool_id == selectedid && isOpen){
+      setIsOpen(!isOpen)
+    }
+    setSelectedid(tool_id);
+  }
 
   return (
     <div className='tools-menu-block'>
@@ -36,18 +56,18 @@ function ToolsMenu() {
           drag="x" 
           dragConstraints={{right: 0, left: -1600}} 
           dragTransition={{ bounceStiffness: 100, bounceDamping: 10 }} 
-          onDrag={
-            (event, info) => console.log(info.offset.x)
-          }
+          // onDrag={
+          //   (event, info) => console.log(info.offset.x)
+          // }
         >
 
         {tools.map((tool) => (
           <motion.div
                 layout
-                data-isOpen={selectedid == tool.id}
+                data-isOpen={selectedid == tool.id && isOpen}
                 initial={{ borderRadius: 50 }}
                 className="tool-menu-item"
-                onTap={() => setSelectedid(tool.id)}
+                onTap={() => handleItemToggle(tool.id)}
             >
             <motion.div layout className="child">
                 <ToolMenuItem tool_name={tool.name} />
