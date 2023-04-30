@@ -1,9 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion } from "framer-motion";
 
 
 function ToolMenuItem() {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(true);
+    const [x, setX] = useState<number | undefined>();
+    const [y, setY] = useState<number | undefined>();
+    const tool_ref = useRef<HTMLDivElement>(null);
+
+    const getPosition = () => {
+        const x = tool_ref.current?.offsetLeft;
+        setX(x);
+
+        const y = tool_ref.current?.offsetTop;
+        setY(y);
+    }
+
+    useEffect(() => {
+        getPosition();
+      }, []);
 
     return (
         <motion.div
@@ -13,7 +28,13 @@ function ToolMenuItem() {
                 className="tool-menu-item"
                 onTap={() => setIsOpen(!isOpen)}
             >
-            <motion.div layout className="child">{isOpen ? "hello" : "How are you"}</motion.div>
+            <motion.div ref={tool_ref} layout className="child">
+                <div>
+                    {isOpen ? "hello" : "How are you"}  
+                </div>
+                <h2>X: {x ?? "No result"}</h2>
+                <h2>Y: {y ?? "No result"}</h2>
+            </motion.div>
 
         </motion.div>
   )
