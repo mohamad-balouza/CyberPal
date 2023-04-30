@@ -26,7 +26,7 @@ function ToolMenuItem() {
       }, []);
 
     return (
-        <>
+        <AnimatePresence>
             <motion.div
                     layout
                     data-isOpen={isOpen}
@@ -34,16 +34,14 @@ function ToolMenuItem() {
                     className="tool-menu-item"
                     onTap={() => setIsOpen(!isOpen)}
                 >
-                <motion.div ref={tool_ref} layout className="child" onTap={() => handleGettingInfo()}>
+                <motion.div layout className="child">
                     <div>
                         {isOpen ? "hello" : "How are you"}  
                     </div>
-                    <h2>X: {x ?? "No result"}</h2>
-                    <h2>Y: {y ?? "No result"}</h2>
                 </motion.div>
 
             </motion.div>
-        </>
+        </AnimatePresence>
   )
 }
 
