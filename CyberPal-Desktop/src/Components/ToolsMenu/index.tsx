@@ -7,8 +7,8 @@ function ToolsMenu() {
     <div className='tools-menu-block'>
       <motion.div className='tools-menu-carousel'
           drag="x" 
-          // dragConstraints={{right: 0, left: -1100}} 
-          // dragTransition={{ bounceStiffness: 600, bounceDamping: 8 }} 
+          dragConstraints={{right: 0, left: -1600}} 
+          dragTransition={{ bounceStiffness: 100, bounceDamping: 10 }} 
       >
         <div className='tool-menu-item'>Hello</div>
         <div className='tool-menu-item'>Hello</div>

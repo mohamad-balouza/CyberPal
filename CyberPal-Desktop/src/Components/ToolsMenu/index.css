@@ -1,24 +1,22 @@
 .tools-menu-block{
     position: relative;
-    background-color: blue;
     height: 100%;
 }
 
 .tools-menu-carousel{
     position: absolute;
-    left: -10vw;
+    left: -9vw;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
     cursor: grab;
-    gap: 5px;
+    gap: 16px;
     height: 100%;
-    background-color: aqua;
 }
 
 .tool-menu-item{
-    height: 90%;
+    height: 100%;
     width: 200px;
     background-color: violet;
 }
