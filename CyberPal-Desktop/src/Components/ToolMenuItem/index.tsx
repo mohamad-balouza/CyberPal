@@ -7,7 +7,6 @@ function ToolMenuItem() {
     const [x, setX] = useState<number | undefined>();
     const [y, setY] = useState<number | undefined>();
     const tool_ref = useRef<HTMLDivElement>(null);
-    const [selectedid, setSelectedid] = useState(null);
 
 
     const getPosition = () => {
@@ -30,11 +29,10 @@ function ToolMenuItem() {
         <>
             <motion.div
                     layout
-                    layoutId="1"
                     data-isOpen={isOpen}
                     initial={{ borderRadius: 50 }}
                     className="tool-menu-item"
-                    onTap={() => setSelectedid(1)}
+                    onTap={() => setIsOpen(!isOpen)}
                 >
                 <motion.div ref={tool_ref} layout className="child" onTap={() => handleGettingInfo()}>
                     <div>
@@ -45,16 +43,6 @@ function ToolMenuItem() {
                 </motion.div>
 
             </motion.div>
-
-            <AnimatePresence>
-                {selectedid && (
-                <motion.div layoutId={selectedid}>
-                    <motion.h5>Hello</motion.h5>
-                    <motion.h2>team</motion.h2>
-                    <motion.button onClick={() => setSelectedid(null)} />
-                </motion.div>
-                )}
-            </AnimatePresence>
         </>
   )
 }
