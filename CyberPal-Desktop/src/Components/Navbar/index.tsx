@@ -1,6 +1,7 @@
 import React from 'react'
 import Logo from '../../../assets/Logo.svg';
 import { Image } from 'primereact/image';
+import { Divider } from 'primereact/divider';
 import "./index.css";
 import { useNavigate } from 'react-router-dom';
 
@@ -36,6 +37,7 @@ function Navbar() {
         </div>
         <div className='profile-zone'>
             <a onClick={handleSignupNavigation}>Signup</a>
+            <Divider layout='vertical' style={{height: "1px"}}/>
             <a id='chosen-one' onClick={handleLoginNavigation}>Signin</a>
         </div>
     </div>

@@ -18,7 +18,7 @@
     flex-direction: row;
     align-items: flex-start;
     padding: 0px;
-    gap: 16px;
+    /* gap: 16px; */
 }
 
 #chosen-one{
