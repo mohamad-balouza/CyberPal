@@ -39,6 +39,10 @@
     gap: 24px;
 }
 
+.login-content-block .p-button {
+    background-color: var(--purple);
+}
+
 .login-title{
     color: black;
 }

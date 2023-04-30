@@ -2,10 +2,12 @@ import React, { useState } from 'react'
 import LoginImage from '../../../assets/LoginImage.png';
 import { InputText } from "primereact/inputtext";
 import { Button } from 'primereact/button';                             
+import { Password } from 'primereact/password';
 import "./index.css";        
         
 function LoginBlock() {
-  const [value, setValue] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   return (
     <div className='login-block'>
@@ -15,16 +17,16 @@ function LoginBlock() {
 
       <div className='login-content-block'>
         <h4 className='login-title'>Login your account</h4>
-        <span className="p-float-label">
-          <InputText id="Email" value={value} onChange={(e) => setValue(e.target.value)} />
+        <div className="p-float-label"  style={{width: "80%", display: "flex"}}>
+          <InputText id="Email" value={email} onChange={(e) => setEmail(e.target.value)} style={{flex: "1"}} />
           <label htmlFor="Email">Email</label>
-        </span>
-        <span className="p-float-label">
-          <InputText id="Password" value={value} onChange={(e) => setValue(e.target.value)} />
+        </div>
+        <div className="p-float-label" style={{width: "80%", display: "flex"}}>
+          <Password inputId="Password" value={password} onChange={(e) => setPassword(e.target.value)} style={{flex: "1"}} inputStyle={{flex: "1"}} panelStyle={{flex: "1"}} toggleMask/>
           <label htmlFor="Password">Password</label>
-        </span>
+        </div>
         <Button label="Login" size='small'/>
-        <p style={{"color":"black"}}>Create Account</p>
+        <a style={{"color":"black"}}>Create Account</a>
       </div>
     </div>
 )
