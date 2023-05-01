@@ -16,8 +16,9 @@
 .profile-zone{
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
     padding: 0px;
+    /* background-color: blue; */
     /* gap: 16px; */
 }
 
