@@ -7,8 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import type { RootState } from '../../Redux/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeCurrentPage } from '../../Redux/slices/currentPageSlice';
-import { changeLoggedInState } from '../../Redux/slices/userIsLoggedInSlice';
-import { useEffect } from 'react';
 
 
 function Navbar() {
@@ -16,15 +14,10 @@ function Navbar() {
   const current_page = useSelector((state: RootState) => state.currentPage.value); 
   const user_is_logged_in = useSelector((state: RootState) => state.userIsLoggedIn.value); 
   const dispatch = useDispatch();
-
-  console.log(user_is_logged_in);
-  useEffect(() => {
-    dispatch(changeLoggedInState());
-    console.log(user_is_logged_in)
-  }, [])
   
   const handleLoginNavigation = () => {
     dispatch(changeCurrentPage("Login"));
+    console.log(user_is_logged_in);
     navigate("/login");
   }
 
@@ -43,6 +36,15 @@ function Navbar() {
     navigate("/signup");
   }
 
+  const handleProfileNavigation = () => {
+    dispatch(changeCurrentPage("Profile"));
+    navigate("/profile");
+  }
+
+  const handleLogout = () => {
+    
+  }
+
   return (
     <div className='navbar'>
         <Image src={Logo} width="60" />
@@ -53,11 +55,20 @@ function Navbar() {
             <a>Advanced</a>
             <a>Contact</a>
         </div>
-        <div className='profile-zone'>
-            <a className={current_page == "Signup" ? "chosen-one" : ""} onClick={handleSignupNavigation}>Signup</a>
-            <Divider layout='vertical' style={{height: "1px"}}/>
-            <a className={current_page == "Login" ? "chosen-one" : ""} onClick={handleLoginNavigation}>Signin</a>
-        </div>
+        {
+          user_is_logged_in ?
+          <div className='profile-zone'>
+              <a className={current_page == "Profile" ? "chosen-one" : ""} onClick={handleProfileNavigation}>Profile</a>
+              <Divider layout='vertical' style={{height: "1px"}}/>
+              <a className={current_page == "Logout" ? "chosen-one" : ""} onClick={handleLogout}>Logout</a>
+          </div>
+          :
+          <div className='profile-zone'>
+              <a className={current_page == "Signup" ? "chosen-one" : ""} onClick={handleSignupNavigation}>Signup</a>
+              <Divider layout='vertical' style={{height: "1px"}}/>
+              <a className={current_page == "Login" ? "chosen-one" : ""} onClick={handleLoginNavigation}>Signin</a>
+          </div>
+        }
     </div>
   )
 }
