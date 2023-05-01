@@ -10,7 +10,7 @@ const initialState: CurrentPageState = {
 }
 
 export const currentPageSlice = createSlice({
-  name: 'counter',
+  name: 'currentPage',
   initialState,
   reducers: {
     changeCurrentPage: (state, action: PayloadAction<string>) => {
