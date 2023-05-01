@@ -14,38 +14,40 @@ function Navbar() {
   const current_page = useSelector((state: RootState) => state.currentPage.value); 
   const dispatch = useDispatch();
 
-  console.log(current_page);
-
   const handleLoginNavigation = () => {
-    navigate("/login")
+    dispatch(changeCurrentPage("Login"));
+    navigate("/login");
   }
 
   const handleHomeNavigation = () => {
-    navigate("/")
+    dispatch(changeCurrentPage("Home"));
+    navigate("/");
   }
 
   const handleToolsNavigation = () => {
-    navigate("/tools")
+    dispatch(changeCurrentPage("Tools"));
+    navigate("/tools");
   }
 
   const handleSignupNavigation = () => {
-    navigate("/signup")
+    dispatch(changeCurrentPage("Signup"));
+    navigate("/signup");
   }
 
   return (
     <div className='navbar'>
         <Image src={Logo} width="60" />
         <div className='navigation'>
-            <a onClick={handleHomeNavigation}>Home</a>
+            <a className={current_page == "Home" ? "chosen-one" : ""} onClick={handleHomeNavigation}>Home</a>
             <a>About</a>
-            <a onClick={handleToolsNavigation}>Tools</a>
+            <a className={current_page == "Tools" ? "chosen-one" : ""} onClick={handleToolsNavigation}>Tools</a>
             <a>Advanced</a>
             <a>Contact</a>
         </div>
         <div className='profile-zone'>
-            <a onClick={handleSignupNavigation}>Signup</a>
+            <a className={current_page == "Signup" ? "chosen-one" : ""} onClick={handleSignupNavigation}>Signup</a>
             <Divider layout='vertical' style={{height: "1px"}}/>
-            <a className='chosen-one' onClick={handleLoginNavigation}>Signin</a>
+            <a className={current_page == "Login" ? "chosen-one" : ""} onClick={handleLoginNavigation}>Signin</a>
         </div>
     </div>
   )
