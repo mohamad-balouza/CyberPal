@@ -6,7 +6,7 @@ class UserBase(BaseModel):
     username: str
     email: EmailStr | None = None
     is_active: bool | None = True
-    user_type_id: int = 1
+    user_type_id: int = 2
 
 class UserCreate(UserBase):
     email: EmailStr
