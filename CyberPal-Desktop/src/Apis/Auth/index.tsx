@@ -1,5 +1,4 @@
 import axios from "axios";
-import env from "react-dotenv";
 
 export function login() {
     return axios.post(
