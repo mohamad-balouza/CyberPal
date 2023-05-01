@@ -17,7 +17,6 @@ function Navbar() {
   
   const handleLoginNavigation = () => {
     dispatch(changeCurrentPage("Login"));
-    console.log(user_is_logged_in);
     navigate("/login");
   }
 
