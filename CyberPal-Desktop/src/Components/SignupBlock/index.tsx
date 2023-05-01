@@ -5,6 +5,8 @@ import { Button } from 'primereact/button';
 import { Password } from 'primereact/password';
 import './index.css';        
 import * as yup from 'yup';
+import { useFormik } from 'formik';
+
         
 function SignupBlock() {
   const [username, setUsername] = useState('');
@@ -27,13 +29,26 @@ function SignupBlock() {
   });
 
 
+  const formik = useFormik({
+    initialValues: {
+      username: '',
+      email: '',
+      password: '',
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
+
+
   return (
     <div className='login-block'>
       <div className='login-image-block'>
         <img src={LoginImage} className='login-image' />
       </div>
 
-      <div className='login-content-block'>
+      <form className='login-content-block' >
         <h4 className='login-title'>Create your account</h4>
         <div className="p-float-label"  style={{width: "80%", display: "flex"}}>
           <InputText id="Username" value={username} onChange={(e) => setUsername(e.target.value)} style={{flex: "1"}} />
@@ -47,9 +62,9 @@ function SignupBlock() {
           <Password inputId="Password" value={password} onChange={(e) => setPassword(e.target.value)} style={{flex: "1"}} inputStyle={{flex: "1"}} panelStyle={{flex: "1"}} toggleMask/>
           <label htmlFor="Password">Password</label>
         </div>
-        <Button label="Signup" size='small'/>
+        <Button label="Signup" size='small' type='submit' />
         <a style={{"color":"black"}}>Already Have an Account?</a>
-      </div>
+      </form>
     </div>
 )
 }
