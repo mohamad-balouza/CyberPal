@@ -24,6 +24,10 @@ const electronHandler = {
   },
 };
 
+window.process_env = {
+  REACT_APP_API_BASE_URL: process.env.REACT_APP_API_BASE_URL,
+};
+
 contextBridge.exposeInMainWorld('electron', electronHandler);
 
 export type ElectronHandler = typeof electronHandler;
