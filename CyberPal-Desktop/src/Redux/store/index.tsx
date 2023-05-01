@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import currentPageSlice from '../slices/currentPageSlice';
+import userIsLoggedInSlice from '../slices/userIsLoggedInSlice';
 
 export const store = configureStore({
   reducer: {
     currentPage: currentPageSlice,
+    userIsLoggedIn: userIsLoggedInSlice,
   },
 })
 
