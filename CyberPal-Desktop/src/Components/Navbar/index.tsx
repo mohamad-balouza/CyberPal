@@ -7,13 +7,22 @@ import { useNavigate } from 'react-router-dom';
 import type { RootState } from '../../Redux/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeCurrentPage } from '../../Redux/slices/currentPageSlice';
+import { changeLoggedInState } from '../../Redux/slices/userIsLoggedInSlice';
+import { useEffect } from 'react';
 
 
 function Navbar() {
   const navigate = useNavigate();
   const current_page = useSelector((state: RootState) => state.currentPage.value); 
+  const user_is_logged_in = useSelector((state: RootState) => state.userIsLoggedIn.value); 
   const dispatch = useDispatch();
 
+  console.log(user_is_logged_in);
+  useEffect(() => {
+    dispatch(changeLoggedInState());
+    console.log(user_is_logged_in)
+  }, [])
+  
   const handleLoginNavigation = () => {
     dispatch(changeCurrentPage("Login"));
     navigate("/login");
