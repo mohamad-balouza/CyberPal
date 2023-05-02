@@ -6,7 +6,7 @@ import { Password } from 'primereact/password';
 import './index.css';        
 import * as yup from 'yup';
 import { useFormik } from 'formik';
-import { signup } from '../../Apis/Auth';
+import { createUser } from '../../Apis/Auth';
 import { useNavigate } from 'react-router-dom';
 
         
@@ -30,7 +30,7 @@ function SignupBlock() {
 
   const handleRegistration = async (data: string) => {
     try {
-      const user = await signup(data);
+      const user = await createUser(data);
       navigate("/login");
     } catch(err){
       console.error('Error fetching user:', err);
