@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import Logo from '../../../assets/Logo.svg';
 import { Image } from 'primereact/image';
 import { Divider } from 'primereact/divider';
