@@ -31,9 +31,24 @@ export function getAllTools(){
     );
 }
 
-export function updateTool(id: number, data: string, token: string, token_type: string){
+export function getTool(tool_id: number){
+    return axios.get(
+        `http://127.0.0.1:8000/api/v1/tools/${tool_id}`,
+        {
+            headers: {
+                'content-type': 'application/json',
+            },
+        }
+    ).then(
+        res => res.data
+    ).catch(
+        err => console.error(err)
+    );
+}
+
+export function updateTool(tool_id: number, data: string, token: string, token_type: string){
     return axios.put(
-        `http://127.0.0.1:8000/api/v1/tools/${id}`,
+        `http://127.0.0.1:8000/api/v1/tools/${tool_id}`,
         data,
         {
             headers: {
