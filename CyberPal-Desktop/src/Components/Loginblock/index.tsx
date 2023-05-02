@@ -7,9 +7,18 @@ import "./index.css";
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import { login } from '../../Apis/Auth';
+import { useSelector, useDispatch } from 'react-redux';
+import type { RootState } from '../../Redux/store';
+import { changeToken } from 'Redux/slices/userTokenSlice';
+import { useNavigate } from 'react-router-dom';
+
 
         
 function LoginBlock() {
+  const user_token = useSelector((state: RootState) => state.userToken.access_token); 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
 
   const validationSchema = yup.object({
     email: yup
@@ -25,7 +34,8 @@ function LoginBlock() {
   const handleLogin = async (data: URLSearchParams) => {
     try {
       const user = await login(data);
-      console.log(user);
+      dispatch(changeToken(user.access_token));
+      navigate("/home");
     } catch(err){
       console.error('Error fetching user:', err);
     }
