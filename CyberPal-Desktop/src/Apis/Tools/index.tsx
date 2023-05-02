@@ -30,3 +30,20 @@ export function getAllTools(){
         err => console.error(err)
     );
 }
+
+export function updateTool(id: number, data: string, token: string, token_type: string){
+    return axios.put(
+        `http://127.0.0.1:8000/api/v1/tools/${id}`,
+        data,
+        {
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': `${token_type} ${token}`,
+            },
+        }
+    ).then(
+        res => res.data
+    ).catch(
+        err => console.error(err)
+    );
+}
