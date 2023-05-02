@@ -44,11 +44,12 @@ function ToolFormPage() {
       <div className='admin-page-content-block'>
         <AdminNavbar />
         <h3>Tool Form</h3>
-        <div className='form-block'>
+        <form className='form-block' onSubmit={formik.handleSubmit}>
             <div className="form-input-block">
-                <div className="p-float-label" style={{width: "49.2%", display: "flex"}}>
-                    <InputText id="tool_name" value={toolname} onChange={(e) => setToolname(e.target.value)}  style={{flex: "1"}}/>
+                <div className="p-float-label" style={{width: "49.2%", display: "flex", flexDirection: "column"}}>
+                    <InputText id="tool_name" value={formik.values.tool_name} onChange={formik.handleChange}  style={{flex: "1"}}/>
                     <label htmlFor="tool_name">Tool Name</label>
+                    <small className="p-error">{formik.touched.tool_name && formik.errors.tool_name}</small>
                 </div>
                 <div className="p-float-label" style={{width: "49.2%", display: "flex"}}>
                     <InputText id="tool_image_url" value={toolimage} onChange={(e) => setToolimage(e.target.value)}  style={{flex: "1"}}/>
@@ -56,10 +57,10 @@ function ToolFormPage() {
                 </div>
             </div>
             <div className='form-buttons'>
-                <Button label='Add Tool' style={{flex: "1"}} />
-                <Button label='Update Tool' style={{flex: "1"}} />
+                <Button label='Add Tool' style={{flex: "1"}} type='submit' />
+                <Button label='Update Tool' style={{flex: "1"}} type='submit'  />
             </div>
-        </div>
+        </form>
       </div>
     </div>
   )
