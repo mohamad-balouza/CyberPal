@@ -9,7 +9,7 @@ import { changeCurrentAdminPage } from 'Redux/slices/currentAdminPageSlice';
 
 
 function AdminSidebar() {
-    const [activated_item, useActivated_item] = useState("Manage Users");
+    const admin_username = useSelector((state: RootState) => state.loggedInUserInfo.username); 
     const current_admin_page = useSelector((state: RootState) => state.currentAdminPage.value); 
     const dispatch = useDispatch(); 
 
@@ -69,7 +69,7 @@ function AdminSidebar() {
             <h4>Admin Panel</h4>
             <div className='admin-profile-block'>
                 <Avatar label="P" size="xlarge" shape="circle" />
-                <h4>Username</h4>
+                <h4>{admin_username}</h4>
             </div>
         </div>
         <div className='sidebar-data-block'>
