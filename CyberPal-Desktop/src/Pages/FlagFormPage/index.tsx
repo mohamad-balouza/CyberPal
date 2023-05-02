@@ -36,7 +36,7 @@ function FlagFormPage() {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      if(btnClicked == "add tool"){
+      if(btnClicked == "add flag"){
         alert("from add");
       } else {
         alert("from update");
@@ -50,11 +50,12 @@ function FlagFormPage() {
       <div className='admin-page-content-block'>
         <AdminNavbar />
         <h3>Flag Form</h3>
-        <div className='form-block'>
+        <form className='form-block' onSubmit={formik.handleSubmit}>
             <div className="form-input-block">
-                <div className="p-float-label" style={{width: "49.2%", display: "flex"}}>
-                    <InputText id="flag_name" value={flagname} onChange={(e) => setflagname(e.target.value)}  style={{flex: "1"}}/>
+                <div className="p-float-label" style={{width: "49.2%", display: "flex", flexDirection: "column"}}>
+                    <InputText id="flag_name" value={formik.values.flag_name} onChange={formik.handleChange}  style={{flex: "1"}}/>
                     <label htmlFor="flag_name">Flag Name</label>
+                    <small className="p-error">{formik.touched.flag_name && formik.errors.flag_name}</small>
                 </div>
                 <div className="p-float-label" style={{width: "49.2%", display: "flex"}}>
                     <InputText id="tool_id" value={toolid} onChange={(e) => setToolid(e.target.value)}  style={{flex: "1"}}/>
@@ -69,7 +70,7 @@ function FlagFormPage() {
                 <Button label='Add Flag' style={{flex: "1"}} />
                 <Button label='Update Flag' style={{flex: "1"}} />
             </div>
-        </div>
+        </form>
       </div>
     </div>
   )
