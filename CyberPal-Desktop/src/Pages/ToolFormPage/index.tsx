@@ -9,8 +9,6 @@ import { useFormik } from 'formik';
 import './index.css';
 
 function ToolFormPage() {
-  const [toolname, setToolname] = useState("");
-  const [toolimage, setToolimage] = useState("");
   const [btnClicked, setBtnClicked] = useState('');
 
   const validationSchema = yup.object({
