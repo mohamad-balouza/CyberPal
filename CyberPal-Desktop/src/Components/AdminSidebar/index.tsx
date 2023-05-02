@@ -4,16 +4,17 @@ import { Avatar } from 'primereact/avatar';
 import { NavLink } from 'react-router-dom';
 import type { RootState } from '../../Redux/store';
 import { useSelector, useDispatch } from 'react-redux';
+import { changeCurrentAdminPage } from 'Redux/slices/currentAdminPageSlice';
 
 
 
 function AdminSidebar() {
     const [activated_item, useActivated_item] = useState("Manage Users");
     const current_admin_page = useSelector((state: RootState) => state.currentAdminPage.value); 
-
+    const dispatch = useDispatch(); 
 
     const handleActivation = (name: string) => {
-        useActivated_item(name)
+        dispatch(changeCurrentAdminPage(name));
     }
     
     const sidebar_manage_data = [
@@ -76,7 +77,7 @@ function AdminSidebar() {
             {
                 sidebar_manage_data.map((item, index)=>(
                     <NavLink to={item.path} key={index} onClick={() => handleActivation(item.name)} className="link">
-                        <div className={item.name == activated_item ? "actived-item" : "sidebar-item"}>
+                        <div className={item.name == current_admin_page ? "actived-item" : "sidebar-item"}>
                             <span className={item.icon}></span>
                             <span className="link_text">{item.name}</span>
                         </div>
@@ -89,7 +90,7 @@ function AdminSidebar() {
             {
                 sidebar_forms.map((item, index)=>(
                     <NavLink to={item.path} onClick={() => handleActivation(item.name)} key={index} className="link">
-                        <div className={item.name == activated_item ? "actived-item" : "sidebar-item"}>
+                        <div className={item.name == current_admin_page ? "actived-item" : "sidebar-item"}>
                             <span className={item.icon}></span>
                             <span className="link_text">{item.name}</span>
                         </div>
