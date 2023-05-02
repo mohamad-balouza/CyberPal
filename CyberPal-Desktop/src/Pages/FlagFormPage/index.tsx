@@ -9,9 +9,6 @@ import { useFormik } from 'formik';
 import './index.css';
 
 function FlagFormPage() {
-  const [flagname, setflagname] = useState("");
-  const [toolid, setToolid] = useState("");
-  const [flagdescription, setflagdescription] = useState("");
   const [btnClicked, setBtnClicked] = useState('');
 
   const validationSchema = yup.object({
@@ -69,8 +66,8 @@ function FlagFormPage() {
                 </div>
             </div>
             <div className='form-buttons'>
-                <Button label='Add Flag' style={{flex: "1"}} />
-                <Button label='Update Flag' style={{flex: "1"}} />
+                <Button label='Add Flag' style={{flex: "1"}} onClick={(event) => setBtnClicked("add flag")} />
+                <Button label='Update Flag' style={{flex: "1"}} onClick={(event) => setBtnClicked("update flag")} />
             </div>
         </form>
       </div>
