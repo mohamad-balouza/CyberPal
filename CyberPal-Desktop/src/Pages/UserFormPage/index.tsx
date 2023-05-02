@@ -71,9 +71,10 @@ function UserFormPage() {
                     <small className="p-error">{formik.touched.email && formik.errors.email}</small>
                 </div>
 
-                <div className="p-float-label" style={{width: "49.2%", display: "flex"}}>
-                    <Password  inputId="password" value={password} onChange={(e) => setPassword(e.target.value)} toggleMask style={{flex: "1"}} inputStyle={{flex: "1"}} panelStyle={{flex: "1"}} />
+                <div className="p-float-label" style={{width: "49.2%", display: "flex", flexDirection: "column"}}>
+                    <Password  inputId="password" value={formik.values.password} onChange={formik.handleChange} toggleMask style={{flex: "1"}} inputStyle={{flex: "1"}} panelStyle={{flex: "1"}} className={formik.touched.password && Boolean(formik.errors.password) ? "p-invalid" : ""} />
                     <label htmlFor="password">Password</label>
+                    <small className="p-error">{formik.touched.password && formik.errors.password}</small>
                 </div>
                 
                 <div className="p-float-label" style={{flex: "1", display: "flex"}}>
