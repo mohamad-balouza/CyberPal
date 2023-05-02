@@ -46,7 +46,7 @@ function Navbar() {
     dispatch(changeLoggedInStateToFalse());
     dispatch(resetToken());
     dispatch(changeCurrentPage("Home"));
-    navigate("/")
+    navigate("/");
   }
 
   return (
