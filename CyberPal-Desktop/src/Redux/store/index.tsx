@@ -3,6 +3,7 @@ import loggedInUserInfoSlice from '../slices/loggedInUserInfoSlice';
 import currentPageSlice from '../slices/currentPageSlice';
 import userIsLoggedInSlice from '../slices/userIsLoggedInSlice';
 import userTokenSlice from '../slices/userTokenSlice';
+import currentAdminPageSlice from '../slices/currentAdminPageSlice';
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     userIsLoggedIn: userIsLoggedInSlice,
     userToken: userTokenSlice, 
     loggedInUserInfo: loggedInUserInfoSlice,
+    currentAdminPage: currentAdminPageSlice,
   },
 })
 
