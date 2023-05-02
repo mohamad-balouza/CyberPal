@@ -14,7 +14,10 @@ export function signup(data: string){
         "http://127.0.0.1:8000/api/v1/users",
         data
     ).then(
-        res => res.data
+        res => {
+            console.log(res);
+            console.log(res.data);
+        }
     ).catch(
         err => console.error(err)
     );

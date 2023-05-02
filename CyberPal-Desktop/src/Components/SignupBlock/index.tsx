@@ -26,6 +26,14 @@ function SignupBlock() {
       .required('Password is required'),
   });
 
+  const handleRegistration = async (data: string) => {
+    try {
+      const user = await signup(data);
+    } catch(err){
+      console.error('Error fetching users:', err);
+    }
+  }
+
 
   const formik = useFormik({
     initialValues: {
@@ -35,7 +43,9 @@ function SignupBlock() {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      const signup_data = JSON.stringify(values, null, 2);
+      const signup_data = JSON.stringify(values);
+      console.log(signup_data);
+      handleRegistration(signup_data);
     },
   });
 
