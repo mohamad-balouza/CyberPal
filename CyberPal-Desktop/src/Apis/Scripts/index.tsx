@@ -65,3 +65,19 @@ export function favoriteScript(data: string, token: string, token_type: string){
         err => console.error(err)
     );
 }
+
+export function unfavoriteScript(script_favorited_id : number, token: string, token_type: string){
+    return axios.delete(
+        `http://127.0.0.1:8000/api/v1/scripts/unfavorite?script_favorited_id=${script_favorited_id}`,
+        {
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': `${token_type} ${token}`,
+            },
+        }
+    ).then(
+        res => res.data
+    ).catch(
+        err => console.error(err)
+    );
+}
