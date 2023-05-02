@@ -12,6 +12,7 @@ function FlagFormPage() {
   const [flagname, setflagname] = useState("");
   const [toolid, setToolid] = useState("");
   const [flagdescription, setflagdescription] = useState("");
+  const [btnClicked, setBtnClicked] = useState('');
 
   const validationSchema = yup.object({
     flag_name: yup
@@ -20,10 +21,27 @@ function FlagFormPage() {
       .min(4, 'Too short!'),
     flag_id: yup
       .number()
-      .required('Flag id is required'),
+      .required('Flag id is required')
+      .positive('Flag id should be a positive integer'),
     flag_description: yup
       .string()
       .required('Flag description is required'),
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      flag_name: '',
+      tool_id: '',
+      flag_description: ''
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      if(btnClicked == "add tool"){
+        alert("from add");
+      } else {
+        alert("from update");
+      }
+    },
   });
 
   return (
