@@ -16,3 +16,18 @@ export function getCurrentUser(token: string, token_type: string){
         err => console.error(err)
     );
 }
+
+export function getAllUsers(){
+    return axios.get(
+        "http://127.0.0.1:8000/api/v1/users",
+        {
+            headers: {
+                'content-type': 'application/json',
+            },
+        }
+    ).then(
+        res => res.data
+    ).catch(
+        err => console.error(err)
+    );
+}
