@@ -56,14 +56,22 @@ function LoginBlock() {
 
       <form className='login-content-block' onSubmit={formik.handleSubmit} >
         <h4 className='login-title'>Login your account</h4>
-        <div className="p-float-label"  style={{width: "80%", display: "flex"}}>
-          <InputText id="email" value={formik.values.email} onChange={formik.handleChange} style={{flex: "1"}} className={formik.touched.email && Boolean(formik.errors.email) ? "p-invalid" : ""} />
-          <label htmlFor="email">Email</label>
+        <div style={{width: "100%", display: "flex", flexDirection: "column", alignItems: "center"}}>
+          <div className="p-float-label"  style={{width: "80%", display: "flex"}}>
+            <InputText id="email" value={formik.values.email} onChange={formik.handleChange} style={{flex: "1"}} className={formik.touched.email && Boolean(formik.errors.email) ? "p-invalid" : ""} />
+            <label htmlFor="email">Email</label>
+          </div>
+          <small className="p-error">{formik.touched.email && formik.errors.email}</small>
         </div>
-        <div className="p-float-label" style={{width: "80%", display: "flex"}}>
-          <Password inputId="password" value={formik.values.password} onChange={formik.handleChange} style={{flex: "1"}} inputStyle={{flex: "1"}} panelStyle={{flex: "1"}} toggleMask className={formik.touched.password && Boolean(formik.errors.password) ? "p-invalid" : ""} />
-          <label htmlFor="password">Password</label>
+
+        <div style={{width: "100%", display: "flex", flexDirection: "column", alignItems: "center"}}>
+          <div className="p-float-label" style={{width: "80%", display: "flex"}}>
+            <Password inputId="password" value={formik.values.password} onChange={formik.handleChange} style={{flex: "1"}} inputStyle={{flex: "1"}} panelStyle={{flex: "1"}} toggleMask className={formik.touched.password && Boolean(formik.errors.password) ? "p-invalid" : ""} />
+            <label htmlFor="password">Password</label>
+          </div>
+          <small className="p-error">{formik.touched.password && formik.errors.password}</small>
         </div>
+
         <Button label="Login" size='small' type='submit' />
         <a style={{"color":"black"}}>Create Account</a>
       </form>
