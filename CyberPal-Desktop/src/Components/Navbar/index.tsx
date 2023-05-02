@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import type { RootState } from '../../Redux/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeCurrentPage } from '../../Redux/slices/currentPageSlice';
+import { changeLoggedInStateToFalse } from 'Redux/slices/userIsLoggedInSlice';
 
 
 function Navbar() {
@@ -41,7 +42,8 @@ function Navbar() {
   }
 
   const handleLogout = () => {
-    
+    dispatch(changeLoggedInStateToFalse);
+    dispatch()
   }
 
   return (

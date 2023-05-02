@@ -20,10 +20,13 @@ export const userTokenSlice = createSlice({
     },
     changeTokenType: (state, action: PayloadAction<string>) => {
         state.token_type = action.payload;
+    },
+    resetToken: (state) => {
+      state.access_token = "";
     }
   },
 })
 
-export const { changeToken, changeTokenType } = userTokenSlice.actions
+export const { changeToken, changeTokenType, resetToken } = userTokenSlice.actions
 
 export default userTokenSlice.reducer
