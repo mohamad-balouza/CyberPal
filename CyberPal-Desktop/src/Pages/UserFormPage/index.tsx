@@ -37,13 +37,27 @@ function UserFormPage() {
       .boolean(),
   });
 
+  const formik = useFormik({
+    initialValues: {
+      username: '',
+      email: '',
+      password: '',
+      user_type_id: 2,
+      is_active: true,
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      alert("done");
+    },
+  });
+
   return (
     <div className='admin-page-block'>
       <AdminSidebar />
       <div className='admin-page-content-block'>
         <AdminNavbar />
         <h3>User Form</h3>
-        <div className='form-block'>
+        <form className='form-block'>
             <div className="form-input-block">
                 <div className="p-float-label" style={{width: "100%", display: "flex"}}>
                     <InputText id="username" value={username} onChange={(e) => setUsername(e.target.value)}  style={{flex: "1"}}/>
@@ -67,10 +81,10 @@ function UserFormPage() {
                 </div>
             </div>
             <div className='form-buttons'>
-                <Button label='Add User' style={{flex: "1"}} />
-                <Button label='Update User' style={{flex: "1"}} />
+                <Button label='Add User' style={{flex: "1"}} type='submit' />
+                <Button label='Update User' style={{flex: "1"}} type='submit' />
             </div>
-        </div>
+        </form>
       </div>
     </div>
   )
