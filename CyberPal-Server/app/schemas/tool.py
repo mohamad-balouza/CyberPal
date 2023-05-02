@@ -3,11 +3,11 @@ from typing import Optional, List
 
 class ToolBase(BaseModel):
     tool_name: str | None = None
-    image_url: FilePath | None = None
+    image_url: str | None = None
 
 class ToolCreate(ToolBase):
     tool_name: str
-    image_url: FilePath
+    image_url: str
 
 class ToolUpdate(ToolBase):
     pass
