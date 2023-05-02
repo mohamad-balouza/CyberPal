@@ -57,9 +57,13 @@ function SignupBlock() {
 
       <form className='login-content-block' onSubmit={formik.handleSubmit} >
         <h4 className='login-title'>Create your account</h4>
-        <div className="p-float-label"  style={{width: "80%", display: "flex"}}>
-          <InputText id="username" value={formik.values.username} onChange={formik.handleChange} style={{flex: "1"}}  className={formik.touched.username && Boolean(formik.errors.username) ? "p-invalid" : ""}  />
-          <label htmlFor="username">Username</label>
+
+        <div style={{width: "100%", display: "flex", flexDirection: "column", alignItems: "center"}}>
+          <div className="p-float-label"  style={{width: "80%", display: "flex"}}>
+            <InputText id="username" value={formik.values.username} onChange={formik.handleChange} style={{flex: "1"}}  className={formik.touched.username && Boolean(formik.errors.username) ? "p-invalid" : ""}  />
+            <label htmlFor="username">Username</label>
+          </div>
+          <small className="p-error">{formik.touched.username && formik.errors.username}</small>
         </div>
 
         <div className="p-float-label"  style={{width: "80%", display: "flex"}}>
