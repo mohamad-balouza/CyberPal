@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+import loggedInUserInfoSlice from '../slices/loggedInUserInfoSlice';
 import currentPageSlice from '../slices/currentPageSlice';
 import userIsLoggedInSlice from '../slices/userIsLoggedInSlice';
 import userTokenSlice from '../slices/userTokenSlice';
@@ -8,6 +9,7 @@ export const store = configureStore({
     currentPage: currentPageSlice,
     userIsLoggedIn: userIsLoggedInSlice,
     userToken: userTokenSlice, 
+    loggedInUserInfo: loggedInUserInfoSlice,
   },
 })
 
