@@ -22,7 +22,7 @@ function LoginBlock() {
       .required('Password is required'),
   });
 
-  const handleLogin = async (data: string) => {
+  const handleLogin = async (data: URLSearchParams) => {
     try {
       const user = await login(data);
       console.log(user);
@@ -38,7 +38,11 @@ function LoginBlock() {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      const login_data = JSON.stringify(values);
+      // const login_data = JSON.stringify(values);
+      const login_data = new URLSearchParams();
+      login_data.append('username', values.email);
+      login_data.append('password', values.password);
+
       handleLogin(login_data);
     },
   });
