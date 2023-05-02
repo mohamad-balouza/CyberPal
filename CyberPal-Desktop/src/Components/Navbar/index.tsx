@@ -8,6 +8,7 @@ import type { RootState } from '../../Redux/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeCurrentPage } from '../../Redux/slices/currentPageSlice';
 import { changeLoggedInStateToFalse } from 'Redux/slices/userIsLoggedInSlice';
+import { resetToken } from 'Redux/slices/userTokenSlice';
 
 
 function Navbar() {
@@ -42,8 +43,10 @@ function Navbar() {
   }
 
   const handleLogout = () => {
-    dispatch(changeLoggedInStateToFalse);
-    dispatch()
+    dispatch(changeLoggedInStateToFalse());
+    dispatch(resetToken());
+    dispatch(changeCurrentPage("Home"));
+    navigate("/")
   }
 
   return (
