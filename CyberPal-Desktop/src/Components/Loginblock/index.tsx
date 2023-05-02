@@ -41,19 +41,19 @@ function LoginBlock() {
         <img src={LoginImage} className='login-image' />
       </div>
 
-      <div className='login-content-block'>
+      <form className='login-content-block' onSubmit={formik.handleSubmit} >
         <h4 className='login-title'>Login your account</h4>
         <div className="p-float-label"  style={{width: "80%", display: "flex"}}>
-          <InputText id="Email" value={email} onChange={(e) => setEmail(e.target.value)} style={{flex: "1"}} />
-          <label htmlFor="Email">Email</label>
+          <InputText id="email" value={formik.values.email} onChange={formik.handleChange} style={{flex: "1"}} />
+          <label htmlFor="email">Email</label>
         </div>
         <div className="p-float-label" style={{width: "80%", display: "flex"}}>
-          <Password inputId="Password" value={password} onChange={(e) => setPassword(e.target.value)} style={{flex: "1"}} inputStyle={{flex: "1"}} panelStyle={{flex: "1"}} toggleMask/>
-          <label htmlFor="Password">Password</label>
+          <Password inputId="password" value={formik.values.password} onChange={formik.handleChange} style={{flex: "1"}} inputStyle={{flex: "1"}} panelStyle={{flex: "1"}} toggleMask/>
+          <label htmlFor="password">Password</label>
         </div>
-        <Button label="Login" size='small'/>
+        <Button label="Login" size='small' type='submit' />
         <a style={{"color":"black"}}>Create Account</a>
-      </div>
+      </form>
     </div>
 )
 }
