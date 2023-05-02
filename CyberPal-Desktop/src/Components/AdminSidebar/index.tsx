@@ -2,10 +2,15 @@ import React, { useState } from 'react';
 import './index.css';
 import { Avatar } from 'primereact/avatar';
 import { NavLink } from 'react-router-dom';
+import type { RootState } from '../../Redux/store';
+import { useSelector, useDispatch } from 'react-redux';
+
 
 
 function AdminSidebar() {
     const [activated_item, useActivated_item] = useState("Manage Users");
+    const current_admin_page = useSelector((state: RootState) => state.currentAdminPage.value); 
+
 
     const handleActivation = (name: string) => {
         useActivated_item(name)
