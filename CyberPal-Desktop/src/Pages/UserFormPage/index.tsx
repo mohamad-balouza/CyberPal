@@ -83,8 +83,9 @@ function UserFormPage() {
                     <small className="p-error">{formik.touched.user_type_id && formik.errors.user_type_id}</small>
                 </div>
                 <div className="p-float-label" style={{flex: "1",display: "flex", flexDirection: "column"}}>
-                    <InputText id="isactive" value={isactive} onChange={(e) => setIsActive(e.target.value)}  style={{flex: "1"}}/>
-                    <label htmlFor="isactive">Is Active</label>
+                    <InputText id="is_active" value={formik.values.is_active} onChange={formik.handleChange}  style={{flex: "1"}} className={formik.touched.is_active && Boolean(formik.errors.is_active) ? "p-invalid" : ""}/>
+                    <label htmlFor="is_active">Is Active</label>
+                    <small className="p-error">{formik.touched.is_active && formik.errors.is_active}</small>
                 </div>
             </div>
             <div className='form-buttons'>
