@@ -8,10 +8,11 @@ import Footer from 'Components/Footer';
 import type { RootState } from '../../Redux/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeCurrentPage } from '../../Redux/slices/currentPageSlice';
+import { changeLoggedInStateToFalse, changeLoggedInStateToTrue } from 'Redux/slices/userIsLoggedInSlice';
 import { useEffect } from 'react';
 import { getCurrentUser } from '../../Apis/Users';
 import { useNavigate } from 'react-router-dom';
-import { changeLoggedInStateToFalse, changeLoggedInStateToTrue } from 'Redux/slices/userIsLoggedInSlice';
+import { changeLoggedInUserName, changeLoggedInUserType } from 'Redux/slices/loggedInUserInfoSlice';
 
         
 function LandingPage() {
@@ -25,9 +26,9 @@ function LandingPage() {
   const isUserLoggedIn = async () => {
     try {
       const current_user = await getCurrentUser(user_token, token_type);
-      console.log(current_user);
       dispatch(changeLoggedInStateToTrue());
-      console.log(user_is_logged_in);
+      dispatch(changeLoggedInUserName(current_user.username));
+      dispatch(changeLoggedInUserType(current_user.user_type.type));
       if(current_user.user_type_id == 1){
         navigate("/admin");
       }
@@ -42,7 +43,6 @@ function LandingPage() {
     isUserLoggedIn();
   }, []);
   
-
 
   return (
     <div className='landing-page-block'>
