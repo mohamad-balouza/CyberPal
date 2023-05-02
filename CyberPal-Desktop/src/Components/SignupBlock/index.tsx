@@ -30,7 +30,7 @@ function SignupBlock() {
     try {
       const user = await signup(data);
     } catch(err){
-      console.error('Error fetching users:', err);
+      console.error('Error fetching user:', err);
     }
   }
 
@@ -44,7 +44,6 @@ function SignupBlock() {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       const signup_data = JSON.stringify(values);
-      console.log(signup_data);
       handleRegistration(signup_data);
     },
   });

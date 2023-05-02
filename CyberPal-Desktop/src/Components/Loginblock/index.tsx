@@ -6,11 +6,10 @@ import { Password } from 'primereact/password';
 import "./index.css";       
 import * as yup from 'yup';
 import { useFormik } from 'formik';
+import { login } from '../../Apis/Auth';
 
         
 function LoginBlock() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
 
   const validationSchema = yup.object({
     email: yup
@@ -23,6 +22,15 @@ function LoginBlock() {
       .required('Password is required'),
   });
 
+  const handleLogin = async (data: string) => {
+    try {
+      const user = await login(data);
+      console.log(user);
+    } catch(err){
+      console.error('Error fetching user:', err);
+    }
+  }
+
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -30,7 +38,8 @@ function LoginBlock() {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      const login_data = JSON.stringify(values);
+      handleLogin(login_data);
     },
   });
 
