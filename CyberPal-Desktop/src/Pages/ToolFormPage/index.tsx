@@ -45,12 +45,12 @@ function ToolFormPage() {
         <form className='form-block' onSubmit={formik.handleSubmit}>
             <div className="form-input-block">
                 <div className="p-float-label" style={{width: "49.2%", display: "flex", flexDirection: "column"}}>
-                    <InputText id="tool_name" value={formik.values.tool_name} onChange={formik.handleChange}  style={{flex: "1"}}/>
+                    <InputText id="tool_name" value={formik.values.tool_name} onChange={formik.handleChange}  style={{flex: "1"}} className={formik.touched.tool_name && Boolean(formik.errors.tool_name) ? "p-invalid" : ""}/>
                     <label htmlFor="tool_name">Tool Name</label>
                     <small className="p-error">{formik.touched.tool_name && formik.errors.tool_name}</small>
                 </div>
                 <div className="p-float-label" style={{width: "49.2%", display: "flex", flexDirection: "column"}}>
-                    <InputText id="tool_image_url" value={formik.values.tool_image_url} onChange={formik.handleChange}  style={{flex: "1"}}/>
+                    <InputText id="tool_image_url" value={formik.values.tool_image_url} onChange={formik.handleChange}  style={{flex: "1"}}  className={formik.touched.tool_image_url && Boolean(formik.errors.tool_image_url) ? "p-invalid" : ""}/>
                     <label htmlFor="tool_image_url">Tool Image URL</label>
                     <small className="p-error">{formik.touched.tool_image_url && formik.errors.tool_image_url}</small>
                 </div>
