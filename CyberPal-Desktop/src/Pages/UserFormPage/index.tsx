@@ -2,16 +2,40 @@ import AdminNavbar from 'Components/AdminNavbar';
 import AdminSidebar from 'Components/AdminSidebar';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
+import { InputNumber } from 'primereact/inputnumber';
 import { Password } from 'primereact/password';
 import React, { useState } from 'react';
+import * as yup from 'yup';
+import { useFormik } from 'formik';
 import './index.css';
 
 function UserFormPage() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [usertype, setUsertype] = useState("");
+  const [usertype, setUsertype] = useState(null);
   const [isactive, setIsActive] = useState("");
+
+  const validationSchema = yup.object({
+    username: yup
+      .string()
+      .required('Username is required')
+      .min(4, 'Too short!'),
+    email: yup
+      .string()
+      .email('Enter a valid email')
+      .required('Email is required'),
+    password: yup
+      .string()
+      .min(8, 'Password should be of minimum 8 characters length')
+      .required('Password is required'),
+    user_type_id: yup
+      .number()
+      .positive('User Type ID should be a positive integer')
+      .max(4, 'User Type ID should be less than 4'),
+    is_active: yup
+      .boolean(),
+  });
 
   return (
     <div className='admin-page-block'>
@@ -34,8 +58,8 @@ function UserFormPage() {
                     <label htmlFor="password">Password</label>
                 </div>
                 <div className="p-float-label" style={{flex: "1", display: "flex"}}>
-                    <InputText id="usertype" value={usertype} onChange={(e) => setUsertype(e.target.value)}  style={{flex: "1"}}/>
-                    <label htmlFor="usertype">User Type</label>
+                    <InputNumber id="usertype" value={usertype} onChange={(e) => setUsertype(e.value)}  style={{flex: "1"}}/>
+                    <label htmlFor="usertype">User Type ID</label>
                 </div>
                 <div className="p-float-label" style={{flex: "1",display: "flex"}}>
                     <InputText id="isactive" value={isactive} onChange={(e) => setIsActive(e.target.value)}  style={{flex: "1"}}/>
