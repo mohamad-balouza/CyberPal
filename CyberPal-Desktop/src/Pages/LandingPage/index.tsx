@@ -9,15 +9,25 @@ import type { RootState } from '../../Redux/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeCurrentPage } from '../../Redux/slices/currentPageSlice';
 import { useEffect } from 'react';
+import { getCurrentUser } from '../../Apis/Users';
 
         
 function LandingPage() {
   const current_page = useSelector((state: RootState) => state.currentPage.value); 
+  const user_token = useSelector((state: RootState) => state.userToken.access_token); 
+  const token_type = useSelector((state: RootState) => state.userToken.token_type); 
   const dispatch = useDispatch();
 
-  useEffect(() => {
+  const isUserLoggedIn = async () => {
+    const current_user = await getCurrentUser(user_token, token_type);
+    console.log(current_user);
+    console.log(user_token);
+  }
+
+  useEffect( () => {
     dispatch(changeCurrentPage("Home"));
-  }, [])
+    isUserLoggedIn();
+  }, []);
   
 
 

@@ -8,7 +8,7 @@ export interface userTokenState {
 
 const initialState: userTokenState = {
   access_token: "",
-  token_type: "bearer"
+  token_type: "Bearer"
 }
 
 export const userTokenSlice = createSlice({
