@@ -32,7 +32,7 @@ function UserFormPage() {
     user_type_id: yup
       .number()
       .positive('User Type ID should be a positive integer')
-      .max(4, 'User Type ID should be less than 4'),
+      .max(3, 'User Type ID should be less than 4'),
     is_active: yup
       .boolean(),
   });
@@ -77,11 +77,12 @@ function UserFormPage() {
                     <small className="p-error">{formik.touched.password && formik.errors.password}</small>
                 </div>
                 
-                <div className="p-float-label" style={{flex: "1", display: "flex"}}>
-                    <InputNumber id="usertype" value={usertype} onChange={(e) => setUsertype(e.value)}  style={{flex: "1"}}/>
-                    <label htmlFor="usertype">User Type ID</label>
+                <div className="p-float-label" style={{flex: "1", display: "flex", flexDirection: "column"}}>
+                    <InputText id="user_type_id" value={formik.values.user_type_id} onChange={formik.handleChange}  style={{flex: "1"}} className={formik.touched.user_type_id && Boolean(formik.errors.user_type_id) ? "p-invalid" : ""} keyfilter="int"/>
+                    <label htmlFor="user_type_id">User Type ID</label>
+                    <small className="p-error">{formik.touched.user_type_id && formik.errors.user_type_id}</small>
                 </div>
-                <div className="p-float-label" style={{flex: "1",display: "flex"}}>
+                <div className="p-float-label" style={{flex: "1",display: "flex", flexDirection: "column"}}>
                     <InputText id="isactive" value={isactive} onChange={(e) => setIsActive(e.target.value)}  style={{flex: "1"}}/>
                     <label htmlFor="isactive">Is Active</label>
                 </div>
