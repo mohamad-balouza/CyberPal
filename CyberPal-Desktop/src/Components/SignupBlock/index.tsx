@@ -58,17 +58,20 @@ function SignupBlock() {
       <form className='login-content-block' onSubmit={formik.handleSubmit} >
         <h4 className='login-title'>Create your account</h4>
         <div className="p-float-label"  style={{width: "80%", display: "flex"}}>
-          <InputText id="username" value={formik.values.username} onChange={formik.handleChange} style={{flex: "1"}} />
+          <InputText id="username" value={formik.values.username} onChange={formik.handleChange} style={{flex: "1"}}  className={formik.touched.username && Boolean(formik.errors.username) ? "p-invalid" : ""}  />
           <label htmlFor="username">Username</label>
         </div>
+
         <div className="p-float-label"  style={{width: "80%", display: "flex"}}>
-          <InputText id="email" value={formik.values.email} onChange={formik.handleChange} style={{flex: "1"}} />
+          <InputText id="email" value={formik.values.email} onChange={formik.handleChange} style={{flex: "1"}} className={formik.touched.email && Boolean(formik.errors.email) ? "p-invalid" : ""}  />
           <label htmlFor="email">Email</label>
         </div>
+
         <div className="p-float-label" style={{width: "80%", display: "flex"}}>
-          <Password inputId="password" value={formik.values.password} onChange={formik.handleChange} style={{flex: "1"}} inputStyle={{flex: "1"}} panelStyle={{flex: "1"}} toggleMask/>
+          <Password inputId="password" value={formik.values.password} onChange={formik.handleChange} style={{flex: "1"}} inputStyle={{flex: "1"}} panelStyle={{flex: "1"}} toggleMask className={formik.touched.password && Boolean(formik.errors.password) ? "p-invalid" : ""} />
           <label htmlFor="password">Password</label>
         </div>
+
         <Button label="Signup" size='small' type='submit' />
         <a style={{"color":"black"}}>Already Have an Account?</a>
       </form>
