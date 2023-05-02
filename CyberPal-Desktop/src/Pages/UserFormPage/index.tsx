@@ -57,12 +57,14 @@ function UserFormPage() {
       <div className='admin-page-content-block'>
         <AdminNavbar />
         <h3>User Form</h3>
-        <form className='form-block'>
+        <form className='form-block' onSubmit={formik.handleSubmit}>
             <div className="form-input-block">
-                <div className="p-float-label" style={{width: "100%", display: "flex"}}>
-                    <InputText id="username" value={username} onChange={(e) => setUsername(e.target.value)}  style={{flex: "1"}}/>
+                <div className="p-float-label" style={{width: "100%", display: "flex", flexDirection: "column"}}>
+                    <InputText id="username" value={formik.values.username} onChange={formik.handleChange}  style={{flex: "1"}}  className={formik.touched.username && Boolean(formik.errors.username) ? "p-invalid" : ""}/>
                     <label htmlFor="username">Username</label>
+                    <small className="p-error">{formik.touched.username && formik.errors.username}</small>
                 </div>
+
                 <div className="p-float-label" style={{width: "49.2%", display: "flex"}}>
                     <InputText id="email" value={email} onChange={(e) => setEmail(e.target.value)}  style={{flex: "1"}}/>
                     <label htmlFor="email">Email</label>
