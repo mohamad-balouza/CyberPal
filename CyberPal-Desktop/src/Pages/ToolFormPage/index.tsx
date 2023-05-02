@@ -11,6 +11,7 @@ import './index.css';
 function ToolFormPage() {
   const [toolname, setToolname] = useState("");
   const [toolimage, setToolimage] = useState("");
+  const [btnClicked, setBtnClicked] = useState('');
 
   const validationSchema = yup.object({
     tool_name: yup
@@ -20,6 +21,21 @@ function ToolFormPage() {
     tool_image_url: yup
       .string()
       .required('Tool image url is required'),
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      tool_name: '',
+      tool_image_url: '',
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      if(btnClicked == "add tool"){
+        alert("from add");
+      } else {
+        alert("from update");
+      }
+    },
   });
 
   return (
