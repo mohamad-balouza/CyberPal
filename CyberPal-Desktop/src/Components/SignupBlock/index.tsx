@@ -7,9 +7,11 @@ import './index.css';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import { signup } from '../../Apis/Auth';
+import { useNavigate } from 'react-router-dom';
 
         
 function SignupBlock() {
+  const navigate = useNavigate();
 
   const validationSchema = yup.object({
     username: yup
@@ -29,6 +31,7 @@ function SignupBlock() {
   const handleRegistration = async (data: string) => {
     try {
       const user = await signup(data);
+      navigate("/login");
     } catch(err){
       console.error('Error fetching user:', err);
     }

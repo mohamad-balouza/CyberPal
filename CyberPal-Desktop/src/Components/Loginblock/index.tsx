@@ -35,7 +35,7 @@ function LoginBlock() {
     try {
       const user = await login(data);
       dispatch(changeToken(user.access_token));
-      navigate("/home");
+      navigate("/");
     } catch(err){
       console.error('Error fetching user:', err);
     }
