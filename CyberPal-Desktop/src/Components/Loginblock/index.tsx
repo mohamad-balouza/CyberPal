@@ -5,6 +5,7 @@ import { Button } from 'primereact/button';
 import { Password } from 'primereact/password';
 import "./index.css";       
 import * as yup from 'yup';
+import { useFormik } from 'formik';
 
         
 function LoginBlock() {
@@ -21,6 +22,18 @@ function LoginBlock() {
       .min(8, 'Password should be of minimum 8 characters length')
       .required('Password is required'),
   });
+
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
+
 
   return (
     <div className='login-block'>
