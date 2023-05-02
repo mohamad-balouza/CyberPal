@@ -3,7 +3,12 @@ import axios from "axios";
 export function login(data: string) {
     return axios.post(
         "http://127.0.0.1:8000/api/v1/login/access-token",
-        data
+        data,
+        {
+            headers: {
+                'content-type': 'application/json',
+            },
+        }
     ).then(
         res => res.data
     )
@@ -19,10 +24,7 @@ export function signup(data: string){
             },
         }
     ).then(
-        res => {
-            console.log(res);
-            console.log(res.data);
-        }
+        res => res.data
     ).catch(
         err => console.error(err)
     );
