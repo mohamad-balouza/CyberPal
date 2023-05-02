@@ -6,17 +6,15 @@ import { Password } from 'primereact/password';
 import './index.css';        
 import * as yup from 'yup';
 import { useFormik } from 'formik';
+import { signup } from '../../Apis/Auth';
 
         
 function SignupBlock() {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
 
   const validationSchema = yup.object({
     username: yup
       .string()
-      .required()
+      .required('Username is required')
       .min(4, 'Too short!'),
     email: yup
       .string()
@@ -37,7 +35,7 @@ function SignupBlock() {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      const signup_data = JSON.stringify(values, null, 2);
     },
   });
 
@@ -48,19 +46,19 @@ function SignupBlock() {
         <img src={LoginImage} className='login-image' />
       </div>
 
-      <form className='login-content-block' >
+      <form className='login-content-block' onSubmit={formik.handleSubmit} >
         <h4 className='login-title'>Create your account</h4>
         <div className="p-float-label"  style={{width: "80%", display: "flex"}}>
-          <InputText id="Username" value={username} onChange={(e) => setUsername(e.target.value)} style={{flex: "1"}} />
-          <label htmlFor="Username">Username</label>
+          <InputText id="username" value={formik.values.username} onChange={formik.handleChange} style={{flex: "1"}} />
+          <label htmlFor="username">Username</label>
         </div>
         <div className="p-float-label"  style={{width: "80%", display: "flex"}}>
-          <InputText id="Email" value={email} onChange={(e) => setEmail(e.target.value)} style={{flex: "1"}} />
-          <label htmlFor="Email">Email</label>
+          <InputText id="email" value={formik.values.email} onChange={formik.handleChange} style={{flex: "1"}} />
+          <label htmlFor="email">Email</label>
         </div>
         <div className="p-float-label" style={{width: "80%", display: "flex"}}>
-          <Password inputId="Password" value={password} onChange={(e) => setPassword(e.target.value)} style={{flex: "1"}} inputStyle={{flex: "1"}} panelStyle={{flex: "1"}} toggleMask/>
-          <label htmlFor="Password">Password</label>
+          <Password inputId="password" value={formik.values.password} onChange={formik.handleChange} style={{flex: "1"}} inputStyle={{flex: "1"}} panelStyle={{flex: "1"}} toggleMask/>
+          <label htmlFor="password">Password</label>
         </div>
         <Button label="Signup" size='small' type='submit' />
         <a style={{"color":"black"}}>Already Have an Account?</a>
