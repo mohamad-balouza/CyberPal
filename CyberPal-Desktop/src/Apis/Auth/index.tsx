@@ -12,7 +12,12 @@ export function login(data: string) {
 export function signup(data: string){
     return axios.post(
         "http://127.0.0.1:8000/api/v1/users",
-        data
+        data,
+        {
+            headers: {
+                'content-type': 'application/json',
+            },
+        }
     ).then(
         res => {
             console.log(res);
