@@ -3,11 +3,24 @@ import LoginImage from '../../../assets/LoginImage.png';
 import { InputText } from "primereact/inputtext";
 import { Button } from 'primereact/button';                             
 import { Password } from 'primereact/password';
-import "./index.css";        
+import "./index.css";       
+import * as yup from 'yup';
+
         
 function LoginBlock() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const validationSchema = yup.object({
+    email: yup
+      .string()
+      .email('Enter a valid email')
+      .required('Email is required'),
+    password: yup
+      .string()
+      .min(8, 'Password should be of minimum 8 characters length')
+      .required('Password is required'),
+  });
 
   return (
     <div className='login-block'>
