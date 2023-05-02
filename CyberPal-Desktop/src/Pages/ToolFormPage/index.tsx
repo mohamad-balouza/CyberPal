@@ -58,8 +58,8 @@ function ToolFormPage() {
                 </div>
             </div>
             <div className='form-buttons'>
-                <Button label='Add Tool' style={{flex: "1"}} type='submit' />
-                <Button label='Update Tool' style={{flex: "1"}} type='submit'  />
+                <Button label='Add Tool' style={{flex: "1"}} type='submit' onClick={(event) => setBtnClicked("add tool")} />
+                <Button label='Update Tool' style={{flex: "1"}} type='submit' onClick={(event) => setBtnClicked("update tool")}  />
             </div>
         </form>
       </div>
