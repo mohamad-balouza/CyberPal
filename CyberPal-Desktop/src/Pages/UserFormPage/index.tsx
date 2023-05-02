@@ -10,11 +10,7 @@ import { useFormik } from 'formik';
 import './index.css';
 
 function UserFormPage() {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [usertype, setUsertype] = useState(null);
-  const [isactive, setIsActive] = useState("");
+  const [btnClicked, setBtnClicked] = useState('');
 
   const validationSchema = yup.object({
     username: yup
@@ -47,7 +43,11 @@ function UserFormPage() {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      alert("done");
+      if(btnClicked == "add user"){
+        alert("from add");
+      } else {
+        alert("from update");
+      }
     },
   });
 
@@ -89,8 +89,8 @@ function UserFormPage() {
                 </div>
             </div>
             <div className='form-buttons'>
-                <Button label='Add User' style={{flex: "1"}} type='submit' />
-                <Button label='Update User' style={{flex: "1"}} type='submit' />
+                <Button label='Add User' style={{flex: "1"}} type='submit' onClick={(event) => setBtnClicked("add user")} />
+                <Button label='Update User' style={{flex: "1"}} type='submit' onClick={(event) => setBtnClicked("update user")} />
             </div>
         </form>
       </div>
