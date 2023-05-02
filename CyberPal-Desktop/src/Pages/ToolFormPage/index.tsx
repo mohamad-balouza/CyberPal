@@ -51,9 +51,10 @@ function ToolFormPage() {
                     <label htmlFor="tool_name">Tool Name</label>
                     <small className="p-error">{formik.touched.tool_name && formik.errors.tool_name}</small>
                 </div>
-                <div className="p-float-label" style={{width: "49.2%", display: "flex"}}>
-                    <InputText id="tool_image_url" value={toolimage} onChange={(e) => setToolimage(e.target.value)}  style={{flex: "1"}}/>
+                <div className="p-float-label" style={{width: "49.2%", display: "flex", flexDirection: "column"}}>
+                    <InputText id="tool_image_url" value={formik.values.tool_image_url} onChange={formik.handleChange}  style={{flex: "1"}}/>
                     <label htmlFor="tool_image_url">Tool Image URL</label>
+                    <small className="p-error">{formik.touched.tool_image_url && formik.errors.tool_image_url}</small>
                 </div>
             </div>
             <div className='form-buttons'>
