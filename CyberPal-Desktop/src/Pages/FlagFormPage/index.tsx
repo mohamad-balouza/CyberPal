@@ -19,10 +19,10 @@ function FlagFormPage() {
       .string()
       .required('Flag name is required')
       .min(4, 'Too short!'),
-    flag_id: yup
+    tool_id: yup
       .number()
-      .required('Flag id is required')
-      .positive('Flag id should be a positive integer'),
+      .required('Tool id is required')
+      .positive('Tool id should be a positive integer'),
     flag_description: yup
       .string()
       .required('Flag description is required'),
@@ -57,9 +57,10 @@ function FlagFormPage() {
                     <label htmlFor="flag_name">Flag Name</label>
                     <small className="p-error">{formik.touched.flag_name && formik.errors.flag_name}</small>
                 </div>
-                <div className="p-float-label" style={{width: "49.2%", display: "flex"}}>
-                    <InputText id="tool_id" value={toolid} onChange={(e) => setToolid(e.target.value)}  style={{flex: "1"}}/>
+                <div className="p-float-label" style={{width: "49.2%", display: "flex", flexDirection:"column"}}>
+                    <InputText id="tool_id" value={formik.values.tool_id} onChange={formik.handleChange}  style={{flex: "1"}} keyfilter="int" />
                     <label htmlFor="tool_id">Tool ID</label>
+                    <small className="p-error">{formik.touched.tool_id && formik.errors.tool_id}</small>
                 </div>
                 <div className="p-float-label">
                     <InputTextarea id="flag_description" value={flagdescription} onChange={(e) => setflagdescription(e.target.value)} rows={5} cols={30} />
