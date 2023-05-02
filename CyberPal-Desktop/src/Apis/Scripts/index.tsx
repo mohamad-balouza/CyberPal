@@ -114,3 +114,19 @@ export function updateScript(script_id : number,data: string, token: string, tok
         err => console.error(err)
     );
 }
+
+export function deleteScript(script_id : number, token: string, token_type: string){
+    return axios.delete(
+        `http://127.0.0.1:8000/api/v1/scripts/${script_id}`,
+        {
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': `${token_type} ${token}`,
+            },
+        }
+    ).then(
+        res => res.data
+    ).catch(
+        err => console.error(err)
+    );
+}
