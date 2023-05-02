@@ -31,3 +31,20 @@ export function getAllUsers(){
         err => console.error(err)
     );
 }
+
+export function updateUser(user_id:number, data: string, token: string, token_type: string){
+    return axios.put(
+        `http://127.0.0.1:8000/api/v1/users/${user_id}`,
+        data,
+        {
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': `${token_type} ${token}`,
+            },
+        }
+    ).then(
+        res => res.data
+    ).catch(
+        err => console.error(err)
+    );
+}
