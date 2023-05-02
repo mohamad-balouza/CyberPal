@@ -62,9 +62,10 @@ function FlagFormPage() {
                     <label htmlFor="tool_id">Tool ID</label>
                     <small className="p-error">{formik.touched.tool_id && formik.errors.tool_id}</small>
                 </div>
-                <div className="p-float-label">
-                    <InputTextarea id="flag_description" value={flagdescription} onChange={(e) => setflagdescription(e.target.value)} rows={5} cols={30} />
+                <div className="p-float-label" style={{width: "49.2%", display: "flex", flexDirection:"column"}}>
+                    <InputTextarea id="flag_description" value={formik.values.flag_description} onChange={formik.handleChange} rows={5} cols={30} />
                     <label htmlFor="flag_description">Flag Description</label>
+                    <small className="p-error">{formik.touched.flag_description && formik.errors.flag_description}</small>
                 </div>
             </div>
             <div className='form-buttons'>
