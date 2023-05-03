@@ -8,10 +8,18 @@ import * as yup from 'yup';
 import { useFormik } from 'formik';
 import { createUser } from '../../Apis/Auth';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { changeCurrentPage } from 'Redux/slices/currentPageSlice';
 
         
 function SignupBlock() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleLoginNavigation = () => {
+    navigate("/login");
+    dispatch(changeCurrentPage("Login"));
+  }
 
   const validationSchema = yup.object({
     username: yup
@@ -86,7 +94,7 @@ function SignupBlock() {
         </div>
 
         <Button label="Signup" size='small' type='submit' />
-        <a style={{"color":"black"}}>Already Have an Account?</a>
+        <a style={{"color":"black"}} onClick={handleLoginNavigation} >Already Have an Account?</a>
       </form>
     </div>
 )
