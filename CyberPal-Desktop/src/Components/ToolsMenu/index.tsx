@@ -5,6 +5,7 @@ import ToolMenuItem from 'Components/ToolMenuItem';
 import { is } from 'immer/dist/internal';
 import ToolMenuContents from 'Components/ToolMenuContents';
 import NmapMenuItem from 'Components/NmapMenuItem';
+import NmapItemContents from 'Components/NmapItemContents';
 
 function ToolsMenu() {
   const [selectedid, setSelectedid] = useState(0);
@@ -71,7 +72,7 @@ function ToolsMenu() {
             >
             <motion.div layout className="child">
                 {selectedid == 1 ? 
-                  <ToolMenuContents /> :
+                  <NmapItemContents /> :
                   <NmapMenuItem />
                 } 
             </motion.div>
