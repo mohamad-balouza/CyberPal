@@ -30,6 +30,12 @@
     border: 3px solid var(--cyan);
 }
 
+.info-cyan .p-button{
+    background-color: var(--cyan);
+    border-color: var(--cyan);
+    color: var(--dark_purple);
+}
+
 .image-cyan{
     box-shadow: 0px 4px 30px var(--cyan);
 }
@@ -38,12 +44,22 @@
     border: 3px solid var(--pink);
 }
 
+.info-pink .p-button{
+    background-color: var(--pink);
+    border-color: var(--pink);
+}
+
 .image-pink{
     box-shadow: 0px 4px 30px var(--pink);
 }
 
 .info-blue{
     border: 3px solid var(--blue);
+}
+
+.info-blue .p-button{
+    background-color: var(--blue);
+    border-color: var(--blue);
 }
 
 .image-blue{
