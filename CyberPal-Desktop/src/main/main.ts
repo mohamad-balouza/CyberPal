@@ -139,7 +139,9 @@ app
 
 
 ipcMain.handle('install-nmap', async () => {
-  return await installNmap();
+  console.log('install-nmap channel invoked'); 
+  const result = await installNmap();
+  return result;
 });
 
 ipcMain.handle('execute-nmap-command', async (event, nmapCommand) => {
