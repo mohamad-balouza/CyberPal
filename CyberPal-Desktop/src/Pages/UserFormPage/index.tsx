@@ -2,18 +2,27 @@ import AdminNavbar from 'Components/AdminNavbar';
 import AdminSidebar from 'Components/AdminSidebar';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
-import { InputNumber } from 'primereact/inputnumber';
 import { Password } from 'primereact/password';
-import React, { useState } from 'react';
+import { Toast } from 'primereact/toast';
+import React, { useRef, useState } from 'react';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import './index.css';
 import { createUser } from '../../Apis/Auth';
 import { useMutation } from '@tanstack/react-query';
 
+
 function UserFormPage() {
   const [btnClicked, setBtnClicked] = useState('');
-  const createUserMutation = useMutation(createUser);
+  const toast = useRef(null);
+
+  const createUserMutation = useMutation(createUser,{
+    onSuccess: () => showUserCreatedSuccessfully(),
+  });
+
+  const showUserCreatedSuccessfully = () => {
+    toast.current.show({severity:'success', summary: 'Success', detail:'User Created Successfully!', life: 2000});
+  }
 
   const validationSchema = yup.object({
     username: yup
@@ -49,7 +58,7 @@ function UserFormPage() {
       if(btnClicked == "add user"){
         const user_data = JSON.stringify(values);
         createUserMutation.mutate(user_data);
-        alert("done");
+        formik.resetForm();
       } else {
         alert("from update");
       }
@@ -58,6 +67,7 @@ function UserFormPage() {
 
   return (
     <div className='admin-page-block'>
+      <Toast ref={toast} />
       <AdminSidebar />
       <div className='admin-page-content-block'>
         <AdminNavbar />
