@@ -1,15 +1,16 @@
-from pydantic import BaseModel, FutureDate
+from pydantic import BaseModel
 from typing import Optional, List
+from datetime import datetime
 
 class ScheduleBase(BaseModel):
-    date_and_time: FutureDate | None = None
+    date_and_time: datetime | None = None
     schedule_type: str | None = None
     title: str | None = None
     email_contents: str | None = None
     user_id: int | None = None
 
 class ScheduleCreate(ScheduleBase):
-    date_and_time: FutureDate
+    date_and_time: datetime
     schedule_type: str
     title: str
     user_id: int
