@@ -11,3 +11,21 @@
     flex-direction: column;
     gap: 16px;
 }
+
+body .admin-page-content-block .p-datatable .p-datatable-thead th{
+    background-color: var(--purple);
+    color: white;
+}
+
+body .admin-page-content-block .p-datatable tr{
+    background-color: var(--lightish_purple);
+    color: white;
+}
+
+body .admin-page-content-block .p-datatable .p-component {
+    background-color: var(--lightish_purple);
+}
+
+body .admin-page-content-block .p-datatable .p-paginator {
+    background-color: var(--purple);
+}
