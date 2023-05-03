@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
+import './index.css';
 
 function ConnectVpnTable() {
     const[userfiledb, setUserfiledb] = useState([])
@@ -19,8 +20,14 @@ function ConnectVpnTable() {
         }
     ]);
 
+    // const footer = (
+    //     <div style={{backgroundColor: "var(--purple)"}}>
+
+    //     </div>
+    // );
+
     return (
-        <div className="card">
+        <div className="card profile-content-table">
             <div className="card">
                 <DataTable size='small' tableStyle={{ width: '30rem' }} value={userfile} >
                     <Column field="file_detail" header="OpenVPN Access Details" style={{ width: '50%' }}></Column>

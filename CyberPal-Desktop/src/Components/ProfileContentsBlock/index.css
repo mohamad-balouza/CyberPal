@@ -1,16 +1,17 @@
 .profile-tabview-block.p-tabview .p-tabview-nav{
     background-color: var(--dark_purple);
+    border-color: var(--dark_purple);
 }
 
-.profile-tabview-block.p-tabview-selected{
-    border-color: var(--cyan) !important;
+.profile-tabview-block.p-tabview .p-tabview-selected .p-active{
+    background-color: var(--dark_purple) !important;
 }
 
 
 .profile-tabview-block.p-tabview .p-tabview-panel{
-    background-color: var(--dark_purple) !important;
+    background-color: var(--dark_purple);
 }
 
 .profile-tabview-block.p-tabview .p-tabview-panels{
-    background-color: var(--dark_purple) !important;
+    background-color: var(--dark_purple);
 }
