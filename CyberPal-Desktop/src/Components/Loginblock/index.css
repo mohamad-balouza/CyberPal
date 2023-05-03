@@ -47,5 +47,5 @@
 }
 
 .login-title{
-    color: black;
+    color: var(--dark_purple);
 }

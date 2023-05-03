@@ -11,14 +11,20 @@ import { useSelector, useDispatch } from 'react-redux';
 import type { RootState } from '../../Redux/store';
 import { changeToken } from 'Redux/slices/userTokenSlice';
 import { useNavigate } from 'react-router-dom';
+import { changeCurrentPage } from 'Redux/slices/currentPageSlice';
 
 
         
 function LoginBlock() {
   const user_token = useSelector((state: RootState) => state.userToken.access_token); 
+  const current_page = useSelector((state: RootState) => state.currentPage.value); 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const handleSignupNavigation = () => {
+    navigate("/signup");
+    dispatch(changeCurrentPage("Signup"));
+  }
 
   const validationSchema = yup.object({
     email: yup
