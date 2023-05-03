@@ -8,7 +8,7 @@ import ConnectVpnTable from 'Components/ConnectVpnTable';
 
 function ProfileContentsBlock() {
   return (
-    <TabView>
+    <TabView className='profile-tabview-block'>
         <TabPanel header="Schedules">
           <SchedulesTable />
         </TabPanel>
