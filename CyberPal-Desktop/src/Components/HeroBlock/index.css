@@ -21,6 +21,17 @@
     gap: 10px;
 }
 
+.get-started-button.p-button{
+    background-color: var(--cyan);
+    color: var(--dark_purple);
+    border-color: var(--cyan);
+}
+
+.more-info-button.p-button{
+    color: var(--cyan);
+    border-color: var(--cyan);
+}
+
 .hero-image{
     width: 100%;
 }
