@@ -8,9 +8,12 @@ import React, { useState } from 'react';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import './index.css';
+import { createUser } from '../../Apis/Auth';
+import { useMutation } from '@tanstack/react-query';
 
 function UserFormPage() {
   const [btnClicked, setBtnClicked] = useState('');
+  const createUserMutation = useMutation(createUser);
 
   const validationSchema = yup.object({
     username: yup
@@ -44,7 +47,9 @@ function UserFormPage() {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       if(btnClicked == "add user"){
-        alert("from add");
+        const user_data = JSON.stringify(values);
+        createUserMutation.mutate(user_data);
+        alert("done");
       } else {
         alert("from update");
       }
