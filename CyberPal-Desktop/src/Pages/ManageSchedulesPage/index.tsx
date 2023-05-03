@@ -24,7 +24,7 @@ function ManageSchedulesPage() {
         <AdminNavbar />
         <h3>Schedules</h3>
         <div className="card">
-            <DataTable value={schedules.data} emptyMessage="No Schedules Found!" paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]} paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+            <DataTable value={schedules.data} loading={schedules.isLoading} emptyMessage="No Schedules Found!" paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]} paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
                     currentPageReportTemplate="{first} to {last} of {totalRecords}">
                 <Column field="id" header="ID" style={{ width: '10%' }}></Column>
                 <Column field="title" header="Title" style={{ width: '20%' }}></Column>

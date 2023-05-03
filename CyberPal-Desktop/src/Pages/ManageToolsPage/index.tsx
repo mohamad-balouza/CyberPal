@@ -19,7 +19,7 @@ function ManageToolsPage() {
         <AdminNavbar />
         <h3>Tools</h3>
         <div className="card">
-            <DataTable value={tools.data} emptyMessage="No Tools Found!" paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]} paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+            <DataTable value={tools.data} loading={tools.isLoading} emptyMessage="No Tools Found!" paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]} paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
                     currentPageReportTemplate="{first} to {last} of {totalRecords}">
                 <Column field="id" header="ID" style={{ width: '10%' }}></Column>
                 <Column field="tool_name" header="Tool Name" style={{ width: '45%' }}></Column>
