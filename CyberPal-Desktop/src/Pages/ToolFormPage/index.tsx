@@ -3,6 +3,7 @@ import AdminSidebar from 'Components/AdminSidebar';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { Password } from 'primereact/password';
+import { Toast } from 'primereact/toast';
 import React, { useRef, useState } from 'react';
 import type { RootState } from '../../Redux/store';
 import { useSelector } from 'react-redux';
@@ -21,6 +22,14 @@ function ToolFormPage() {
 
   const createToolMutation = useMutation(([tool_data, user_token, token_type]) => createTool(tool_data, user_token, token_type));
 
+
+  const showToolCreatedSuccessfully = () => {
+    toast.current.show({severity:'success', summary: 'Success', detail:'Tool Created Successfully!', life: 2000});
+  }
+
+  const showToolNotCreated = () => {
+    toast.current.show({severity:'error', summary: 'Error', detail:'Tool Not Created, an Error Has Occured', life: 2000});
+  }
 
   const validationSchema = yup.object({
     tool_name: yup
@@ -43,8 +52,8 @@ function ToolFormPage() {
         const tool_data = JSON.stringify(values);
         console.log(tool_data)
         createToolMutation.mutate([tool_data, user_token, token_type]);
-        alert("done");
-        // formik.resetForm();
+        showToolCreatedSuccessfully();
+        formik.resetForm();
       } else {
         alert("from update");
       }
@@ -53,6 +62,7 @@ function ToolFormPage() {
 
   return (
     <div className='admin-page-block'>
+      <Toast ref={toast} />
       <AdminSidebar />
       <div className='admin-page-content-block'>
         <AdminNavbar />
