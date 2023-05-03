@@ -14,6 +14,7 @@ import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
+import { installNmap, executeNmapCommand } from '../Utils/NmapTool';
 
 class AppUpdater {
   constructor() {
@@ -135,3 +136,12 @@ app
     });
   })
   .catch(console.log);
+
+
+ipcMain.handle('install-nmap', async () => {
+  return await installNmap();
+});
+
+ipcMain.handle('execute-nmap-command', async (event, nmapCommand) => {
+  return await executeNmapCommand(nmapCommand);
+});
