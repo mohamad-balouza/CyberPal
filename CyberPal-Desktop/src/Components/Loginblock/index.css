@@ -49,3 +49,8 @@
 .login-title{
     color: var(--dark_purple);
 }
+
+.login-content-block > a:hover {
+    color: var(--blue) !important;
+    text-decoration: underline;
+}
