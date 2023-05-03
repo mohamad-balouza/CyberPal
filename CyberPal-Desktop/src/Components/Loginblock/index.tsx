@@ -82,7 +82,7 @@ function LoginBlock() {
         </div>
 
         <Button label="Login" size='small' type='submit' />
-        <a style={{"color":"black"}}>Create Account</a>
+        <a style={{"color":"black"}} onClick={handleSignupNavigation}>Create Account</a>
       </form>
     </div>
 )

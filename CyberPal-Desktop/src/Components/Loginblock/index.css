@@ -40,7 +40,10 @@
 }
 
 .login-content-block .p-button {
-    background-color: var(--purple);
+    background: linear-gradient(180deg, #291048 0%, #8C15E9 100%);
+}
+.login-content-block .p-button:hover {
+    background: linear-gradient(180deg, #291048 0%, #8C15E9 100%) !important;
 }
 
 .login-title{
