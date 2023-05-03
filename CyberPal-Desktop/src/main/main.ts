@@ -14,7 +14,7 @@ import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
-import { installNmap, executeNmapCommand } from '../Utils/NmapTool';
+import { installNmap, executeNmapCommand, executeNormalCommand } from '../Utils/NmapTool';
 
 class AppUpdater {
   constructor() {
@@ -138,12 +138,13 @@ app
   .catch(console.log);
 
 
-ipcMain.handle('install-nmap', async () => {
-  console.log('install-nmap channel invoked'); 
-  const result = await installNmap();
-  return result;
-});
+// ipcMain.handle('install-nmap', async () => {
+//   console.log('install-nmap channel invoked'); 
+//   const result = await installNmap();
+//   return result;
+// });
 
-ipcMain.handle('execute-nmap-command', async (event, nmapCommand) => {
-  return await executeNmapCommand(nmapCommand);
-});
+ipcMain.on('execute-normal-command', (event, command) => {
+  console.log("listened for normal command execution");
+  executeNormalCommand(command);
+})
