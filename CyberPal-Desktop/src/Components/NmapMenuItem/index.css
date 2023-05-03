@@ -1,0 +1,34 @@
+.tool-menu-item-block{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 24px;
+    padding-bottom: 32px;
+    width: 100%;
+    height: 100%;
+}
+
+.tool-menu-item-block > .tool-menu-item-image{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.tool-menu-item-block > .tool-menu-item-contents{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.tool-menu-item-contents > h3 {
+    padding: 0;
+    margin: 0;
+}
+
+.tool-menu-item-contents > p {
+    padding: 0;
+    margin: 0;
+}
