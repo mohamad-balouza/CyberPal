@@ -9,10 +9,8 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { getAllUsers } from '../../Apis/Users';
 
 function ManageUsersPage() {
-  const [users, setUsers] = useState([]);
-
   const queryClient = useQueryClient();
-  const fetched_users = useQuery(['users'], getAllUsers);
+  const users = useQuery(['users'], getAllUsers);
   
 
   return (
@@ -22,7 +20,7 @@ function ManageUsersPage() {
         <AdminNavbar />
         <h3>Users</h3>
         <div className="card">
-            <DataTable value={fetched_users.data} loading={fetched_users.isLoading} paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]} paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+            <DataTable value={users.data} loading={users.isLoading} emptyMessage="No Users Found!" paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]} paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
                     currentPageReportTemplate="{first} to {last} of {totalRecords}">
                 <Column field="id" header="ID" style={{ width: '10%' }}></Column>
                 <Column field="username" header="Username" style={{ width: '15%' }}></Column>
