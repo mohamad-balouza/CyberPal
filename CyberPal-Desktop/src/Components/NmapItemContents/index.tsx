@@ -8,7 +8,7 @@ import { Button } from 'primereact/button';
 function NmapItemContents() {
   const handleNormalCommandExecution = () => {
     console.log("start of function");
-    window.electron.ipcRenderer.sendMessage('execute-normal-command', 'ipconfig');
+    window.electron.ipcRenderer.send('execute-normal-command', 'ipconfig');
     console.log("end of function");
   }
 
