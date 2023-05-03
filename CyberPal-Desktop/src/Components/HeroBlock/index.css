@@ -27,9 +27,20 @@
     border-color: var(--cyan);
 }
 
+.get-started-button.p-button:hover{
+    background-color: var(--purple) !important;
+    color: white !important;
+    border-color: var(--purple) !important;
+}
+
 .more-info-button.p-button{
     color: var(--cyan);
     border-color: var(--cyan);
+}
+
+.more-info-button.p-button:hover{
+    color: var(--pink) !important;
+    border-color: var(--pink) !important;
 }
 
 .hero-image{
