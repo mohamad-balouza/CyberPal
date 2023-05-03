@@ -22,7 +22,7 @@ body .admin-page-content-block .p-datatable tr{
     color: white;
 }
 
-body .admin-page-content-block .p-datatable .p-component {
+body .admin-page-content-block .p-datatable .p-component  {
     background-color: var(--lightish_purple);
 }
 
