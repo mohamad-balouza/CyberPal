@@ -4,22 +4,19 @@ import './index.css';
 import ToolMenuItem from 'Components/ToolMenuItem';
 import { is } from 'immer/dist/internal';
 import ToolMenuContents from 'Components/ToolMenuContents';
+import NmapMenuItem from 'Components/NmapMenuItem';
 
 function ToolsMenu() {
-  const [selectedid, setSelectedid] = useState(null);
+  const [selectedid, setSelectedid] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const tools = [
     {
-      "id": 1,
-      "name": "nmap"
-    },
-    {
       "id": 2,
-      "name": "Metasploit"
+      "name": "nmap"
     },
     {
       "id": 3,
-      "name": "nmap"
+      "name": "Metasploit"
     },
     {
       "id": 4,
@@ -39,6 +36,10 @@ function ToolsMenu() {
     },
     {
       "id": 8,
+      "name": "nmap"
+    },
+    {
+      "id": 9,
       "name": "nmap"
     },
   ];
@@ -61,6 +62,22 @@ function ToolsMenu() {
           //   (event, info) => console.log(info.offset.x)
           // }
         >
+            <motion.div
+                layout
+                data-isOpen={selectedid == 1}
+                initial={{ borderRadius: 10 }}
+                className="tool-menu-item"
+                onTap={() => setSelectedid(1)}
+            >
+            <motion.div layout className="child">
+                {selectedid == 1 ? 
+                  <ToolMenuContents /> :
+                  <NmapMenuItem />
+                } 
+            </motion.div>
+
+          </motion.div>
+
 
         {tools.map((tool) => (
           <motion.div
