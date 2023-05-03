@@ -5,12 +5,12 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import React, { useState } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import './index.css';
 import { getAllTools } from 'Apis/Tools';
+import './index.css';
 
 function ManageToolsPage() {
   const queryClient = useQueryClient();
-  const tools = useQuery(['users'], getAllTools);
+  const tools = useQuery(['tools'], getAllTools);
 
   return (
     <div className='admin-page-block'>
