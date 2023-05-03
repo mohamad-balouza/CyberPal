@@ -18,10 +18,15 @@ function UserFormPage() {
 
   const createUserMutation = useMutation(createUser,{
     onSuccess: () => showUserCreatedSuccessfully(),
+    onError: () => showUserNotCreated(),
   });
 
   const showUserCreatedSuccessfully = () => {
     toast.current.show({severity:'success', summary: 'Success', detail:'User Created Successfully!', life: 2000});
+  }
+
+  const showUserNotCreated = () => {
+    toast.current.show({severity:'error', summary: 'Error', detail:'User Not Created, an Error Has Occured', life: 2000});
   }
 
   const validationSchema = yup.object({
