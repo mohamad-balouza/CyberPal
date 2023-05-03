@@ -16,3 +16,7 @@
     width: 30%;
     gap: 16px;
 }
+
+.form-buttons .p-button{
+    background-color: var(--purple);
+}
