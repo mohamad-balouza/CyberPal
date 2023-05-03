@@ -19,7 +19,7 @@ function ToolFormPage() {
   const token_type = useSelector((state: RootState) => state.userToken.token_type); 
   const toast = useRef(null);
 
-  const createToolMutation = useMutation((new_tool) => createTool(new_tool.tool_data, new_tool.user_token, new_tool.token_type) );
+  const createToolMutation = useMutation(([tool_data, user_token, token_type]) => createTool(tool_data, user_token, token_type));
 
 
   const validationSchema = yup.object({
@@ -27,7 +27,7 @@ function ToolFormPage() {
       .string()
       .required('Tool name is required')
       .min(4, 'Too short!'),
-    tool_image_url: yup
+    image_url: yup
       .string()
       .required('Tool image url is required'),
   });
@@ -35,13 +35,14 @@ function ToolFormPage() {
   const formik = useFormik({
     initialValues: {
       tool_name: '',
-      tool_image_url: '',
+      image_url: '',
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
       if(btnClicked == "add tool"){
         const tool_data = JSON.stringify(values);
-        createToolMutation.mutate({tool_data: tool_data, user_token: user_token, token_type: token_type});
+        console.log(tool_data)
+        createToolMutation.mutate([tool_data, user_token, token_type]);
         alert("done");
         // formik.resetForm();
       } else {
@@ -64,9 +65,9 @@ function ToolFormPage() {
                     <small className="p-error">{formik.touched.tool_name && formik.errors.tool_name}</small>
                 </div>
                 <div className="p-float-label" style={{width: "49.2%", display: "flex", flexDirection: "column"}}>
-                    <InputText id="tool_image_url" value={formik.values.tool_image_url} onChange={formik.handleChange}  style={{flex: "1"}}  className={formik.touched.tool_image_url && Boolean(formik.errors.tool_image_url) ? "p-invalid" : ""}/>
-                    <label htmlFor="tool_image_url">Tool Image URL</label>
-                    <small className="p-error">{formik.touched.tool_image_url && formik.errors.tool_image_url}</small>
+                    <InputText id="image_url" value={formik.values.image_url} onChange={formik.handleChange}  style={{flex: "1"}}  className={formik.touched.image_url && Boolean(formik.errors.image_url) ? "p-invalid" : ""}/>
+                    <label htmlFor="image_url">Tool Image URL</label>
+                    <small className="p-error">{formik.touched.image_url && formik.errors.image_url}</small>
                 </div>
             </div>
             <div className='form-buttons'>
