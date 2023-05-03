@@ -3,13 +3,24 @@ import AdminSidebar from 'Components/AdminSidebar';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { Password } from 'primereact/password';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
+import type { RootState } from '../../Redux/store';
+import { useSelector } from 'react-redux';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import './index.css';
+import { createTool } from 'Apis/Tools';
+import { useMutation } from '@tanstack/react-query';
+
 
 function ToolFormPage() {
   const [btnClicked, setBtnClicked] = useState('');
+  const user_token = useSelector((state: RootState) => state.userToken.access_token); 
+  const token_type = useSelector((state: RootState) => state.userToken.token_type); 
+  const toast = useRef(null);
+
+  const createToolMutation = useMutation((new_tool) => createTool(new_tool.tool_data, new_tool.user_token, new_tool.token_type) );
+
 
   const validationSchema = yup.object({
     tool_name: yup
@@ -29,7 +40,10 @@ function ToolFormPage() {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       if(btnClicked == "add tool"){
-        alert("from add");
+        const tool_data = JSON.stringify(values);
+        createToolMutation.mutate({tool_data: tool_data, user_token: user_token, token_type: token_type});
+        alert("done");
+        // formik.resetForm();
       } else {
         alert("from update");
       }

@@ -1,12 +1,13 @@
 import axios from "axios";
 
-export function createTool(data: string){
+export function createTool(data: string, token: string, token_type: string){
     return axios.post(
         "http://127.0.0.1:8000/api/v1/tools",
         data,
         {
             headers: {
                 'content-type': 'application/json',
+                'Authorization': `${token_type} ${token}`,
             },
         }
     ).then(
