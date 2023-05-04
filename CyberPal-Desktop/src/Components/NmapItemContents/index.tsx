@@ -22,7 +22,12 @@ function NmapItemContents() {
   };
 
   const handleNmapCommandExecution = () => {
-    const nmap_command = `"C:\\Program Files (x86)\\Nmap\\nmap.exe" --version`;
+    // const nmap_command = `"C:\\Program Files (x86)\\Nmap\\nmap.exe" --version`;
+    let nmap_path = nmapPath.split("\\");
+    let nmap_path_fixed = nmap_path.join("\\\\");
+    
+    const nmap_command = `"${nmap_path_fixed}" ${nmapArgs}`;
+    
     window.electron.ipcRenderer.send('execute-nmap-command', nmap_command);
   }
 
