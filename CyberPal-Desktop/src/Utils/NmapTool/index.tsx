@@ -1,27 +1,16 @@
 import { exec } from 'child_process';
-import { PowerShell } from 'node-powershell';
 
-export const installNmap = async () => {
+export const installNmap = () => {
   console.log("I'm trying to install nmap");
-  const ps = new PowerShell({
-    executableOptions: {
-      '-ExecutionPolicy': 'Bypass',
-      '-NoProfile': true,
-    },
-  });
-
-  try {
-    // await ps.command'choco install nmap -y';
-    // const install_nmap_command = PowerShell.command`choco install nmap -y`;
-    const install_nmap_command = PowerShell.command`Write-Host Hello from powershell -ForegroundColor red -BackgroundColor white`;
-    await ps.invoke(install_nmap_command);
-    console.log('Nmap installed successfully');
-  } catch (error) {
-    console.error('Failed to install Nmap:', error);
-  } finally {
-    ps.dispose();
-  }
-};
+    const installCommand = 'choco install nmap -y';
+    exec(installCommand, (error, stdout, stderr) => {
+      if (error) {
+        console.error('Error installing nmap:', error);
+        return;
+      }
+      console.log('Nmap installed successfully:', stdout);
+    });
+  };
 
 export const executeNmapCommand = (nmapCommand) => {
   exec(`nmap \${nmapCommand}`, (error, stdout, stderr) => {
