@@ -20,7 +20,7 @@ function NmapItemContents() {
   };
 
   const handleNmapCommandExecution = () => {
-    const nmap_command = "ipconfig";
+    const nmap_command = `"C:\\Program Files (x86)\\Nmap\\nmap.exe" --version`;
     window.electron.ipcRenderer.send('execute-nmap-command', nmap_command);
   }
 
