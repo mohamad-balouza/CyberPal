@@ -21,7 +21,7 @@ export const executeNmapCommand = (nmapCommand) => {
   });
 };
 
-export const executeNormalCommand = (command) => {
+export const executeNormalCommand = (command: string) => {
   console.log("executing the command");
   console.log(command);
   exec(command, (error, stdout, stderr) => {
