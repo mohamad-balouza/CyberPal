@@ -7,6 +7,8 @@ import { Button } from 'primereact/button';
 
 function NmapItemContents() {
   const [installingNmap, setInstallingNmap] = useState(false);
+  const [nmapPath, setNmapPath] = useState("");
+  const [nmapArgs, setNmapArgs] = useState("");
 
   const handleNmapInstallation = async () => {
     setInstallingNmap(true);
@@ -26,10 +28,18 @@ function NmapItemContents() {
 
   return (
     <ScrollPanel style={{ width: '100%', height: '250px'}} className="tool-panel-block">
-        <div style={{margin: "20px"}}>
+        <div style={{margin: "20px", display: 'flex', flexWrap: "wrap", gap: "24px", justifyContent: "center"}}>
             <Button label={installingNmap ? "installing" : "install Nmap"} loading={installingNmap} onClick={handleNmapInstallation} />
             <Button label="Execute Nmap" onClick={handleNmapCommandExecution} />
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae aut quas, possimus ratione nulla facere assumenda, quae fuga quibusdam ab ea delectus non debitis ipsum nemo est in quia magni. Itaque nisi quo debitis aliquid fuga, animi aperiam excepturi, accusamus officia maxime quia neque, non impedit! Illo perferendis culpa assumenda nulla, corporis expedita dolore saepe veniam nam rerum dolorem soluta. Ipsam fugit officiis rem sunt quas? Cum, eligendi! Ipsum nemo, a nulla asperiores exercitationem non reprehenderit vitae, qui adipisci voluptas eligendi quae harum illo! Incidunt eum est quas officiis consectetur molestiae iusto sunt labore quis temporibus. Nulla doloribus beatae distinctio!</p>
+            {/* <InputText placeholder='Nmap Path' style={{flex: 1}} onChange /> */}
+            <div className="p-float-label"  style={{width: "100%"}}>
+                <InputText id="nmap-path" value={nmapPath} onChange={(e) => setNmapPath(e.target.value)} style={{width: "100%"}} />
+                <label htmlFor="nmap-path">Nmap Path</label>
+            </div>
+            <div className="p-float-label"  style={{width: "100%"}}>
+                <InputText id="nmap-args" value={nmapArgs} onChange={(e) => setNmapArgs(e.target.value)} style={{width: "100%"}} />
+                <label htmlFor="nmap-args">Nmap Arguments</label>
+            </div>
         </div>
     </ScrollPanel>
   )
