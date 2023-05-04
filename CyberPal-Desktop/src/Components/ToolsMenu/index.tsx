@@ -6,15 +6,13 @@ import { is } from 'immer/dist/internal';
 import ToolMenuContents from 'Components/ToolMenuContents';
 import NmapMenuItem from 'Components/NmapMenuItem';
 import NmapItemContents from 'Components/NmapItemContents';
+import TcpdumpItemContents from 'Components/TcpdumpItemContents';
+import TcpdumpMenuItem from 'Components/TcpdumpMenuItem';
 
 function ToolsMenu() {
   const [selectedid, setSelectedid] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const tools = [
-    {
-      "id": 2,
-      "name": "nmap"
-    },
     {
       "id": 3,
       "name": "Metasploit"
@@ -74,6 +72,22 @@ function ToolsMenu() {
                 {selectedid == 1 ? 
                   <NmapItemContents /> :
                   <NmapMenuItem />
+                } 
+            </motion.div>
+
+          </motion.div>
+
+            <motion.div
+                layout
+                data-isOpen={selectedid == 2}
+                initial={{ borderRadius: 10 }}
+                className="tool-menu-item"
+                onTap={() => setSelectedid(2)}
+            >
+            <motion.div layout className="child">
+                {selectedid == 2 ? 
+                  <TcpdumpItemContents /> :
+                  <TcpdumpMenuItem />
                 } 
             </motion.div>
 
