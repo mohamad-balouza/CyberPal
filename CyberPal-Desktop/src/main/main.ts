@@ -14,7 +14,7 @@ import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
-import { installNmap, executeNmapCommand, executeNormalCommand } from '../Utils/NmapTool';
+import { installNmap, executeNmapCommand } from '../Utils/NmapTool';
 
 class AppUpdater {
   constructor() {
@@ -160,5 +160,5 @@ ipcMain.on('install-nmap', async () => {
 
 ipcMain.on('execute-nmap-command', (event, command) => {
   console.log("listened on execute-nmap-command channel");
-  executeNormalCommand(command);
+  executeNmapCommand(command);
 })
