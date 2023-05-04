@@ -140,7 +140,19 @@ app
 
 ipcMain.on('install-nmap', async () => {
   console.log('install-nmap channel invoked'); 
-  const result = await installNmap();
+  const win = BrowserWindow.getFocusedWindow();
+  const savePath = app.getPath('downloads');
+  const options = {
+    savePath,
+    openFolderWhenDone: false,
+    onStarted: (dl) => {
+      console.log('Download started:', dl.getSavePath());
+    },
+    onProgress: (progress) => {
+      console.log('Download progress:', progress);
+    },
+  };
+  const result = await installNmap(win, options);
   console.log(result);
   return result;
 });

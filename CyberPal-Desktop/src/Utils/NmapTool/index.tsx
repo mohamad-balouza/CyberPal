@@ -1,16 +1,26 @@
 import { exec } from 'child_process';
+import { download } from 'electron-dl';
 
-export const installNmap = () => {
+
+export const installNmap = (win, options) => {
   console.log("I'm trying to install nmap");
-    const installCommand = 'choco install nmap -y';
-    exec(installCommand, (error, stdout, stderr) => {
+  const nmapDownloadUrl = 'https://nmap.org/dist/nmap-latest-setup.exe';
+
+  try {
+    const downloadedFilePath = await download(win, nmapDownloadUrl, options);
+    console.log('Download completed:', downloadedFilePath);
+
+    exec(`"${downloadedFilePath}"`, (error, stdout, stderr) => {
       if (error) {
-        console.error('Error installing nmap:', error);
+        console.error('Failed to execute Nmap installer:', error);
         return;
       }
-      console.log('Nmap installed successfully:', stdout);
+      console.log('Nmap installer executed successfully');
     });
-  };
+  } catch (error) {
+    console.error('Failed to download Nmap installer:', error);
+  }
+};
 
 export const executeNmapCommand = (nmapCommand) => {
   exec(`nmap \${nmapCommand}`, (error, stdout, stderr) => {
