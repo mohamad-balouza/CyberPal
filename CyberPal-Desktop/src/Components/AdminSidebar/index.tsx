@@ -6,7 +6,51 @@ import type { RootState } from '../../Redux/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeCurrentAdminPage } from 'Redux/slices/currentAdminPageSlice';
 
+const sidebar_manage_data = [
+    {
+        path:"/admin",
+        name:"Manage Users",
+        icon:"pi pi-users"
+    },
+    {
+        path:"/admin/manage-tools",
+        name:"Manage Tools",
+        icon:"pi pi-wrench"
+    },
+    {
+        path:"/admin/manage-flags",
+        name:"Manage Tool Flags",
+        icon:"pi pi-flag"
+    },
+    {
+        path:"/admin/manage-schedules",
+        name:"Manage Schedules",
+        icon:"pi pi-clock"
+    },
+    {
+        path:"/admin/manage-scripts",
+        name:"Manage Scripts",
+        icon:"pi pi-hashtag"
+    },
+]
 
+const sidebar_forms = [
+    {
+        path:"/admin/user-form",
+        name:"User Form",
+        icon:"pi pi-user"
+    },
+    {
+        path:"/admin/tool-form",
+        name:"Tool Form",
+        icon:"pi pi-wrench"
+    },
+    {
+        path:"/admin/flag-form",
+        name:"Flag Form",
+        icon:"pi pi-flag"
+    }
+]
 
 function AdminSidebar() {
     const admin_username = useSelector((state: RootState) => state.loggedInUserInfo.username); 
@@ -17,52 +61,6 @@ function AdminSidebar() {
         dispatch(changeCurrentAdminPage(name));
     }
     
-    const sidebar_manage_data = [
-        {
-            path:"/admin",
-            name:"Manage Users",
-            icon:"pi pi-users"
-        },
-        {
-            path:"/admin/manage-tools",
-            name:"Manage Tools",
-            icon:"pi pi-wrench"
-        },
-        {
-            path:"/admin/manage-flags",
-            name:"Manage Tool Flags",
-            icon:"pi pi-flag"
-        },
-        {
-            path:"/admin/manage-schedules",
-            name:"Manage Schedules",
-            icon:"pi pi-clock"
-        },
-        {
-            path:"/admin/manage-scripts",
-            name:"Manage Scripts",
-            icon:"pi pi-hashtag"
-        },
-    ]
-
-    const sidebar_forms = [
-        {
-            path:"/admin/user-form",
-            name:"User Form",
-            icon:"pi pi-user"
-        },
-        {
-            path:"/admin/tool-form",
-            name:"Tool Form",
-            icon:"pi pi-wrench"
-        },
-        {
-            path:"/admin/flag-form",
-            name:"Flag Form",
-            icon:"pi pi-flag"
-        }
-    ]
-
   return (
     <div className='sidebar-block'>
         <div className='sidebar-header-block'>

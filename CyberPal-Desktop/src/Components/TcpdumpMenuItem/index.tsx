@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
-// import NmapLogo from "../../../assets/NmapLogo.png"
+// import TcpdumpLogo from "../../../assets/TcpdumpLogo.png"
 import { Image } from 'primereact/image';
 import './index.css';
 
