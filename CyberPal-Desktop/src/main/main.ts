@@ -138,11 +138,12 @@ app
   .catch(console.log);
 
 
-// ipcMain.handle('install-nmap', async () => {
-//   console.log('install-nmap channel invoked'); 
-//   const result = await installNmap();
-//   return result;
-// });
+ipcMain.on('install-nmap', async () => {
+  console.log('install-nmap channel invoked'); 
+  const result = await installNmap();
+  console.log(result);
+  return result;
+});
 
 ipcMain.on('execute-normal-command', (event, command) => {
   console.log("listened for normal command execution");
