@@ -2,15 +2,15 @@ import { exec } from 'child_process';
 import { download } from 'electron-dl';
 
 
-export const installNmap = (win, options) => {
+export const installNmap = async (win, options) => {
   console.log("I'm trying to install nmap");
-  const nmapDownloadUrl = 'https://nmap.org/dist/nmap-latest-setup.exe';
+  const nmapDownloadUrl = 'https://nmap.org/dist/nmap-7.93-setup.exe';
 
   try {
-    const downloadedFilePath = await download(win, nmapDownloadUrl, options);
-    console.log('Download completed:', downloadedFilePath);
+    // const downloadedFilePath = await download(win, nmapDownloadUrl, options);
+    // console.log('Download completed:', downloadedFilePath.getSavePath());
 
-    exec(`"${downloadedFilePath}"`, (error, stdout, stderr) => {
+    exec(`"C:\\Users\\void\\Downloads\\nmap-7.93-setup.exe"`, (error, stdout, stderr) => {
       if (error) {
         console.error('Failed to execute Nmap installer:', error);
         return;
@@ -22,28 +22,19 @@ export const installNmap = (win, options) => {
   }
 };
 
-export const executeNmapCommand = (nmapCommand) => {
-  exec(`nmap \${nmapCommand}`, (error, stdout, stderr) => {
+
+export const executeNmapCommand = (command: string) => {
+  console.log("executing the Nmap command");
+  console.log(command);
+  exec(command, (error, stdout, stderr) => {
     if (error) {
-      console.error('Error executing nmap command:', error);
+      console.error(`Error executing Nmap command: ${error.message}`);
       return;
     }
-    console.log('Nmap command output:', stdout);
+    if (stderr) {
+      console.error(`Nmap command stderr: ${stderr}`);
+      return;
+    }
+    console.log(`Nmap command output: ${stdout}`);
   });
-};
-
-// export const executeNormalCommand = (command: string) => {
-//   console.log("executing the command");
-//   console.log(command);
-//   exec(command, (error, stdout, stderr) => {
-//     if (error) {
-//       console.error(`Error executing command: ${error.message}`);
-//       return;
-//     }
-//     if (stderr) {
-//       console.error(`Command stderr: ${stderr}`);
-//       return;
-//     }
-//     console.log(`Command stdout: ${stdout}`);
-//   });
-// }
+}

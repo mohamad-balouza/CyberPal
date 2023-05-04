@@ -73,7 +73,7 @@ function AdminSidebar() {
             </div>
         </div>
         <div className='sidebar-data-block'>
-            <p>Data</p>
+            <p style={{fontWeight: "bold"}}>Data</p>
             {
                 sidebar_manage_data.map((item, index)=>(
                     <NavLink to={item.path} key={index} onClick={() => handleActivation(item.name)} className="link">
@@ -86,7 +86,7 @@ function AdminSidebar() {
             }
         </div>
         <div className='sidebar-forms-block'>
-            <p>Forms</p>
+            <p style={{fontWeight: "bold"}}>Forms</p>
             {
                 sidebar_forms.map((item, index)=>(
                     <NavLink to={item.path} onClick={() => handleActivation(item.name)} key={index} className="link">

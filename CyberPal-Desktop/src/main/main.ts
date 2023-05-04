@@ -139,9 +139,10 @@ app
 
 
 ipcMain.on('install-nmap', async () => {
-  console.log('install-nmap channel invoked'); 
+  console.log('listened on install-nmap channel'); 
   const win = BrowserWindow.getFocusedWindow();
   const savePath = app.getPath('downloads');
+  // let downloaded_file_path = '';
   const options = {
     savePath,
     openFolderWhenDone: false,
@@ -157,7 +158,7 @@ ipcMain.on('install-nmap', async () => {
   return result;
 });
 
-ipcMain.on('execute-normal-command', (event, command) => {
-  console.log("listened for normal command execution");
+ipcMain.on('execute-nmap-command', (event, command) => {
+  console.log("listened on execute-nmap-command channel");
   executeNormalCommand(command);
 })

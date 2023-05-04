@@ -20,12 +20,6 @@ function ConnectVpnTable() {
         }
     ]);
 
-    // const footer = (
-    //     <div style={{backgroundColor: "var(--purple)"}}>
-
-    //     </div>
-    // );
-
     return (
         <div className="card profile-content-table">
             <div className="card">
