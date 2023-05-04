@@ -22,7 +22,6 @@ function NmapItemContents() {
   };
 
   const handleNmapCommandExecution = () => {
-    // const nmap_command = `"C:\\Program Files (x86)\\Nmap\\nmap.exe" --version`;
     let nmap_path = nmapPath.split("\\");
     let nmap_path_fixed = nmap_path.join("\\\\");
     
@@ -33,10 +32,10 @@ function NmapItemContents() {
 
   return (
     <ScrollPanel style={{ width: '100%', height: '250px'}} className="tool-panel-block">
-        <div style={{margin: "20px", display: 'flex', flexWrap: "wrap", gap: "24px", justifyContent: "center"}}>
+        <div style={{margin: "20px", display: 'flex', flexWrap: "wrap", gap: "24px", justifyContent: "center", textAlign: "center"}}>
+            <h3 style={{width: "100%",}}>Nmap</h3>
             <Button label={installingNmap ? "installing" : "install Nmap"} loading={installingNmap} onClick={handleNmapInstallation} />
             <Button label="Execute Nmap" onClick={handleNmapCommandExecution} />
-            {/* <InputText placeholder='Nmap Path' style={{flex: 1}} onChange /> */}
             <div className="p-float-label"  style={{width: "100%"}}>
                 <InputText id="nmap-path" value={nmapPath} onChange={(e) => setNmapPath(e.target.value)} style={{width: "100%"}} />
                 <label htmlFor="nmap-path">Nmap Path</label>
