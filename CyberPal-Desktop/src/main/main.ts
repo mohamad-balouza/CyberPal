@@ -16,6 +16,7 @@ import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 import { installNmap, executeNmapCommand } from '../Utils/NmapTool';
 import { executeTcpdumpCommand, installTcpdump, stopTcpdumpCommand } from '../Utils/TcpdumpTool';
+import { installAircrack } from '../Utils/AircrackTool';
 
 class AppUpdater {
   constructor() {
@@ -138,6 +139,7 @@ app
   })
   .catch(console.log);
 
+// Nmap tool
 
 ipcMain.on('install-nmap', async () => {
   console.log('listened on install-nmap channel'); 
@@ -163,6 +165,8 @@ ipcMain.on('execute-nmap-command', (event, command) => {
   console.log("listened on execute-nmap-command channel");
   executeNmapCommand(command);
 })
+
+// Tcpdump tool
 
 ipcMain.on('install-tcpdump', async () => {
   console.log('listened on install-tcpdump channel'); 
@@ -193,3 +197,25 @@ ipcMain.on('stop-tcpdump', (event, args) => {
   console.log("listening on stop-tcpdump channel");
   stopTcpdumpCommand();
 })
+
+// Aircrack tool
+
+
+ipcMain.on('install-aircrack', async () => {
+  console.log('listened on install-aircrack channel'); 
+  const win = BrowserWindow.getFocusedWindow();
+  const savePath = app.getPath('downloads');
+  const options = {
+    savePath,
+    openFolderWhenDone: false,
+    onStarted: (dl) => {
+      console.log('Download started:', dl.getSavePath());
+    },
+    onProgress: (progress) => {
+      console.log('Download progress:', progress);
+    },
+  };
+  const result = await installAircrack(win, options);
+  console.log(result);
+  return result;
+});
