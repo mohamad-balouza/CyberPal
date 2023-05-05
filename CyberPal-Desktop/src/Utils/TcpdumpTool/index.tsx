@@ -1,5 +1,4 @@
 import { spawn } from "child_process";
-import { exec } from 'child_process';
 import { download } from 'electron-dl';
 import { app } from "electron";
 import extract = require('extract-zip');
@@ -51,6 +50,6 @@ export const installTcpdump = async (win, options) => {
       }
 
     } catch (error) {
-      console.error('Failed to download Tcpdump installer:', error);
+      console.error('Failed to download Tcpdump Zip:', error);
     }
   };

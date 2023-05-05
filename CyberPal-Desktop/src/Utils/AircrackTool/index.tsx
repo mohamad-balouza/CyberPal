@@ -28,7 +28,7 @@ export const installAircrack = async (win, options) => {
       }
 
     } catch (error) {
-      console.error('Failed to download Aircrack installer:', error);
+      console.error('Failed to download Aircrack Zip:', error);
     }
 };
 
