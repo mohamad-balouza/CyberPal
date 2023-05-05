@@ -15,7 +15,13 @@ function NetcatItemContents() {
   }
 
   const handleNetcatExecution = () => {
-
+    if(netcatRunning){
+        window.electron.ipcRenderer.send('stop-netcat');
+      }else{
+        console.log(temp_netcat_command);
+        window.electron.ipcRenderer.send('start-netcat', temp_netcat_command);
+      }
+      setNetcatRunning(!netcatRunning);
   }
 
   const handleNetcatInstallation = () => {
