@@ -25,7 +25,11 @@ function NetcatItemContents() {
   }
 
   const handleNetcatInstallation = () => {
-
+    try {
+        window.electron.ipcRenderer.send('install-netcat');
+      } catch (error) {
+        console.error('Failed to install Netcat:', error);
+      }
   }
 
   return (
