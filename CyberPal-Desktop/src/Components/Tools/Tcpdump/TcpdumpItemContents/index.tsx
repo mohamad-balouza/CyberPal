@@ -40,12 +40,12 @@ function TcpdumpItemContents() {
             <Button label="install Tcpdump" onClick={handleTcpdumpInstallation} />
             <Button label={tcpdumpRunning ? "Stop Tcpdump" : "Start Tcpdump"} onClick={handleTcpdumpExecution} />
             <div className="p-float-label"  style={{width: "100%"}}>
-                <InputText id="nmap-path" value={tcpdumpPath} onChange={(e) => setTcpdumpPath(e.target.value)} style={{width: "100%"}} />
-                <label htmlFor="nmap-path">Tcpdump Path</label>
+                <InputText id="tcpdump-path" value={tcpdumpPath} onChange={(e) => setTcpdumpPath(e.target.value)} style={{width: "100%"}} />
+                <label htmlFor="tcpdump-path">Tcpdump Path</label>
             </div>
             <div className="p-float-label"  style={{width: "100%"}}>
-                <InputText id="nmap-args" value={tcpdumpArgs} onChange={(e) => setTcpdumpArgs(e.target.value)} style={{width: "100%"}} />
-                <label htmlFor="nmap-args">Tcpdump Arguments</label>
+                <InputText id="tcpdump-args" value={tcpdumpArgs} onChange={(e) => setTcpdumpArgs(e.target.value)} style={{width: "100%"}} />
+                <label htmlFor="tcpdump-args">Tcpdump Arguments</label>
             </div>
         </div>
     </ScrollPanel>

@@ -33,10 +33,6 @@ function ToolsMenu() {
       "id": 8,
       "name": "nmap"
     },
-    {
-      "id": 9,
-      "name": "nmap"
-    },
   ];
 
   // const handleItemToggle = (tool_id: number) => {
