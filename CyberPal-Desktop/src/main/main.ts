@@ -16,7 +16,7 @@ import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 import { installNmap, executeNmapCommand } from '../Utils/NmapTool';
 import { executeTcpdumpCommand, installTcpdump, stopTcpdumpCommand } from '../Utils/TcpdumpTool';
-import { installAircrack } from '../Utils/AircrackTool';
+import { executeAircrackCommand, installAircrack, stopAircrackCommand } from '../Utils/AircrackTool';
 
 class AppUpdater {
   constructor() {
@@ -200,7 +200,6 @@ ipcMain.on('stop-tcpdump', (event, args) => {
 
 // Aircrack tool
 
-
 ipcMain.on('install-aircrack', async () => {
   console.log('listened on install-aircrack channel'); 
   const win = BrowserWindow.getFocusedWindow();
@@ -219,3 +218,8 @@ ipcMain.on('install-aircrack', async () => {
   console.log(result);
   return result;
 });
+
+ipcMain.on('start-aircrack', (event, args) => {
+  console.log("listening on start-aircrack channel");
+  executeAircrackCommand(args.aircrackPath, args.aircrackArgs);
+})
