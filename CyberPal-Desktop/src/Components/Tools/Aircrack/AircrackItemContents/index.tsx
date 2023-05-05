@@ -17,10 +17,10 @@ function AircrackItemContents() {
     <ScrollPanel style={{ width: '100%', height: '250px'}} className="tool-panel-block">
         <div style={{margin: "20px", display: 'flex', flexWrap: "wrap", gap: "24px", justifyContent: "center", textAlign: "center"}}>
             <h3 style={{width: "100%",}}>Aircrack-ng</h3>
-            <Button label="Start Searchsploit" onClick={handleAircrackExecution} />
+            <Button label="Start Aircrack-ng" onClick={handleAircrackExecution} />
             <div className="p-float-label"  style={{width: "100%"}}>
-                <InputText id="searchsploit-args" value={aircrackArgs} onChange={(e) => setAircrackArgs(e.target.value)} style={{width: "100%"}} />
-                <label htmlFor="searchsploit-args">Aircrack-ng Arguments</label>
+                <InputText id="aircrack-args" value={aircrackArgs} onChange={(e) => setAircrackArgs(e.target.value)} style={{width: "100%"}} />
+                <label htmlFor="aircrack-args">Aircrack-ng Arguments</label>
             </div>
         </div>
     </ScrollPanel>
