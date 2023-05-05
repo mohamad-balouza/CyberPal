@@ -10,11 +10,17 @@ function TcpdumpItemContents() {
   const [tcpdumpPath, setTcpdumpPath] = useState("");
   const [tcpdumpArgs, setTcpdumpArgs] = useState("");
 
+  const temp_tcpdump_command = {
+    tcpdumpPath: "C:\\Users\\void\\Downloads\\tcpdump_trial_license\\tcpdump.exe",
+    tcpdumpArgs: ['-l']
+  }
+
   const handleTcpdumpExecution = () => {
     if(tcpdumpRunning){
       window.electron.ipcRenderer.send('stop-tcpdump');
     }else{
-      window.electron.ipcRenderer.send('start-tcpdump');
+      console.log(temp_tcpdump_command);
+      window.electron.ipcRenderer.send('start-tcpdump', temp_tcpdump_command);
     }
     setTcpdumpRunning(!tcpdumpRunning);
   }

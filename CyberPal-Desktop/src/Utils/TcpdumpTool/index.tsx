@@ -3,7 +3,7 @@ import { spawn } from "child_process";
 let tcpdump;
 
 export const executeTcpdumpCommand = (tcpdumpPath: string, tcpdumpArgs: Array<string>) => {
-    const tcpdump = spawn(tcpdumpPath, tcpdumpArgs);
+    tcpdump = spawn(tcpdumpPath, tcpdumpArgs);
 
     tcpdump.stdout.on('data', (data) => {
         console.log(`stdout: ${data}`);
