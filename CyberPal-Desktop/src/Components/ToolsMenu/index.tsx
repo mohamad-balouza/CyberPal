@@ -12,15 +12,13 @@ import SearchsploitItemContents from 'Components/Tools/Searchsploit/Searchsploit
 import SearchsploitMenuItem from 'Components/Tools/Searchsploit/SearchsploitMenuItem';
 import AircrackItemContents from 'Components/Tools/Aircrack/AircrackItemContents';
 import AircrackMenuItem from 'Components/Tools/Aircrack/AircrackMenuItem';
+import NetcatItemContents from 'Components/Tools/Netcat/NetcatItemContents';
+import NetcatMenuItem from 'Components/Tools/Netcat/NetcatMenuItem';
 
 function ToolsMenu() {
   const [selectedid, setSelectedid] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const tools = [
-    {
-      "id": 5,
-      "name": "nmap"
-    },
     {
       "id": 6,
       "name": "nmap"
@@ -114,6 +112,21 @@ function ToolsMenu() {
 
           </motion.div>
 
+            <motion.div
+                layout
+                data-isOpen={selectedid == 5}
+                initial={{ borderRadius: 10 }}
+                className="tool-menu-item"
+                onTap={() => setSelectedid(5)}
+            >
+            <motion.div layout className="child">
+                {selectedid == 5 ? 
+                  <NetcatItemContents /> :
+                  <NetcatMenuItem />
+                } 
+            </motion.div>
+
+          </motion.div>
 
         {tools.map((tool) => (
           <motion.div
