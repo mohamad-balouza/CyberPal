@@ -15,6 +15,7 @@ import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 import { installNmap, executeNmapCommand } from '../Utils/NmapTool';
+import { executeTcpdumpCommand, stopTcpdumpCommand } from '../Utils/TcpdumpTool';
 
 class AppUpdater {
   constructor() {
@@ -161,4 +162,14 @@ ipcMain.on('install-nmap', async () => {
 ipcMain.on('execute-nmap-command', (event, command) => {
   console.log("listened on execute-nmap-command channel");
   executeNmapCommand(command);
+})
+
+ipcMain.on('start-tcpdump', (event, args) => {
+  console.log("listening on start-tcpdump channel");
+  executeTcpdumpCommand(args.tcpdumpPath, args.tcpdumpArgs);
+})
+
+ipcMain.on('stop-tcpdump', (event, args) => {
+  console.log("listening on stop-tcpdump channel");
+  stopTcpdumpCommand();
 })

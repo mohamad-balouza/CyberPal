@@ -11,12 +11,12 @@ function TcpdumpItemContents() {
   const [tcpdumpArgs, setTcpdumpArgs] = useState("");
 
   const handleTcpdumpExecution = () => {
-    setTcpdumpRunning(!tcpdumpRunning);
-    if(!tcpdumpRunning){
+    if(tcpdumpRunning){
       window.electron.ipcRenderer.send('stop-tcpdump');
     }else{
       window.electron.ipcRenderer.send('start-tcpdump');
     }
+    setTcpdumpRunning(!tcpdumpRunning);
   }
 
   return (
