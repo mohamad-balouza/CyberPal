@@ -7,8 +7,8 @@ function HeroBlock() {
   return (
     <div className='hero-block'>
         <div className='hero-content-block'>
-            <h1>CyberPal: Your Testing Buddy</h1>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet nostrum nihil totam laboriosam odio esse, quo facilis repellendus nobis quos cupiditate sequi, sed praesentium fugit eligendi! Unde corrupti veniam eos!</p>
+            <h1>CyberPal: Your Ultimate Cybersecurity Companion</h1>
+            <p>Experience seamless automation and integration of popular cybersecurity tools. Our user-friendly interface simplifies complex tasks, allowing you to enhance your security workflow with just a few clicks. Stay ahead of threats and elevate your cybersecurity game with CyberPal.</p>
             <div className='hero-action-buttons'>
                 <Button label='Get Started' className='get-started-button'/>
                 <Button label='More Info' outlined className='more-info-button'/>
