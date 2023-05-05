@@ -1,7 +1,9 @@
 import { spawn } from "child_process";
 import { exec } from 'child_process';
 import { download } from 'electron-dl';
-
+import { app } from "electron";
+import extract = require('extract-zip');
+import path = require('path');
 
 let tcpdump;
 
@@ -38,13 +40,16 @@ export const installTcpdump = async (win, options) => {
       let downloadedTcpdumpPath = downloadedTcpdump.getSavePath().split("\\");
       let downloadedTcpdumpPathFixed = downloadedTcpdumpPath.join("\\\\");
 
-      exec(downloadedTcpdumpPathFixed, (error, stdout, stderr) => {
-        if (error) {
-          console.error('Failed to execute Tcpdump installer:', error);
-          return;
-        }
-        console.log('Tcpdump installer executed successfully');
-      });
+      try {
+        const downloadsFolder = app.getPath('downloads');
+        const targetDir = path.join(downloadsFolder,'tcpdump');
+        await extract(downloadedTcpdumpPathFixed, { dir: targetDir });
+        console.log('Tcpdump extracted');
+      } catch (error) {
+        console.error('Error extracting Tcpdump:', error);
+        throw(error);
+      }
+
     } catch (error) {
       console.error('Failed to download Tcpdump installer:', error);
     }
