@@ -223,3 +223,8 @@ ipcMain.on('start-aircrack', (event, args) => {
   console.log("listening on start-aircrack channel");
   executeAircrackCommand(args.aircrackPath, args.aircrackArgs);
 })
+
+ipcMain.on('stop-aircrack', (event, args) => {
+  console.log("listening on stop-aircrack channel");
+  stopAircrackCommand();
+})
