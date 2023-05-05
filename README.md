@@ -72,7 +72,7 @@
 
 ### Admin Page
 | Tables  | Forms |
-| ---| ---| ---|
+| ---| ---|
 | ![tables](./readme/demo/implementation/Admin%20Page%20table.png) | ![form](./readme/demo/implementation/Admin%20Page%20Form.png) |
 
 <br><br>
