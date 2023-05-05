@@ -10,15 +10,13 @@ import TcpdumpItemContents from 'Components/Tools/Tcpdump/TcpdumpItemContents';
 import TcpdumpMenuItem from 'Components/Tools/Tcpdump/TcpdumpMenuItem';
 import SearchsploitItemContents from 'Components/Tools/Searchsploit/SearchsploitItemContents';
 import SearchsploitMenuItem from 'Components/Tools/Searchsploit/SearchsploitMenuItem';
+import AircrackItemContents from 'Components/Tools/Aircrack/AircrackItemContents';
+import AircrackMenuItem from 'Components/Tools/Aircrack/AircrackMenuItem';
 
 function ToolsMenu() {
   const [selectedid, setSelectedid] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const tools = [
-    {
-      "id": 4,
-      "name": "nmap"
-    },
     {
       "id": 5,
       "name": "nmap"
@@ -99,6 +97,22 @@ function ToolsMenu() {
                 {selectedid == 3 ? 
                   <SearchsploitItemContents /> :
                   <SearchsploitMenuItem />
+                } 
+            </motion.div>
+
+          </motion.div>
+
+            <motion.div
+                layout
+                data-isOpen={selectedid == 4}
+                initial={{ borderRadius: 10 }}
+                className="tool-menu-item"
+                onTap={() => setSelectedid(4)}
+            >
+            <motion.div layout className="child">
+                {selectedid == 4 ? 
+                  <AircrackItemContents /> :
+                  <AircrackMenuItem />
                 } 
             </motion.div>
 
