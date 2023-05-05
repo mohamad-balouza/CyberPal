@@ -46,3 +46,10 @@ export const executeNetcatCommand = (netcatPath: string, netcatArgs: Array<strin
         console.log(`netcat process exited with code ${code}`);
     })
 }
+
+export const stopNetcatCommand = () => {
+    if(netcat) {
+        netcat.kill();
+        console.log('netcat stopped');
+    }
+}
