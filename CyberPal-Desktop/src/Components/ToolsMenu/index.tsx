@@ -8,6 +8,8 @@ import NmapMenuItem from 'Components/Tools/Nmap/NmapMenuItem';
 import NmapItemContents from 'Components/Tools/Nmap/NmapItemContents';
 import TcpdumpItemContents from 'Components/Tools/Tcpdump/TcpdumpItemContents';
 import TcpdumpMenuItem from 'Components/Tools/Tcpdump/TcpdumpMenuItem';
+import SearchsploitItemContents from 'Components/Tools/Searchsploit/SearchsploitItemContents';
+import SearchsploitMenuItem from 'Components/Tools/Searchsploit/SearchsploitMenuItem';
 
 function ToolsMenu() {
   const [selectedid, setSelectedid] = useState(0);
@@ -81,6 +83,22 @@ function ToolsMenu() {
                 {selectedid == 2 ? 
                   <TcpdumpItemContents /> :
                   <TcpdumpMenuItem />
+                } 
+            </motion.div>
+
+          </motion.div>
+
+            <motion.div
+                layout
+                data-isOpen={selectedid == 3}
+                initial={{ borderRadius: 10 }}
+                className="tool-menu-item"
+                onTap={() => setSelectedid(3)}
+            >
+            <motion.div layout className="child">
+                {selectedid == 3 ? 
+                  <SearchsploitItemContents /> :
+                  <SearchsploitMenuItem />
                 } 
             </motion.div>
 
