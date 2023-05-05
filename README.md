@@ -63,26 +63,18 @@
 
 > Using the wireframes and mockups as a guide, we implemented the CyberPal application with the following features:
 
-<<<<<<< HEAD
-### User Screens
-=======
 ### User Pages
->>>>>>> Test/Feature/Tool/Tcpdump
-| Login screen  | Register screen | Landing screen | Loading screen |
+| Login Page  | Register Page | Landing Page | Loading Page |
 | ---| ---| ---| ---|
 | ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
-| Home screen  | Menu Screen | Order Screen | Checkout Screen |
+| Home Page  | Menu Page | Order Page | Checkout Page |
 | ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
 
-<<<<<<< HEAD
-### Admin Panel
-=======
 ### Admin Pages
->>>>>>> Test/Feature/Tool/Tcpdump
-| Login screen  | Register screen |  Landing screen |
+| Login Page  | Register Page |  Landing Page |
 | ---| ---| ---|
 | ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
-| Home screen  | Menu Screen | Order Screen |
+| Home Page  | Menu Page | Order Page |
 | ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
 
 <br><br>
