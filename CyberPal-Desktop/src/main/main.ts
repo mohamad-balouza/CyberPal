@@ -15,7 +15,7 @@ import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 import { installNmap, executeNmapCommand } from '../Utils/NmapTool';
-import { executeTcpdumpCommand, stopTcpdumpCommand } from '../Utils/TcpdumpTool';
+import { executeTcpdumpCommand, installTcpdump, stopTcpdumpCommand } from '../Utils/TcpdumpTool';
 
 class AppUpdater {
   constructor() {
@@ -163,6 +163,26 @@ ipcMain.on('execute-nmap-command', (event, command) => {
   console.log("listened on execute-nmap-command channel");
   executeNmapCommand(command);
 })
+
+ipcMain.on('install-tcpdump', async () => {
+  console.log('listened on install-tcpdump channel'); 
+  const win = BrowserWindow.getFocusedWindow();
+  const savePath = app.getPath('downloads');
+  // let downloaded_file_path = '';
+  const options = {
+    savePath,
+    openFolderWhenDone: false,
+    onStarted: (dl) => {
+      console.log('Download started:', dl.getSavePath());
+    },
+    onProgress: (progress) => {
+      console.log('Download progress:', progress);
+    },
+  };
+  const result = await installTcpdump(win, options);
+  console.log(result);
+  return result;
+});
 
 ipcMain.on('start-tcpdump', (event, args) => {
   console.log("listening on start-tcpdump channel");
