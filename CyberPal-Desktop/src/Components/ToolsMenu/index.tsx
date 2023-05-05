@@ -4,10 +4,10 @@ import './index.css';
 import ToolMenuItem from 'Components/ToolMenuItem';
 import { is } from 'immer/dist/internal';
 import ToolMenuContents from 'Components/ToolMenuContents';
-import NmapMenuItem from 'Components/NmapMenuItem';
-import NmapItemContents from 'Components/NmapItemContents';
-import TcpdumpItemContents from 'Components/TcpdumpItemContents';
-import TcpdumpMenuItem from 'Components/TcpdumpMenuItem';
+import NmapMenuItem from 'Components/Tools/Nmap/NmapMenuItem';
+import NmapItemContents from 'Components/Tools/Nmap/NmapItemContents';
+import TcpdumpItemContents from 'Components/Tools/Tcpdump/TcpdumpItemContents';
+import TcpdumpMenuItem from 'Components/Tools/Tcpdump/TcpdumpMenuItem';
 
 function ToolsMenu() {
   const [selectedid, setSelectedid] = useState(0);
@@ -57,9 +57,6 @@ function ToolsMenu() {
           drag="x" 
           dragConstraints={{right: 0, left: -1600}} 
           dragTransition={{ bounceStiffness: 100, bounceDamping: 10 }} 
-          // onDrag={
-          //   (event, info) => console.log(info.offset.x)
-          // }
         >
             <motion.div
                 layout

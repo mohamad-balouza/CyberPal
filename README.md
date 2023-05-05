@@ -43,14 +43,18 @@
 > We designed CyberPal using wireframes and mockups, iterating on the design until we reached the ideal layout for easy navigation and a seamless user experience.
 
 ### Wireframes
-| Login screen  | Register screen |  Landing screen |
-| ---| ---| ---|
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+| Login & Register Page  | Landing Page |  Tools Page | Profile Page |
+| ---| ---| ---| ---|
+| ![login](./readme/demo/wireframes/Login%20and%20Register%20Page.png) | ![landing](./readme/demo/wireframes/Home%20Page.png) | ![tools](./readme/demo/wireframes/Tools%20Page.png) | ![profile](./readme/demo/wireframes/Schedule%20-%20Scripts%20-%20Favorite%20Scripts.png)
+| Admin Page |
+| ![admin](./readme/demo/wireframes/Admin%20Panel.png) |
 
 ### Mockups
-| Home screen  | Menu Screen | Order Screen |
-| ---| ---| ---|
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+| Login & Register Page  | Landing Page |  Tools Page | Profile Page |
+| ---| ---| ---| ---|
+| ![login](./readme/demo/mockups/Mockups%20-%20Login%20and%20Register%20Page.png) | ![landing](./readme/demo/mockups/Mockups%20-%20Home%20Page.png) | ![tools](./readme/demo/mockups/Mockups%20-%20Tools%20Page.png) | ![profile](./readme/demo/mockups/Mockups%20-Schedule%20-%20Scripts%20-%20Favorite%20Scripts.png)
+| Admin Page |
+| ![admin](./readme/demo/mockups/Mockups%20-%20Admin%20Panel.png) |
 
 <br><br>
 
@@ -59,14 +63,22 @@
 
 > Using the wireframes and mockups as a guide, we implemented the CyberPal application with the following features:
 
+<<<<<<< HEAD
 ### User Screens
+=======
+### User Pages
+>>>>>>> Test/Feature/Tool/Tcpdump
 | Login screen  | Register screen | Landing screen | Loading screen |
 | ---| ---| ---| ---|
 | ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
 | Home screen  | Menu Screen | Order Screen | Checkout Screen |
 | ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
 
+<<<<<<< HEAD
 ### Admin Panel
+=======
+### Admin Pages
+>>>>>>> Test/Feature/Tool/Tcpdump
 | Login screen  | Register screen |  Landing screen |
 | ---| ---| ---|
 | ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |

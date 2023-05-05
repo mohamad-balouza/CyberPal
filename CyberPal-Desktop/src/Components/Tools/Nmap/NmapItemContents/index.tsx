@@ -8,7 +8,7 @@ import { Button } from 'primereact/button';
 function NmapItemContents() {
   const [installingNmap, setInstallingNmap] = useState(false);
   const [nmapPath, setNmapPath] = useState("");
-  const [nmapArgs, setNmapArgs] = useState("");
+  const [nmapArg, setNmapArg] = useState("");
 
   const handleNmapInstallation = async () => {
     setInstallingNmap(true);
@@ -25,7 +25,7 @@ function NmapItemContents() {
     let nmap_path = nmapPath.split("\\");
     let nmap_path_fixed = nmap_path.join("\\\\");
     
-    const nmap_command = `"${nmap_path_fixed}" ${nmapArgs}`;
+    const nmap_command = `"${nmap_path_fixed}" ${nmapArg}`;
     
     window.electron.ipcRenderer.send('execute-nmap-command', nmap_command);
   }
@@ -41,7 +41,7 @@ function NmapItemContents() {
                 <label htmlFor="nmap-path">Nmap Path</label>
             </div>
             <div className="p-float-label"  style={{width: "100%"}}>
-                <InputText id="nmap-args" value={nmapArgs} onChange={(e) => setNmapArgs(e.target.value)} style={{width: "100%"}} />
+                <InputText id="nmap-args" value={nmapArg} onChange={(e) => setNmapArg(e.target.value)} style={{width: "100%"}} />
                 <label htmlFor="nmap-args">Nmap Arguments</label>
             </div>
         </div>
