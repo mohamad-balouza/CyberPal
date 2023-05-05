@@ -17,3 +17,10 @@ export const executeTcpdumpCommand = (tcpdumpPath: string, tcpdumpArgs: Array<st
         console.log(`tcpdump process exited with code ${code}`);
     })
 }
+
+export const stopTcpdumpCommand = () => {
+    if(tcpdump) {
+        tcpdump.kill();
+        console.log('tcpdump stopped');
+    }
+}
