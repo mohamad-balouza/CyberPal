@@ -14,10 +14,6 @@ function ToolsMenu() {
   const [isOpen, setIsOpen] = useState(false);
   const tools = [
     {
-      "id": 3,
-      "name": "Metasploit"
-    },
-    {
       "id": 4,
       "name": "nmap"
     },
