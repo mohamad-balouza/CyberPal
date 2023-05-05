@@ -13,11 +13,21 @@ function AircrackItemContents() {
     
   }
 
+  const handleAircrackInstallation = () => {
+    try {
+      window.electron.ipcRenderer.send('install-aircrack');
+    } catch (error) {
+      console.error('Failed to install Aircrack:', error);
+    }
+
+  }
+
   return (
     <ScrollPanel style={{ width: '100%', height: '250px'}} className="tool-panel-block">
         <div style={{margin: "20px", display: 'flex', flexWrap: "wrap", gap: "24px", justifyContent: "center", textAlign: "center"}}>
             <h3 style={{width: "100%",}}>Aircrack-ng</h3>
-            <Button label="Start Aircrack-ng" onClick={handleAircrackExecution} />
+            <Button label="Install Aircrack" onClick={handleAircrackInstallation}  />
+            <Button label="Start Aircrack" onClick={handleAircrackExecution} />
             <div className="p-float-label"  style={{width: "100%"}}>
                 <InputText id="aircrack-args" value={aircrackArgs} onChange={(e) => setAircrackArgs(e.target.value)} style={{width: "100%"}} />
                 <label htmlFor="aircrack-args">Aircrack-ng Arguments</label>
