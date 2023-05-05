@@ -43,14 +43,14 @@
 > We designed CyberPal using wireframes and mockups, iterating on the design until we reached the ideal layout for easy navigation and a seamless user experience.
 
 ### Wireframes
-| Login & Register Page  | Landing Page |  Tools Page | Profile Page |
+| Login & Register Page  | Home Page |  Tools Page | Profile Page |
 | ---| ---| ---| ---|
 | ![login](./readme/demo/wireframes/Login%20and%20Register%20Page.png) | ![landing](./readme/demo/wireframes/Home%20Page.png) | ![tools](./readme/demo/wireframes/Tools%20Page.png) | ![profile](./readme/demo/wireframes/Schedule%20-%20Scripts%20-%20Favorite%20Scripts.png)
 | Admin Page |
 | ![admin](./readme/demo/wireframes/Admin%20Panel.png) |
 
 ### Mockups
-| Login & Register Page  | Landing Page |  Tools Page | Profile Page |
+| Login & Register Page  | Home Page |  Tools Page | Profile Page |
 | ---| ---| ---| ---|
 | ![login](./readme/demo/mockups/Mockups%20-%20Login%20and%20Register%20Page.png) | ![landing](./readme/demo/mockups/Mockups%20-%20Home%20Page.png) | ![tools](./readme/demo/mockups/Mockups%20-%20Tools%20Page.png) | ![profile](./readme/demo/mockups/Mockups%20-Schedule%20-%20Scripts%20-%20Favorite%20Scripts.png)
 | Admin Page |
@@ -64,18 +64,16 @@
 > Using the wireframes and mockups as a guide, we implemented the CyberPal application with the following features:
 
 ### User Pages
-| Login Page  | Register Page | Landing Page | Loading Page |
+| Login Page  | Register Page | Home Page | Tools Page |
 | ---| ---| ---| ---|
-| ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
-| Home Page  | Menu Page | Order Page | Checkout Page |
-| ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
+| ![login](./readme/demo/implementation/Login%20Page.png) | ![register](./readme/demo/implementation/Signup%20Page.png) | ![landing](./readme/demo/implementation/Landing%20Page.png) | ![tools](./readme/demo/implementation/Tools%20Page.png) |
+| Profile Page  |
+| ![fsdaf](https://placehold.co/900x1600) |
 
-### Admin Pages
-| Login Page  | Register Page |  Landing Page |
+### Admin Page
+| Tables  | Forms |
 | ---| ---| ---|
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
-| Home Page  | Menu Page | Order Page |
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+| ![tables](./readme/demo/implementation/Admin%20Page%20table.png) | ![form](./readme/demo/implementation/Admin%20Page%20Form.png) |
 
 <br><br>
 

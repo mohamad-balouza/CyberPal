@@ -64,10 +64,10 @@ function AdminSidebar() {
   return (
     <div className='sidebar-block'>
         <div className='sidebar-header-block'>
-            <h4>Admin Panel</h4>
+            <h4 style={{fontWeight: "bold"}}>Admin Panel</h4>
             <div className='admin-profile-block'>
                 <Avatar label="P" size="xlarge" shape="circle" />
-                <h4>{admin_username}</h4>
+                <h4 style={{fontWeight: "bold"}}>{admin_username}</h4>
             </div>
         </div>
         <div className='sidebar-data-block'>
