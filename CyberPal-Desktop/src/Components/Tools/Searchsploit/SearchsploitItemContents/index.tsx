@@ -3,6 +3,7 @@ import { ScrollPanel } from 'primereact/scrollpanel';
 import './index.css';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
+import axios from 'axios';
 
 
 function SearchsploitItemContents() {
@@ -10,7 +11,16 @@ function SearchsploitItemContents() {
 
 
   const handleSearchsploitExecution = () => {
-    
+    const url = `https://www.exploit-db.com/search?term=${searchsploitArgs}`;
+
+    axios.get(url)
+        .then(response => {
+            const search_results = response.data;
+            console.log(search_results)
+        })
+        .catch(error => {
+            console.log(`Error: ${error}`);
+        });
   }
 
   return (
@@ -20,7 +30,7 @@ function SearchsploitItemContents() {
             <Button label="Start Searchsploit" onClick={handleSearchsploitExecution} />
             <div className="p-float-label"  style={{width: "100%"}}>
                 <InputText id="searchsploit-args" value={searchsploitArgs} onChange={(e) => setSearchsploitArgs(e.target.value)} style={{width: "100%"}} />
-                <label htmlFor="searchsploit-args">Tcpdump Arguments</label>
+                <label htmlFor="searchsploit-args">Search for exploit</label>
             </div>
         </div>
     </ScrollPanel>
