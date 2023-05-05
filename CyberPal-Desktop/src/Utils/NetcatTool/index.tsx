@@ -27,4 +27,22 @@ export const installNetcat = async (win, options) => {
     } catch (error) {
       console.error('Failed to download Netcat Zip:', error);
     }
-  };
+};
+
+let netcat;
+
+export const executeNetcatCommand = (netcatPath: string, netcatArgs: Array<string>) => {
+    netcat = spawn(netcatPath, netcatArgs);
+
+    netcat.stdout.on('data', (data) => {
+        console.log(`stdout: ${data}`);
+    })
+
+    netcat.stderr.on('data', (data) => {
+        console.log(`stderr: ${data}`);
+    })
+
+    netcat.on('close', (code) => {
+        console.log(`netcat process exited with code ${code}`);
+    })
+}
