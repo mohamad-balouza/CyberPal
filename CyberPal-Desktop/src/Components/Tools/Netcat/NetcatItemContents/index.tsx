@@ -10,8 +10,8 @@ function NetcatItemContents() {
   const [netcatRunning, setNetcatRunning] = useState(false);
 
   const temp_netcat_command = {
-    netcatPath: "",
-    netcatArgs: []
+    netcatPath: "C:\\Program Files (x86)\\Nmap\\ncat.exe",
+    netcatArgs: ["--version"]
   }
 
   const handleNetcatExecution = () => {
