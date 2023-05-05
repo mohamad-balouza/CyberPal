@@ -6,19 +6,25 @@ import { Button } from 'primereact/button';
 
 
 function TcpdumpItemContents() {
+  const [tcpdumpRunning, setTcpdumpRunning] = useState(false);
   const [tcpdumpPath, setTcpdumpPath] = useState("");
   const [tcpdumpArgs, setTcpdumpArgs] = useState("");
 
   const handleTcpdumpExecution = () => {
-    window.electron.ipcRenderer.send('execute-tcpdump');
+    setTcpdumpRunning(!tcpdumpRunning);
+    if(!tcpdumpRunning){
+      window.electron.ipcRenderer.send('stop-tcpdump');
+    }else{
+      window.electron.ipcRenderer.send('start-tcpdump');
+    }
   }
 
   return (
     <ScrollPanel style={{ width: '100%', height: '250px'}} className="tool-panel-block">
         <div style={{margin: "20px", display: 'flex', flexWrap: "wrap", gap: "24px", justifyContent: "center", textAlign: "center"}}>
             <h3 style={{width: "100%",}}>Tcpdump</h3>
-            {/* <Button label={installingNmap ? "installing" : "install Nmap"} loading={installingNmap} onClick={handleNmapInstallation} />
-            <Button label="Execute Nmap" onClick={handleNmapCommandExecution} /> */}
+            {/* <Button label={installingNmap ? "installing" : "install Nmap"} loading={installingNmap} onClick={handleNmapInstallation} /> */}
+            <Button label={tcpdumpRunning ? "Stop Tcpdump" : "Start Tcpdump"} onClick={handleTcpdumpExecution} />
             <div className="p-float-label"  style={{width: "100%"}}>
                 <InputText id="nmap-path" value={tcpdumpPath} onChange={(e) => setTcpdumpPath(e.target.value)} style={{width: "100%"}} />
                 <label htmlFor="nmap-path">Tcpdump Path</label>
