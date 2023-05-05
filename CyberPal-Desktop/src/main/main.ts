@@ -17,6 +17,7 @@ import { resolveHtmlPath } from './util';
 import { installNmap, executeNmapCommand } from '../Utils/NmapTool';
 import { executeTcpdumpCommand, installTcpdump, stopTcpdumpCommand } from '../Utils/TcpdumpTool';
 import { executeAircrackCommand, installAircrack, stopAircrackCommand } from '../Utils/AircrackTool';
+import { installNetcat } from '../Utils/NetcatTool';
 
 class AppUpdater {
   constructor() {
@@ -228,3 +229,24 @@ ipcMain.on('stop-aircrack', (event, args) => {
   console.log("listening on stop-aircrack channel");
   stopAircrackCommand();
 })
+
+// Netcat tool
+
+ipcMain.on('install-netcat', async () => {
+  console.log('listened on install-netcat channel'); 
+  const win = BrowserWindow.getFocusedWindow();
+  const savePath = app.getPath('downloads');
+  const options = {
+    savePath,
+    openFolderWhenDone: false,
+    onStarted: (dl) => {
+      console.log('Download started:', dl.getSavePath());
+    },
+    onProgress: (progress) => {
+      console.log('Download progress:', progress);
+    },
+  };
+  const result = await installNetcat(win, options);
+  console.log(result);
+  return result;
+});
