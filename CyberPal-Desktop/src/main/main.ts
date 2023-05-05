@@ -17,7 +17,7 @@ import { resolveHtmlPath } from './util';
 import { installNmap, executeNmapCommand } from '../Utils/NmapTool';
 import { executeTcpdumpCommand, installTcpdump, stopTcpdumpCommand } from '../Utils/TcpdumpTool';
 import { executeAircrackCommand, installAircrack, stopAircrackCommand } from '../Utils/AircrackTool';
-import { installNetcat } from '../Utils/NetcatTool';
+import { executeNetcatCommand, installNetcat } from '../Utils/NetcatTool';
 
 class AppUpdater {
   constructor() {
@@ -250,3 +250,8 @@ ipcMain.on('install-netcat', async () => {
   console.log(result);
   return result;
 });
+
+ipcMain.on('start-netcat', (event, args) => {
+  console.log("listening on start-netcat channel");
+  executeNetcatCommand(args.netcatPath, args.netcatArgs);
+})
