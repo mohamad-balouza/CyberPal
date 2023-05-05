@@ -11,7 +11,7 @@ function TcpdumpMenuItem() {
         <div className='tool-menu-item-block'>
             <div className='tool-menu-item-contents'>
                 <h4>Tcpdump</h4>
-                <p>Packet capturing and analysis</p>
+                <p>Packet Capturing and Analysis</p>
             </div>
             <Image src={TcpdumpLogo} width="100%" className='tool-menu-item-image' />
         </div>
