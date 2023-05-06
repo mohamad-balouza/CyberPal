@@ -18,7 +18,7 @@ import { installNmap, executeNmapCommand } from '../Utils/NmapTool';
 import { executeTcpdumpCommand, installTcpdump, stopTcpdumpCommand } from '../Utils/TcpdumpTool';
 import { executeAircrackCommand, installAircrack, stopAircrackCommand } from '../Utils/AircrackTool';
 import { executeNetcatCommand, installNetcat, stopNetcatCommand } from '../Utils/NetcatTool';
-import { installJohn } from '../Utils/JohnTheRipperTool';
+import { executeJohnCommand, installJohn } from '../Utils/JohnTheRipperTool';
 
 class AppUpdater {
   constructor() {
@@ -282,3 +282,8 @@ ipcMain.on('install-john', async () => {
   console.log(result);
   return result;
 });
+
+ipcMain.on('start-john', (event, args) => {
+  console.log("listening on start-john channel");
+  executeJohnCommand(args.johnPath, args.johnArgs);
+})
