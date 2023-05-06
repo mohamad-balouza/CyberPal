@@ -288,7 +288,7 @@ ipcMain.on('start-john', (event, args) => {
   executeJohnCommand(args.johnPath, args.johnArgs);
 })
 
-ipcMain.on('stop-john', (event, args) => {
+ipcMain.on('stop-john', (event) => {
   console.log("listening on stop-john channel");
   stopJohnCommand();
 })

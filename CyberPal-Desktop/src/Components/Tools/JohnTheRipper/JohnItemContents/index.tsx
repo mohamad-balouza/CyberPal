@@ -20,7 +20,11 @@ function JohnItemContents() {
   }
 
   const handleJohnInstallation = async () => {
-
+    try {
+      window.electron.ipcRenderer.send('install-john');
+    } catch (error) {
+      console.error('Failed to install John The Ripper:', error);
+    }
   }
 
   return (
