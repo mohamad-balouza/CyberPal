@@ -12,15 +12,15 @@ export const installAircrack = async (win, options) => {
     const aircrackDownloadURL = 'https://download.aircrack-ng.org/aircrack-ng-1.7-win.zip';
   
     try {
-      const downloadedTcpdump= await download(win, aircrackDownloadURL, options);
-      console.log('Download completed:', downloadedTcpdump.getSavePath());
-      let downloadedTcpdumpPath = downloadedTcpdump.getSavePath().split("\\");
-      let downloadedTcpdumpPathFixed = downloadedTcpdumpPath.join("\\\\");
+      const downloadedAircrack= await download(win, aircrackDownloadURL, options);
+      console.log('Download completed:', downloadedAircrack.getSavePath());
+      let downloadedAircrackPath = downloadedAircrack.getSavePath().split("\\");
+      let downloadedAircrackPathFixed = downloadedAircrackPath.join("\\\\");
 
       try {
         const downloadsFolder = app.getPath('downloads');
         const targetDir = path.join(downloadsFolder,'aircrack');
-        await extract(downloadedTcpdumpPathFixed, { dir: targetDir });
+        await extract(downloadedAircrackPathFixed, { dir: targetDir });
         console.log('Aircrack extracted');
       } catch (error) {
         console.error('Error extracting Aircrack:', error);
