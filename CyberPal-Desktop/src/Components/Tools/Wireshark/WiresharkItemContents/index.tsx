@@ -16,7 +16,12 @@ function WiresharkItemContents() {
   }
 
   const handleWiresharkExecution = () => {
-
+    if(wiresharkRunning){
+      window.electron.ipcRenderer.send('stop-wireshark');
+    }else{
+      window.electron.ipcRenderer.send('start-wireshark', temp_wireshark_command);
+    }
+    setWiresharkRunning(!wiresharkRunning);
   }
 
   const handleWiresharkInstallation = async () => {
