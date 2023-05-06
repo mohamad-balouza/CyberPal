@@ -11,16 +11,16 @@ function JohnItemContents() {
   const [johnArgs, setJohnArgs] = useState("");
 
   const temp_john_command = {
-    johnPath: "",
+    johnPath: "C:\\Users\\void\\Downloads\\john-1.9.0-jumbo-1-win64\\john-1.9.0-jumbo-1-win64\\run\\john.exe",
     johnArgs: []
   }
 
   const handleJohnExecution = () => {
     if(johnRunning){
-      window.electron.ipcRenderer.send('stop-aircrack');
+      window.electron.ipcRenderer.send('stop-john');
     }else{
       console.log(temp_john_command);
-      window.electron.ipcRenderer.send('start-aircrack', temp_john_command);
+      window.electron.ipcRenderer.send('start-john', temp_john_command);
     }
     setJohnRunning(!johnRunning);
   }
