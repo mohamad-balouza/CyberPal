@@ -11,7 +11,7 @@ function WiresharkItemContents() {
   const [wiresharkArgs, setWiresharkArgs] = useState("");
 
   const temp_wireshark_command = {
-    wiresharkPath: "",
+    wiresharkPath: "C:\\Program Files\\Wireshark\\tshark.exe",
     wiresharkArgs: []
   }
 
