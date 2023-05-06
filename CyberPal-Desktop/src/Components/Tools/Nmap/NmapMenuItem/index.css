@@ -31,4 +31,5 @@
 .tool-menu-item-contents > p {
     padding: 0;
     margin: 0;
+    line-height: normal;
 }

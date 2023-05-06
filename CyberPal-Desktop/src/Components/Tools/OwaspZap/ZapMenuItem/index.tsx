@@ -12,7 +12,7 @@ function ZapMenuItem() {
                 <h4>OWASP ZAP</h4>
                 <p>Web application security scanner</p>
             </div>
-            <Image src={ZapLogo} width="75%" className='tool-menu-item-image' />
+            <Image src={ZapLogo} width="80%" className='tool-menu-item-image' />
         </div>
   )
 }
