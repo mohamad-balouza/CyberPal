@@ -9,31 +9,39 @@
 
 
 ### User Stories
-- Beginners and Advanced Users:
-	- Implementation of vpn connection where the user uploads his own openVPN file given by the popular hacking websites like HackTheBox and Tryhackme, so that it can be activated to be able to hack these boxes on the website directly
-	- Implementation of various tools that are necessary for hackers like:
-		- Nmap gui where the user provides the ip address and any additional option he wants (like making it silent, etc) and then the scan begins with an automated output that can be downloaded
-		- seachsploit gui where it scans for popular exploits of a specific port, and prints out the vulnerabilities and the CVE number and page so you can check the documentation of the exploit and a way to replicate it
-		- Metasploit gui where all the exploits, scanners, etc. are navigatable in a good format and after choosing a specific one to run it shows a gui for that option and everything that can be filled inside it to make it working like the target ip and port, the emails or pass that are available etc. and the other options will be filled automatically like the host ip and others depending on the payload
-		- Netcat for listening to something on a specific port like reverse shells
-		- reverse shells generator gui in almost every given language (chosen in the gui) by the help of PayloadsAllTheThings, and ofcourse with the help of other tools to connect to the server/ip and inject the shell
-		- ssh gui where the user just inputs the necessary variables like ip, user and password, and it will give an interface to work on after connecting (and maybe make the other tools work inside the ssh shell) 
-		- Scanning the machine that the user is trying to hack after connecting to it with a low level user to give the mistakes in the machine configuration which will provide and automatic privilage escalation to a root user if its possible
-		- Burpsuite gui integrated into the website with a simplified form for beginners, and a detailed instructions to get it working in the browser, mostly will be used for capturing traffic and altering it
-		- Malware analysis tool if the user already has the file that he wants to check for malware or security issues, it will check for the file in the popular file checking websites to see if anyone has flagged it, and the tool can flag common malware code
-		- Snyk tool which will give the user a very good documentation and report on what is wrong with a specific server if the files or github are provided, it could be a security issue with the code like forgetting to sanitize the input, or checking for upload type, MIME, extension etc in the front end and the back end (if it's provided), etc
-		- Active directory hacking can be included too like automatically making the popular attacks if the user has enough information like passthepassword or passthehash attacks, with ofcourse scanners if they are available
-		- Tools that are implemented using the arduino or like the other tools directly into the site ( but it might cause problems directly into the website ) to implement wifi network sniffer, password brute forcing with already established passwords list using the popular  Seclists and using the brute forcing tools related to it like hydra
-	- Implementing the ChatGpt tool which will be like an instructor and rechecker for the features above, it will have it's own section if anyone has a question about anything it can be answered directly from the website (in the chatgpt section)
-	- Change themes because people either like the dark theme or the light theme
-- Advanced users only:
-	- The ability to schedule tools to execute at a specific time, and also send emails to a specific time, since the advanced users will be working with companies and need to start at a specific time of the day and inform the company that they are starting
-	- The ability to create their own script and use of already created scripts to automate a lot of their work
-	- Optional: Adding advanced tools or tools that does a very specific thing which would be not optimal to show for the beginners
-- Admin:
-	- Manipulate the users (Adding, banning, removing, editing)
-	- Adding extra tools with an interface to manipulate the gui for these tools (if possible)
-	- Change the flags shown in the already implemented tools, and alter things in the gui of these tools
+
+- As a user I want to:  
+	- Navigate a landing page so that I can quickly and easily find the specific information or feature that I am looking for  
+	- Sign up so that I can be a member of the website  
+	- Sign in so that I can use the tools implemented in the website  
+	- Use a vpn connection like Openvpn so that I can participate in Boxes from other websites like Hackthebox, tryhackme, etc  
+	- Use Nmap tool so that I can scan the ports of an IP address and get the information from that scan  
+	- Use Netcat tool so that I can listen to a specific port  
+	- Upload shells (like reverse shells) to the target box so that I can get remote access to it and continue my testing  
+	- Access a shell generator so that I can get a shell for every language that I want  
+	- Use ssh so that I can connect to other Boxes/Machines  
+	- Scan the machine for popular misconfiguration so that I can do some privilege escalation  
+	- Navigate another website’s source code so that I can check if there are any clues there  
+	- Navigate the targeted website so that I can input and check for vulnerability manually  
+	- Upload files so that I can check for common vulnerabilities in these files  
+	- Use the Snyk tool so that I can check for vulnerabilities in github repositories  
+	- Use Searchsploit tool so that I can scan for popular exploits of a specific port  
+	- Use Metasploit tool so that I can have access to the exploits, scanners, etc provided by this tool  
+	- Use Brute forcing tools so that I can try and brute force a password with an already implemented list of passwords like Seclists  
+	- Use a GUI for these tools so that I don’t have to memorize all the commands, and for ease of access  
+	- Read the description of these tools so that I know what each tools does and what each of the commands does  
+	- Change the theme of the website so that I don’t hurt my eyes by the light theme at night  
+- As an advanced user I want to:  
+	- Use all the features of the normal users so that I can have access to all the tools included in the website  
+	- Schedule tools so that I can have them run on a specific time without having to be at the computer  
+	- Schedule emails so that I can notify the company that I am starting the testing processs  
+	- Create my own scripts so that I can automate the usage of the tools  
+	- Save my created scripts in a gui so that I can comeback and execute my scripts at any time  
+- As an admin I want to:  
+	- Display all the users so that I can see who's joining my website  
+	- Activate and disable users so that I can stop users with suspicious activities  
+	- Display all the tools in the website so that I can see the tools that the developers have added  
+	- Alter things in the tools of the website so that I can fix/update these tools
 
 <br><br>
 
