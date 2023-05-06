@@ -19,6 +19,7 @@ import { executeTcpdumpCommand, installTcpdump, stopTcpdumpCommand } from '../Ut
 import { executeAircrackCommand, installAircrack, stopAircrackCommand } from '../Utils/AircrackTool';
 import { executeNetcatCommand, installNetcat, stopNetcatCommand } from '../Utils/NetcatTool';
 import { executeJohnCommand, installJohn, stopJohnCommand } from '../Utils/JohnTheRipperTool';
+import { installWireshark } from '../Utils/WiresharkTool';
 
 class AppUpdater {
   constructor() {
@@ -292,3 +293,24 @@ ipcMain.on('stop-john', (event) => {
   console.log("listening on stop-john channel");
   stopJohnCommand();
 })
+
+// Wireshark tool
+
+ipcMain.on('install-wireshark', async () => {
+  console.log('listened on install-wireshark channel'); 
+  const win = BrowserWindow.getFocusedWindow();
+  const savePath = app.getPath('downloads');
+  const options = {
+    savePath,
+    openFolderWhenDone: false,
+    onStarted: (dl) => {
+      console.log('Download started:', dl.getSavePath());
+    },
+    onProgress: (progress) => {
+      console.log('Download progress:', progress);
+    },
+  };
+  const result = await installWireshark(win, options);
+  console.log(result);
+  return result;
+});

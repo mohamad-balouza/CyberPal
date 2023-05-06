@@ -5,7 +5,7 @@ import { spawn } from "child_process";
 
 export const installWireshark = async (win, options) => {
     console.log("I'm trying to install Wireshark");
-    const wiresharkDownloadURL = 'https://www.openwall.com/wireshark/k/wireshark-1.9.0-jumbo-1-win64.7z';
+    const wiresharkDownloadURL = 'https://2.na.dl.wireshark.org/win64/Wireshark-win64-4.0.5.exe';
   
     try {
         const downloadedWireshark= await download(win, wiresharkDownloadURL, options);
