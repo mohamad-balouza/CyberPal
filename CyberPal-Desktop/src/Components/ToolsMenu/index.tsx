@@ -14,15 +14,15 @@ import AircrackItemContents from 'Components/Tools/Aircrack/AircrackItemContents
 import AircrackMenuItem from 'Components/Tools/Aircrack/AircrackMenuItem';
 import NetcatItemContents from 'Components/Tools/Netcat/NetcatItemContents';
 import NetcatMenuItem from 'Components/Tools/Netcat/NetcatMenuItem';
+import JohnItemContents from 'Components/Tools/JohnTheRipper/JohnItemContents';
+import JohnMenuItem from 'Components/Tools/JohnTheRipper/JohnMenuItem';
+
+// These imports will be taken care of after I finish all the tools, will move each tool to it's component
 
 function ToolsMenu() {
   const [selectedid, setSelectedid] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const tools = [
-    {
-      "id": 6,
-      "name": "nmap"
-    },
     {
       "id": 7,
       "name": "nmap"
@@ -123,6 +123,22 @@ function ToolsMenu() {
                 {selectedid == 5 ? 
                   <NetcatItemContents /> :
                   <NetcatMenuItem />
+                } 
+            </motion.div>
+
+          </motion.div>
+
+            <motion.div
+                layout
+                data-isOpen={selectedid == 6}
+                initial={{ borderRadius: 10 }}
+                className="tool-menu-item"
+                onTap={() => setSelectedid(6)}
+            >
+            <motion.div layout className="child">
+                {selectedid == 6 ? 
+                  <JohnItemContents /> :
+                  <JohnMenuItem />
                 } 
             </motion.div>
 
