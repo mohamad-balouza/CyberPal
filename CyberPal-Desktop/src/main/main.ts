@@ -18,6 +18,7 @@ import { installNmap, executeNmapCommand } from '../Utils/NmapTool';
 import { executeTcpdumpCommand, installTcpdump, stopTcpdumpCommand } from '../Utils/TcpdumpTool';
 import { executeAircrackCommand, installAircrack, stopAircrackCommand } from '../Utils/AircrackTool';
 import { executeNetcatCommand, installNetcat, stopNetcatCommand } from '../Utils/NetcatTool';
+import { installJohn } from '../Utils/JohnTheRipperTool';
 
 class AppUpdater {
   constructor() {
@@ -260,3 +261,24 @@ ipcMain.on('stop-netcat', (event, args) => {
   console.log("listening on stop-netcat channel");
   stopNetcatCommand();
 })
+
+// John the Ripper tool
+
+ipcMain.on('install-john', async () => {
+  console.log('listened on install-john channel'); 
+  const win = BrowserWindow.getFocusedWindow();
+  const savePath = app.getPath('downloads');
+  const options = {
+    savePath,
+    openFolderWhenDone: false,
+    onStarted: (dl) => {
+      console.log('Download started:', dl.getSavePath());
+    },
+    onProgress: (progress) => {
+      console.log('Download progress:', progress);
+    },
+  };
+  const result = await installJohn(win, options);
+  console.log(result);
+  return result;
+});
