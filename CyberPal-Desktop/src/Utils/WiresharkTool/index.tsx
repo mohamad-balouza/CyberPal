@@ -44,3 +44,10 @@ export const executeWiresharkCommand = (wiresharkPath: string, wiresharkArgs: Ar
         console.log(`wireshark process exited with code ${code}`);
     })
 }
+
+export const stopWiresharkCommand = () => {
+    if(wireshark) {
+        wireshark.kill();
+        console.log('wireshark stopped');
+    }
+}
