@@ -19,7 +19,6 @@ function JohnItemContents() {
     if(johnRunning){
       window.electron.ipcRenderer.send('stop-john');
     }else{
-      console.log(temp_john_command);
       window.electron.ipcRenderer.send('start-john', temp_john_command);
     }
     setJohnRunning(!johnRunning);
