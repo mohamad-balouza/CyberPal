@@ -1,5 +1,5 @@
 import React from 'react';
-import Wireshark from "../../../../../assets/Wireshark.png";
+import WiresharkLogo from "../../../../../assets/WiresharkLogo.png";
 import { Image } from 'primereact/image';
 import './index.css';
 
@@ -12,7 +12,7 @@ function WiresharkMenuItem() {
                 <h4>Wireshark</h4>
                 <p>Network protocol analyzer</p>
             </div>
-            <Image src={Wireshark} width="100%" className='tool-menu-item-image' />
+            <Image src={WiresharkLogo} width="100%" className='tool-menu-item-image' />
         </div>
   )
 }

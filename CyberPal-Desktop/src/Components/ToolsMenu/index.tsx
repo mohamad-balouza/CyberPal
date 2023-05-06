@@ -19,6 +19,8 @@ import JohnItemContents from 'Components/Tools/JohnTheRipper/JohnItemContents';
 import JohnMenuItem from 'Components/Tools/JohnTheRipper/JohnMenuItem';
 import ZapItemContents from 'Components/Tools/OwaspZap/ZapItemContents';
 import ZapMenuItem from 'Components/Tools/OwaspZap/ZapMenuItem';
+import WiresharkItemContents from 'Components/Tools/Wireshark/WiresharkItemContents';
+import WiresharkMenuItem from 'Components/Tools/Wireshark/WiresharkMenuItem';
 
 
 function ToolsMenu() {
@@ -158,23 +160,22 @@ function ToolsMenu() {
 
           </motion.div>
 
-        {tools.map((tool) => (
-          <motion.div
+            <motion.div
                 layout
-                data-isOpen={selectedid == tool.id}
+                data-isOpen={selectedid == 8}
                 initial={{ borderRadius: 10 }}
                 className="tool-menu-item"
-                onTap={() => setSelectedid(tool.id)}
+                onTap={() => setSelectedid(8)}
             >
             <motion.div layout className="child">
-                {selectedid == tool.id ? 
-                  <ToolMenuContents /> :
-                  <ToolMenuItem tool_name={tool.name} /> 
+                {selectedid == 8 ? 
+                  <WiresharkItemContents /> :
+                  <WiresharkMenuItem />
                 } 
             </motion.div>
 
           </motion.div>
-        ))}
+
 
       </motion.div>
     </div>
