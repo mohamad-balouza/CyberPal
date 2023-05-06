@@ -7,10 +7,13 @@ export const installNmap = async (win, options) => {
   const nmapDownloadUrl = 'https://nmap.org/dist/nmap-7.93-setup.exe';
 
   try {
-    // const downloadedFilePath = await download(win, nmapDownloadUrl, options);
-    // console.log('Download completed:', downloadedFilePath.getSavePath());
+    const downloadedNmap= await download(win, nmapDownloadUrl, options);
+    console.log('Download completed:', downloadedNmap.getSavePath());
 
-    exec(`"C:\\Users\\void\\Downloads\\nmap-7.93-setup.exe"`, (error, stdout, stderr) => {
+    let downloadedNmapPath = downloadedNmap.getSavePath().split("\\");
+    let downloadedNmapPathFixed = downloadedNmapPath.join("\\\\");
+
+    exec(downloadedNmapPathFixed, (error, stdout, stderr) => {
       if (error) {
         console.error('Failed to execute Nmap installer:', error);
         return;
