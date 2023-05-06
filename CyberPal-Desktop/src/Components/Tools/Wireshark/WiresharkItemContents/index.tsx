@@ -25,7 +25,11 @@ function WiresharkItemContents() {
   }
 
   const handleWiresharkInstallation = async () => {
-
+    try {
+      window.electron.ipcRenderer.send('install-wireshark');
+    } catch (error) {
+      console.error('Failed to install Wireshark:', error);
+    }
   }
 
   return (
