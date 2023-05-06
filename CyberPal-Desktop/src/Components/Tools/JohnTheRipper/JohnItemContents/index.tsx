@@ -16,7 +16,13 @@ function JohnItemContents() {
   }
 
   const handleJohnExecution = () => {
-
+    if(johnRunning){
+      window.electron.ipcRenderer.send('stop-aircrack');
+    }else{
+      console.log(temp_john_command);
+      window.electron.ipcRenderer.send('start-aircrack', temp_john_command);
+    }
+    setJohnRunning(!johnRunning);
   }
 
   const handleJohnInstallation = async () => {
