@@ -4,6 +4,7 @@ import './index.css';
 import ToolMenuItem from 'Components/ToolMenuItem';
 import { is } from 'immer/dist/internal';
 import ToolMenuContents from 'Components/ToolMenuContents';
+// These imports will be taken care of after I finish all the tools, will move each tool to it's component
 import NmapMenuItem from 'Components/Tools/Nmap/NmapMenuItem';
 import NmapItemContents from 'Components/Tools/Nmap/NmapItemContents';
 import TcpdumpItemContents from 'Components/Tools/Tcpdump/TcpdumpItemContents';
@@ -16,17 +17,14 @@ import NetcatItemContents from 'Components/Tools/Netcat/NetcatItemContents';
 import NetcatMenuItem from 'Components/Tools/Netcat/NetcatMenuItem';
 import JohnItemContents from 'Components/Tools/JohnTheRipper/JohnItemContents';
 import JohnMenuItem from 'Components/Tools/JohnTheRipper/JohnMenuItem';
+import ZapItemContents from 'Components/Tools/OwaspZap/ZapItemContents';
+import ZapMenuItem from 'Components/Tools/OwaspZap/ZapMenuItem';
 
-// These imports will be taken care of after I finish all the tools, will move each tool to it's component
 
 function ToolsMenu() {
   const [selectedid, setSelectedid] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const tools = [
-    {
-      "id": 7,
-      "name": "nmap"
-    },
     {
       "id": 8,
       "name": "nmap"
@@ -139,6 +137,22 @@ function ToolsMenu() {
                 {selectedid == 6 ? 
                   <JohnItemContents /> :
                   <JohnMenuItem />
+                } 
+            </motion.div>
+
+          </motion.div>
+
+            <motion.div
+                layout
+                data-isOpen={selectedid == 7}
+                initial={{ borderRadius: 10 }}
+                className="tool-menu-item"
+                onTap={() => setSelectedid(7)}
+            >
+            <motion.div layout className="child">
+                {selectedid == 7 ? 
+                  <ZapItemContents /> :
+                  <ZapMenuItem />
                 } 
             </motion.div>
 
