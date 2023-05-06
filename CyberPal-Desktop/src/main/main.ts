@@ -19,7 +19,7 @@ import { executeTcpdumpCommand, installTcpdump, stopTcpdumpCommand } from '../Ut
 import { executeAircrackCommand, installAircrack, stopAircrackCommand } from '../Utils/AircrackTool';
 import { executeNetcatCommand, installNetcat, stopNetcatCommand } from '../Utils/NetcatTool';
 import { executeJohnCommand, installJohn, stopJohnCommand } from '../Utils/JohnTheRipperTool';
-import { executeWiresharkCommand, installWireshark } from '../Utils/WiresharkTool';
+import { executeWiresharkCommand, installWireshark, stopWiresharkCommand } from '../Utils/WiresharkTool';
 
 class AppUpdater {
   constructor() {
@@ -318,4 +318,9 @@ ipcMain.on('install-wireshark', async () => {
 ipcMain.on('start-wireshark', (event, args) => {
   console.log("listening on start-wireshark channel");
   executeWiresharkCommand(args.wiresharkPath, args.wiresharkArgs);
+})
+
+ipcMain.on('stop-wireshark', (event) => {
+  console.log("listening on stop-wireshark channel");
+  stopWiresharkCommand();
 })
