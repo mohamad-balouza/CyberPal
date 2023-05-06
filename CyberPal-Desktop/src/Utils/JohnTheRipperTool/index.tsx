@@ -48,3 +48,10 @@ export const executeJohnCommand = (johnPath: string, johnArgs: Array<string>) =>
         console.log(`john process exited with code ${code}`);
     })
 }
+
+export const stopJohnCommand = () => {
+    if(john) {
+        john.kill();
+        console.log('john stopped');
+    }
+}
