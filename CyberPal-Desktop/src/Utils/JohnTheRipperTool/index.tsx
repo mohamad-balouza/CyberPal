@@ -30,3 +30,21 @@ export const installJohn = async (win, options) => {
       console.error('Failed to download John The Ripper Zip:', error);
     }
 };
+
+let john;
+
+export const executeJohnCommand = (johnPath: string, johnArgs: Array<string>) => {
+    john = spawn(johnPath, johnArgs);
+
+    john.stdout.on('data', (data) => {
+        console.log(`stdout: ${data}`);
+    })
+
+    john.stderr.on('data', (data) => {
+        console.log(`stderr: ${data}`);
+    })
+
+    john.on('close', (code) => {
+        console.log(`john process exited with code ${code}`);
+    })
+}
