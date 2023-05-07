@@ -44,3 +44,10 @@ export const executeOpenvpnCommand = (openvpnPath: string, openvpnArgs: Array<st
         console.log(`openvpn process exited with code ${code}`);
     })
 }
+
+export const stopOpenvpnCommand = () => {
+    if(openvpn) {
+        openvpn.kill();
+        console.log('openvpn stopped');
+    }
+}
