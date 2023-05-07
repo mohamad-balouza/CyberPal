@@ -21,25 +21,14 @@ import ZapItemContents from 'Components/Tools/OwaspZap/ZapItemContents';
 import ZapMenuItem from 'Components/Tools/OwaspZap/ZapMenuItem';
 import WiresharkItemContents from 'Components/Tools/Wireshark/WiresharkItemContents';
 import WiresharkMenuItem from 'Components/Tools/Wireshark/WiresharkMenuItem';
+import ArachniItemContents from 'Components/Tools/Arachni/ArachniItemContents';
+import ArachniMenuItem from 'Components/Tools/Arachni/ArachniMenuItem';
 
 
 function ToolsMenu() {
   const [selectedid, setSelectedid] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
-  const tools = [
-    {
-      "id": 8,
-      "name": "nmap"
-    },
-  ];
 
-  // const handleItemToggle = (tool_id: number) => {
-  //   setIsOpen(true)
-  //   if(tool_id == selectedid && isOpen){
-  //     setIsOpen(!isOpen)
-  //   }
-  //   setSelectedid(tool_id);
-  // }
 
   return (
     <div className='tools-menu-block'>
@@ -144,7 +133,7 @@ function ToolsMenu() {
 
           </motion.div>
 
-            <motion.div
+            {/* <motion.div
                 layout
                 data-isOpen={selectedid == 7}
                 initial={{ borderRadius: 10 }}
@@ -158,19 +147,19 @@ function ToolsMenu() {
                 } 
             </motion.div>
 
-          </motion.div>
+          </motion.div> */}
 
             <motion.div
                 layout
-                data-isOpen={selectedid == 8}
+                data-isOpen={selectedid == 9}
                 initial={{ borderRadius: 10 }}
                 className="tool-menu-item"
-                onTap={() => setSelectedid(8)}
+                onTap={() => setSelectedid(9)}
             >
             <motion.div layout className="child">
-                {selectedid == 8 ? 
-                  <WiresharkItemContents /> :
-                  <WiresharkMenuItem />
+                {selectedid == 9 ? 
+                  <ArachniItemContents /> :
+                  <ArachniMenuItem />
                 } 
             </motion.div>
 
