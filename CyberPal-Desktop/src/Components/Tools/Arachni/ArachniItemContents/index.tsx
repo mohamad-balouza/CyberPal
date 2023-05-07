@@ -16,7 +16,12 @@ function ArachniItemContents() {
   }
 
   const handleArachniExecution = () => {
-
+    if(arachniRunning){
+      window.electron.ipcRenderer.send('stop-arachni');
+    }else{
+      window.electron.ipcRenderer.send('start-arachni', temp_arachni_command);
+    }
+    setArachniRunning(!arachniRunning);
   }
 
   const handleArachniInstallation = async () => {
