@@ -21,7 +21,7 @@ import { executeNetcatCommand, installNetcat, stopNetcatCommand } from '../Utils
 import { executeJohnCommand, installJohn, stopJohnCommand } from '../Utils/JohnTheRipperTool';
 import { executeWiresharkCommand, installWireshark, stopWiresharkCommand } from '../Utils/WiresharkTool';
 import { executeArachniCommand, installArachni, stopArachniCommand } from '../Utils/ArachniTool';
-import { installOpenvpn } from '../Utils/OpenvpnTool';
+import { executeOpenvpnCommand, installOpenvpn } from '../Utils/OpenvpnTool';
 
 class AppUpdater {
   constructor() {
@@ -378,3 +378,8 @@ ipcMain.on('install-openvpn', async () => {
   console.log(result);
   return result;
 });
+
+ipcMain.on('start-openvpn', (event, args) => {
+  console.log("listening on start-openvpn channel");
+  executeOpenvpnCommand(args.openvpnPath, args.openvpnArgs);
+})
