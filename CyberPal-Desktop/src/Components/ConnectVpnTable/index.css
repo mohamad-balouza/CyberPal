@@ -1,0 +1,5 @@
+.profile-openvpn-buttons{
+    display: flex;
+    margin-top: 8px;
+    justify-content: space-between;
+}
