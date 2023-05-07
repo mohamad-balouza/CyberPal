@@ -20,7 +20,11 @@ function ArachniItemContents() {
   }
 
   const handleArachniInstallation = async () => {
-
+    try {
+      window.electron.ipcRenderer.send('install-arachni');
+    } catch (error) {
+      console.error('Failed to install Arachni:', error);
+    }
   }
 
   return (
