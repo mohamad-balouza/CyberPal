@@ -26,3 +26,21 @@ export const installOpenvpn = async (win, options) => {
       console.error('Failed to download Openvpn installer:', error);
     }
 };
+
+let openvpn;
+
+export const executeOpenvpnCommand = (openvpnPath: string, openvpnArgs: Array<string>) => {
+    openvpn = spawn(openvpnPath, openvpnArgs);
+
+    openvpn.stdout.on('data', (data) => {
+        console.log(`stdout: ${data}`);
+    })
+
+    openvpn.stderr.on('data', (data) => {
+        console.log(`stderr: ${data}`);
+    })
+
+    openvpn.on('close', (code) => {
+        console.log(`openvpn process exited with code ${code}`);
+    })
+}
