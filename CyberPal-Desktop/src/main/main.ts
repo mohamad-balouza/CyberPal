@@ -20,7 +20,7 @@ import { executeAircrackCommand, installAircrack, stopAircrackCommand } from '..
 import { executeNetcatCommand, installNetcat, stopNetcatCommand } from '../Utils/NetcatTool';
 import { executeJohnCommand, installJohn, stopJohnCommand } from '../Utils/JohnTheRipperTool';
 import { executeWiresharkCommand, installWireshark, stopWiresharkCommand } from '../Utils/WiresharkTool';
-import { executeArachniCommand, installArachni } from '../Utils/ArachniTool';
+import { executeArachniCommand, installArachni, stopArachniCommand } from '../Utils/ArachniTool';
 
 class AppUpdater {
   constructor() {
@@ -350,4 +350,9 @@ ipcMain.on('install-arachni', async () => {
 ipcMain.on('start-arachni', (event, args) => {
   console.log("listening on start-arachni channel");
   executeArachniCommand(args.arachniPath, args.arachniArgs);
+})
+
+ipcMain.on('stop-arachni', (event) => {
+  console.log("listening on stop-arachni channel");
+  stopArachniCommand();
 })
