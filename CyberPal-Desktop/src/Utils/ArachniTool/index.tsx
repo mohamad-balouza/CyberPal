@@ -26,3 +26,21 @@ export const installArachni = async (win, options) => {
       console.error('Failed to download Arachni installer:', error);
     }
 };
+
+let arachni;
+
+export const executeArachniCommand = (arachniPath: string, arachniArgs: Array<string>) => {
+    arachni = spawn(arachniPath, arachniArgs);
+
+    arachni.stdout.on('data', (data) => {
+        console.log(`stdout: ${data}`);
+    })
+
+    arachni.stderr.on('data', (data) => {
+        console.log(`stderr: ${data}`);
+    })
+
+    arachni.on('close', (code) => {
+        console.log(`arachni process exited with code ${code}`);
+    })
+}
