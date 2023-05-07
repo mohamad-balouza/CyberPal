@@ -20,6 +20,7 @@ import { executeAircrackCommand, installAircrack, stopAircrackCommand } from '..
 import { executeNetcatCommand, installNetcat, stopNetcatCommand } from '../Utils/NetcatTool';
 import { executeJohnCommand, installJohn, stopJohnCommand } from '../Utils/JohnTheRipperTool';
 import { executeWiresharkCommand, installWireshark, stopWiresharkCommand } from '../Utils/WiresharkTool';
+import { installArachni } from '../Utils/ArachniTool';
 
 class AppUpdater {
   constructor() {
@@ -324,3 +325,24 @@ ipcMain.on('stop-wireshark', (event) => {
   console.log("listening on stop-wireshark channel");
   stopWiresharkCommand();
 })
+
+// Arachni tool
+
+ipcMain.on('install-arachni', async () => {
+  console.log('listened on install-arachni channel'); 
+  const win = BrowserWindow.getFocusedWindow();
+  const savePath = app.getPath('downloads');
+  const options = {
+    savePath,
+    openFolderWhenDone: false,
+    onStarted: (dl) => {
+      console.log('Download started:', dl.getSavePath());
+    },
+    onProgress: (progress) => {
+      console.log('Download progress:', progress);
+    },
+  };
+  const result = await installArachni(win, options);
+  console.log(result);
+  return result;
+});
