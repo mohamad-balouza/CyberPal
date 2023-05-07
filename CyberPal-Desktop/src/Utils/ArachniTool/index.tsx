@@ -44,3 +44,10 @@ export const executeArachniCommand = (arachniPath: string, arachniArgs: Array<st
         console.log(`arachni process exited with code ${code}`);
     })
 }
+
+export const stopArachniCommand = () => {
+    if(arachni) {
+        arachni.kill();
+        console.log('arachni stopped');
+    }
+}
