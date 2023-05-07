@@ -21,6 +21,7 @@ import { executeNetcatCommand, installNetcat, stopNetcatCommand } from '../Utils
 import { executeJohnCommand, installJohn, stopJohnCommand } from '../Utils/JohnTheRipperTool';
 import { executeWiresharkCommand, installWireshark, stopWiresharkCommand } from '../Utils/WiresharkTool';
 import { executeArachniCommand, installArachni, stopArachniCommand } from '../Utils/ArachniTool';
+import { installOpenvpn } from '../Utils/OpenvpnTool';
 
 class AppUpdater {
   constructor() {
@@ -356,3 +357,24 @@ ipcMain.on('stop-arachni', (event) => {
   console.log("listening on stop-arachni channel");
   stopArachniCommand();
 })
+
+// Openvpn tool
+
+ipcMain.on('install-openvpn', async () => {
+  console.log('listened on install-openvpn channel'); 
+  const win = BrowserWindow.getFocusedWindow();
+  const savePath = app.getPath('downloads');
+  const options = {
+    savePath,
+    openFolderWhenDone: false,
+    onStarted: (dl) => {
+      console.log('Download started:', dl.getSavePath());
+    },
+    onProgress: (progress) => {
+      console.log('Download progress:', progress);
+    },
+  };
+  const result = await installOpenvpn(win, options);
+  console.log(result);
+  return result;
+});
