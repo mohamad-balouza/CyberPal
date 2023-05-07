@@ -15,3 +15,23 @@
 .profile-tabview-block.p-tabview .p-tabview-panels{
     background-color: var(--dark_purple);
 }
+
+.profile-tabview-block.p-tabview .p-tabview-nav a {
+    background-color: var(--dark_purple);
+    border-color: var(--dark_purple);
+}
+
+.profile-tabview-block.p-tabview .p-tabview-nav li.p-highlight {
+    background-color: var(--dark_purple);
+}
+
+.profile-tabview-block.p-tabview .p-tabview-nav li.p-highlight a {
+    background-color: var(--dark_purple);
+    color: var(--cyan);
+    text-shadow: 0px 0px 30px var(--blue);
+}
+
+.profile-tabview-block.p-tabview .p-tabview-nav a:hover {
+    background-color: var(--lightish_purple) !important;
+    border-color: var(--blue) !important;
+}
