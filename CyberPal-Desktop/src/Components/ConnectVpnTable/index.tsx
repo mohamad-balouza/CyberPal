@@ -23,7 +23,7 @@ function ConnectVpnTable() {
     ]);
 
     const temp_openvpn_command = {
-        openvpnPath: "",
+        openvpnPath: "C:\\Program Files\\OpenVPN Connect\\OpenVPNConnect.exe",
         openvpnArgs: []
     }
 
@@ -56,7 +56,7 @@ function ConnectVpnTable() {
             <div className='profile-openvpn-buttons' >
                 <Button label='Install Openvpn' onClick={handleOpenvpnInstallation} />
                 <Button label='Openvpn Path'  />
-                <Button label='Connect' onClick={handleOpenvpnExecution} />
+                <Button label={openvpnRunning ? "Disconnect" : "Connect"} onClick={handleOpenvpnExecution} />
             </div>
         </div>
     )
