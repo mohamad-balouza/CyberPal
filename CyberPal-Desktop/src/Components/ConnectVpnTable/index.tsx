@@ -5,6 +5,7 @@ import './index.css';
 import { Button } from 'primereact/button';
 
 function ConnectVpnTable() {
+    const[openvpnRunning, setOpenvpnRunning] = useState(false);
     const[userfiledb, setUserfiledb] = useState([])
     const[userfile, setUserfile] = useState([
         {
@@ -21,6 +22,12 @@ function ConnectVpnTable() {
         }
     ]);
 
+    const temp_openvpn_command = {
+        openvpnPath: "",
+        openvpnArgs: []
+    }
+
+
     const handleOpenvpnInstallation = () => {
         try {
             window.electron.ipcRenderer.send('install-openvpn');
@@ -30,7 +37,12 @@ function ConnectVpnTable() {
     }
 
     const handleOpenvpnExecution = () => {
-
+        if(openvpnRunning){
+            window.electron.ipcRenderer.send('stop-openvpn');
+          }else{
+            window.electron.ipcRenderer.send('start-openvpn', temp_openvpn_command);
+          }
+          setOpenvpnRunning(!openvpnRunning);
     }
 
     return (
