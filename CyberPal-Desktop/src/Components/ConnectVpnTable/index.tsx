@@ -21,6 +21,14 @@ function ConnectVpnTable() {
         }
     ]);
 
+    const handleOpenvpnInstallation = () => {
+
+    }
+
+    const handleOpenvpnExecution = () => {
+
+    }
+
     return (
         <div className="card profile-content-table">
             <div className="card">
@@ -30,9 +38,9 @@ function ConnectVpnTable() {
                 </DataTable>
             </div>
             <div className='profile-openvpn-buttons' >
-                <Button label='Install Openvpn'  />
+                <Button label='Install Openvpn' onClick={handleOpenvpnInstallation} />
                 <Button label='Openvpn Path'  />
-                <Button label='Connect'  />
+                <Button label='Connect' onClick={handleOpenvpnExecution} />
             </div>
         </div>
     )
