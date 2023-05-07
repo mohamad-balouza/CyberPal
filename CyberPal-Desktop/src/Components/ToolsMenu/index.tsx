@@ -151,6 +151,22 @@ function ToolsMenu() {
 
             <motion.div
                 layout
+                data-isOpen={selectedid == 8}
+                initial={{ borderRadius: 10 }}
+                className="tool-menu-item"
+                onTap={() => setSelectedid(8)}
+            >
+            <motion.div layout className="child">
+                {selectedid == 8 ? 
+                  <WiresharkItemContents /> :
+                  <WiresharkMenuItem />
+                } 
+            </motion.div>
+
+          </motion.div>
+
+            <motion.div
+                layout
                 data-isOpen={selectedid == 9}
                 initial={{ borderRadius: 10 }}
                 className="tool-menu-item"
