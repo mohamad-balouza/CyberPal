@@ -133,6 +133,8 @@ function ToolsMenu() {
 
           </motion.div>
 
+            {/* Zap Will be added back later */}
+          
             {/* <motion.div
                 layout
                 data-isOpen={selectedid == 7}
