@@ -5,7 +5,7 @@ import { spawn } from "child_process";
 
 export const installArachni = async (win, options) => {
     console.log("I'm trying to install Arachni");
-    const arachniDownloadURL = 'https://2.na.dl.arachni.org/win64/Arachni-win64-4.0.5.exe';
+    const arachniDownloadURL = 'https://github.com/Arachni/arachni/releases/download/v1.6.1.3/arachni-1.6.1.3-0.6.1.1-windows-x86_64.exe';
   
     try {
         const downloadedArachni= await download(win, arachniDownloadURL, options);
