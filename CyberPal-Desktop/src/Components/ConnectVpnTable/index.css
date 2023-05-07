@@ -1,5 +1,10 @@
 .profile-openvpn-buttons{
     display: flex;
-    margin-top: 8px;
+    padding: 8px;
     justify-content: space-between;
+    background-color: var(--purple);
+}
+
+.profile-openvpn-buttons .p-button{
+    background-color: var(--lightish_purple);
 }
