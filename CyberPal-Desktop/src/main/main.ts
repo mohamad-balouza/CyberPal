@@ -167,9 +167,9 @@ ipcMain.on('install-nmap', async () => {
   return result;
 });
 
-ipcMain.on('execute-nmap-command', (event, command) => {
-  console.log("listened on execute-nmap-command channel");
-  executeNmapCommand(command);
+ipcMain.on('start-nmap', (event, args) => {
+  console.log("listening on start-nmap channel");
+  executeNmapCommand(args.nmapPath, args.nmapArgs);
 })
 
 // Tcpdump tool
