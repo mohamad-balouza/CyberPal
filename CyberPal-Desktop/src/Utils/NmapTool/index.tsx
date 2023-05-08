@@ -44,3 +44,10 @@ export const executeNmapCommand = (nmapPath: string, nmapArgs: Array<string>) =>
         console.log(`nmap process exited with code ${code}`);
     })
 }
+
+export const stopNmapCommand = () => {
+  if(nmap) {
+      nmap.kill();
+      console.log('nmap stopped');
+  }
+}
