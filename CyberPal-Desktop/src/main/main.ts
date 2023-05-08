@@ -169,7 +169,7 @@ ipcMain.on('install-nmap', async () => {
 
 ipcMain.on('start-nmap', (event, args) => {
   console.log("listening on start-nmap channel");
-  executeNmapCommand(args.nmapPath, args.nmapArgs);
+  executeNmapCommand(args.nmapPath, args.nmapArgs, event);
 })
 
 ipcMain.on('stop-nmap', (event, args) => {
