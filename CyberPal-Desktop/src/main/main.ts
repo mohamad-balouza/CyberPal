@@ -14,7 +14,7 @@ import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
-import { installNmap, executeNmapCommand } from '../Utils/NmapTool';
+import { installNmap, executeNmapCommand, stopNmapCommand } from '../Utils/NmapTool';
 import { executeTcpdumpCommand, installTcpdump, stopTcpdumpCommand } from '../Utils/TcpdumpTool';
 import { executeAircrackCommand, installAircrack, stopAircrackCommand } from '../Utils/AircrackTool';
 import { executeNetcatCommand, installNetcat, stopNetcatCommand } from '../Utils/NetcatTool';
@@ -170,6 +170,11 @@ ipcMain.on('install-nmap', async () => {
 ipcMain.on('start-nmap', (event, args) => {
   console.log("listening on start-nmap channel");
   executeNmapCommand(args.nmapPath, args.nmapArgs);
+})
+
+ipcMain.on('stop-nmap', (event, args) => {
+  console.log("listening on stop-nmap channel");
+  stopNmapCommand();
 })
 
 // Tcpdump tool
