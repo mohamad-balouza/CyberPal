@@ -1,6 +1,7 @@
 import { app } from "electron";
 const fs = require('fs');
 const path = require('path');
+const { spawn } = require('child_process');
 
 function createUserScript(scriptContents: string, scriptName: string, username: string) {
 
@@ -21,4 +22,20 @@ function createUserScript(scriptContents: string, scriptName: string, username: 
   const scriptFilePath = path.join(userScriptsPath, scriptName);
   fs.writeFileSync(scriptFilePath, scriptContents);
   return scriptFilePath;
+}
+
+function executeScriptFile(scriptFilePath: string) {
+  const scriptProcess = spawn('cmd.exe', ['/c', scriptFilePath]);
+
+  scriptProcess.stdout.on('data', (data) => {
+    console.log(`stdout: \${data}`);
+  });
+
+  scriptProcess.stderr.on('data', (data) => {
+    console.error(`stderr: \${data}`);
+  });
+
+  scriptProcess.on('close', (code) => {
+    console.log(`.bat file exited with code \${code}`);
+  });
 }
