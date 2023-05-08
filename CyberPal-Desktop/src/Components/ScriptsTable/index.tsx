@@ -67,7 +67,7 @@ function ScriptsTable() {
                 <div className='openvpn-paths-model-block'>
                     <h3>Enter Script Details</h3>
                     <div className="p-float-label" style={{width: "70%"}}>
-                        <InputText style={{width: "100%"}} id="script_title" value={scriptTitle} onChange={(e) => setScriptTitle(e.target.value)} />
+                        <InputText keyfilter={/^[a-zA-Z0-9\s._-]+$/} style={{width: "100%"}} id="script_title" value={scriptTitle} onChange={(e) => setScriptTitle(e.target.value)} />
                         <label htmlFor="script_title">Script Title</label>
                     </div>
                     <div className="p-float-label" style={{width: "70%"}}>
