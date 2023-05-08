@@ -14,10 +14,21 @@ function ScriptsTable() {
     const [selectedScript, setSelectedScript] = useState(null);
     const user_token = useSelector((state: RootState) => state.userToken.access_token); 
     const token_type = useSelector((state: RootState) => state.userToken.token_type); 
+    const username = useSelector((state: RootState) => state.loggedInUserInfo.username);
     const scripts = useQuery(['user_scripts'],() => getAllScripts(user_token, token_type));
-    const paginatorLeft = <Button type="button" icon="pi pi-play" text />;
-    const paginatorRight = <Button type="button" icon="pi pi-plus" text onClick={() => {console.log(selectedScript)}} />;
 
+    const scriptInformation = {
+        scriptContents: selectedScript.script_content,
+        scriptName: selectedScript.script_title,
+        username: username
+    }
+
+    const handleScriptExecution = () => {
+        window.electron.ipcRenderer.send('run-script', scriptInformation);
+    }
+
+    const paginatorLeft = <Button type="button" icon="pi pi-play" text onClick={handleScriptExecution} />;
+    const paginatorRight = <Button type="button" icon="pi pi-plus" text onClick={() => {console.log(selectedScript)}} />;
 
     return (
         <div className="card profile-content-table">
