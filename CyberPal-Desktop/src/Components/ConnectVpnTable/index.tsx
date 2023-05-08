@@ -43,7 +43,6 @@ function ConnectVpnTable() {
         temp_openvpn_command.openvpnPath = openvpnPath;
         temp_openvpn_command.openvpnArgs.pop();
         temp_openvpn_command.openvpnArgs.push(openvpnFilePath);
-        console.log(temp_openvpn_command);
         setVisible(false);
     }
 
