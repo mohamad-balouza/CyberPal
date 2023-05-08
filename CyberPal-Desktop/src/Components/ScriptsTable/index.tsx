@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { useQuery } from '@tanstack/react-query';
-import { getAllScripts } from 'Apis/Scripts';
+import { createScript, getAllScripts } from 'Apis/Scripts';
 import type { RootState } from '../../Redux/store';
 import { useSelector } from 'react-redux';
 import './index.css';
@@ -12,17 +12,19 @@ import { InputText } from 'primereact/inputtext';
 import { InputTextarea } from 'primereact/inputtextarea';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
+import { useMutation } from '@tanstack/react-query';
 
 
 function ScriptsTable() {
     const [visible, setVisible] = useState(false);
     const [selectedScript, setSelectedScript] = useState(null);
     const [scriptTitle, setScriptTitle] = useState("");
-    const [scriptContent, setScriptContent] = useState("");    
+    const [scriptContent, setScriptContent] = useState("");
     const user_token = useSelector((state: RootState) => state.userToken.access_token); 
     const token_type = useSelector((state: RootState) => state.userToken.token_type); 
     const username = useSelector((state: RootState) => state.loggedInUserInfo.username);
     const scripts = useQuery(['user_scripts'],() => getAllScripts(user_token, token_type));
+    const createScriptMutation = useMutation(([script_data, user_token, token_type]) => createScript(script_data, user_token, token_type));
 
     const scriptInformation = {
         scriptContents: "",
@@ -38,8 +40,11 @@ function ScriptsTable() {
         window.electron.ipcRenderer.send('run-script', scriptInformation);
     }
 
-    const handleAddingScript = () => {
-
+    const handleAddingScript = (values) => {
+        const script_data = JSON.stringify(values);
+        console.log(script_data)
+        createScriptMutation.mutate([script_data, user_token, token_type]);
+        setVisible(false);
     }
 
     const validationSchema = yup.object({
@@ -59,7 +64,8 @@ function ScriptsTable() {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-        alert("submited");
+        handleAddingScript(values);
+        formik.resetForm();
     },
     });
     
@@ -93,7 +99,6 @@ function ScriptsTable() {
                         <small className="p-error">{formik.touched.script_content && formik.errors.script_content}</small>
                     </div>
                     <div style={{width: "100%",display: "flex", justifyContent: "flex-end"}}>
-                        <Button label="Cancel" icon="pi pi-times" onClick={() => setVisible(false)} className="p-button-text" />
                         <Button label="Save" type='submit' icon="pi pi-check" />
                     </div>
                 </form>
