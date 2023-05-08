@@ -15,8 +15,8 @@ import { InputTextarea } from 'primereact/inputtextarea';
 function ScriptsTable() {
     const [visible, setVisible] = useState(false);
     const [selectedScript, setSelectedScript] = useState(null);
-    const[scriptTitle, setScriptTitle] = useState("");
-    const[scriptContent, setScriptContent] = useState("");    
+    const [scriptTitle, setScriptTitle] = useState("");
+    const [scriptContent, setScriptContent] = useState("");    
     const user_token = useSelector((state: RootState) => state.userToken.access_token); 
     const token_type = useSelector((state: RootState) => state.userToken.token_type); 
     const username = useSelector((state: RootState) => state.loggedInUserInfo.username);
@@ -44,13 +44,6 @@ function ScriptsTable() {
     const paginatorLeft = <Button type="button" icon="pi pi-play" text onClick={handleScriptExecution} />;
     const paginatorRight = <Button type="button" icon="pi pi-plus" text onClick={() => setVisible(true)} />;
 
-    const footerContent = (
-        <div>
-            <Button label="Cancel" icon="pi pi-times" onClick={() => setVisible(false)} className="p-button-text" />
-            <Button label="Save" icon="pi pi-check" onClick={() => setVisible(false)}  />
-        </div>
-    );
-
     return (
         <div className="card profile-content-table">
             <div className="card">
@@ -63,7 +56,7 @@ function ScriptsTable() {
                     <Column field="script_content" header="Content" style={{ width: '60%' }}></Column>
                 </DataTable>
             </div>
-            <Dialog header="Script Creation" visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)} footer={footerContent}>
+            <Dialog header="Script Creation" visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)}>
                 <div className='openvpn-paths-model-block'>
                     <h3>Enter Script Details</h3>
                     <div className="p-float-label" style={{width: "70%"}}>
@@ -73,6 +66,10 @@ function ScriptsTable() {
                     <div className="p-float-label" style={{width: "70%"}}>
                         <InputTextarea rows={7} style={{width: "100%"}} id="script_contents" value={scriptContent} onChange={(e) => setScriptContent(e.target.value)} />
                         <label htmlFor="script_contents">Script Contents</label>
+                    </div>
+                    <div style={{width: "100%",display: "flex", justifyContent: "flex-end"}}>
+                        <Button label="Cancel" icon="pi pi-times" onClick={() => setVisible(false)} className="p-button-text" />
+                        <Button label="Save" type='submit' icon="pi pi-check" onClick={() => setVisible(false)}  />
                     </div>
                 </div>
             </Dialog>
