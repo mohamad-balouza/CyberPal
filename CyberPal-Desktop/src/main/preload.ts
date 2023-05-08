@@ -23,6 +23,7 @@ const electronHandler = {
     },
     send: ipcRenderer.send,
     on: ipcRenderer.on,
+    remove: ipcRenderer.removeListener,
   },
 };
 

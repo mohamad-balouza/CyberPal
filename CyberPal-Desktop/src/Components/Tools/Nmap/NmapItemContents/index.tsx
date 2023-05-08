@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ScrollPanel } from 'primereact/scrollpanel';
 import './index.css';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
+import { Dialog } from 'primereact/dialog';
 
 
 function NmapItemContents() {
+  const [visible, setVisible] = useState(false);
   const [installingNmap, setInstallingNmap] = useState(false);
   const [nmapRunning, setNmapRunning] = useState(false);
   const [nmapPath, setNmapPath] = useState("");
   const [nmapArgs, setNmapArgs] = useState("");
+  const [output, setOutput] = useState("");
+  const [downloadProgress, setDownloadProgress] = useState(0);
 
   const temp_nmap_command = {
     nmapPath: "C:\\Users\\void\\Downloads\\nmap_trial_license\\nmap.exe",
@@ -47,6 +51,7 @@ function NmapItemContents() {
             <h3 style={{width: "100%",}}>Nmap</h3>
             <Button label={installingNmap ? "installing" : "install Nmap"} onClick={handleNmapInstallation} />
             <Button label="Execute Nmap" onClick={handleNmapCommandExecution} />
+            <Button label="Show Output" icon="pi pi-external-link" onClick={() => setVisible(true)} />
             <div className="p-float-label"  style={{width: "100%"}}>
                 <InputText id="nmap-path" value={nmapPath} onChange={(e) => setNmapPath(e.target.value)} style={{width: "100%"}} />
                 <label htmlFor="nmap-path">Nmap Path</label>
@@ -56,6 +61,9 @@ function NmapItemContents() {
                 <label htmlFor="nmap-args">Nmap Arguments</label>
             </div>
         </div>
+        <Dialog header="Nmap Output" visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)}>
+            {output}
+        </Dialog>
     </ScrollPanel>
   )
 }
