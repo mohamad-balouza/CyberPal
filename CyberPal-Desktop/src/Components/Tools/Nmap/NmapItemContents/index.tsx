@@ -45,6 +45,20 @@ function NmapItemContents() {
     setNmapRunning(!nmapRunning);
   }
 
+  useEffect(() => {
+
+    const handleOutput = (event, { type, data }) => {
+      setOutput(prevOutput => prevOutput + `\n[${type.toUpperCase()}] ${data}`);
+    };
+
+    window.electron.ipcRenderer.on('nmap-output', handleOutput);
+  
+    return () => {
+      window.electron.ipcRenderer.remove('nmap-output', handleOutput);
+    }
+  }, [])
+  
+
   return (
     <ScrollPanel style={{ width: '100%', height: '250px'}} className="tool-panel-block">
         <div style={{margin: "20px", display: 'flex', flexWrap: "wrap", gap: "24px", justifyContent: "center", textAlign: "center"}}>
