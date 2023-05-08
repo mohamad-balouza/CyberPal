@@ -27,17 +27,26 @@ function ConnectVpnTable() {
         }
     ]);
 
-    const footerContent = (
-        <div>
-            <Button label="Cancel" icon="pi pi-times" onClick={() => setVisible(false)} className="p-button-text" />
-            <Button label="Save" icon="pi pi-check" onClick={() => setVisible(false)} autoFocus />
-        </div>
-    )
-
     const temp_openvpn_command = {
         openvpnPath: "C:\\Program Files\\OpenVPN Connect\\OpenVPNConnect.exe",
         openvpnArgs: []
     }
+
+    const footerContent = (
+        <div>
+            <Button label="Cancel" icon="pi pi-times" onClick={() => setVisible(false)} className="p-button-text" />
+            <Button label="Save" icon="pi pi-check" onClick={() => updateOpenvpnCommand()}  />
+        </div>
+    )
+
+    const updateOpenvpnCommand = () => {
+        temp_openvpn_command.openvpnPath = openvpnPath;
+        temp_openvpn_command.openvpnArgs.pop();
+        temp_openvpn_command.openvpnArgs.push(openvpnFilePath);
+        console.log(temp_openvpn_command);
+        setVisible(false);
+    }
+
 
 
     const handleOpenvpnInstallation = () => {
