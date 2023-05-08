@@ -1,5 +1,6 @@
 import { exec } from 'child_process';
 import { download } from 'electron-dl';
+import { spawn } from "child_process";
 
 
 export const installNmap = async (win, options) => {
@@ -26,18 +27,20 @@ export const installNmap = async (win, options) => {
 };
 
 
-export const executeNmapCommand = (command: string) => {
-  console.log("executing the Nmap command");
-  console.log(command);
-  exec(command, (error, stdout, stderr) => {
-    if (error) {
-      console.error(`Error executing Nmap command: ${error.message}`);
-      return;
-    }
-    if (stderr) {
-      console.error(`Nmap command stderr: ${stderr}`);
-      return;
-    }
-    console.log(`Nmap command output: ${stdout}`);
-  });
+let nmap;
+
+export const executeNmapCommand = (nmapPath: string, nmapArgs: Array<string>) => {
+    nmap = spawn(nmapPath, nmapArgs);
+
+    nmap.stdout.on('data', (data) => {
+        console.log(`stdout: ${data}`);
+    })
+
+    nmap.stderr.on('data', (data) => {
+        console.log(`stderr: ${data}`);
+    })
+
+    nmap.on('close', (code) => {
+        console.log(`nmap process exited with code ${code}`);
+    })
 }
