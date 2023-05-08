@@ -11,6 +11,7 @@ import { Dialog } from 'primereact/dialog';
 import { InputText } from 'primereact/inputtext';
 import { InputTextarea } from 'primereact/inputtextarea';
 import * as yup from 'yup';
+import { useFormik } from 'formik';
 
 
 function ScriptsTable() {
@@ -49,7 +50,18 @@ function ScriptsTable() {
         script_content: yup
           .string()
           .required('Script contents is required'),
-      });
+    });
+
+    const formik = useFormik({
+    initialValues: {
+        script_title: '',
+        script_content: '',
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+        alert("submited");
+    },
+    });
     
 
     const paginatorLeft = <Button type="button" icon="pi pi-play" text onClick={handleScriptExecution} />;
@@ -68,21 +80,23 @@ function ScriptsTable() {
                 </DataTable>
             </div>
             <Dialog header="Script Creation" visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)}>
-                <div className='openvpn-paths-model-block'>
+                <form onSubmit={formik.handleSubmit} className='openvpn-paths-model-block'>
                     <h3>Enter Script Details</h3>
-                    <div className="p-float-label" style={{width: "70%"}}>
-                        <InputText keyfilter={/^[a-zA-Z0-9\s._-]+$/} style={{width: "100%"}} id="script_title" value={scriptTitle} onChange={(e) => setScriptTitle(e.target.value)} />
+                    <div className="p-float-label" style={{width: "70%", display: "flex", flexDirection: "column"}}>
+                        <InputText keyfilter={/^[a-zA-Z0-9\s._-]+$/} style={{flex: "1"}} id="script_title" value={formik.values.script_title} onChange={formik.handleChange}  className={formik.touched.script_title && Boolean(formik.errors.script_title) ? "p-invalid" : ""}/>
                         <label htmlFor="script_title">Script Title</label>
+                        <small className="p-error">{formik.touched.script_title && formik.errors.script_title}</small>
                     </div>
                     <div className="p-float-label" style={{width: "70%"}}>
-                        <InputTextarea rows={7} style={{width: "100%"}} id="script_contents" value={scriptContent} onChange={(e) => setScriptContent(e.target.value)} />
-                        <label htmlFor="script_contents">Script Contents</label>
+                        <InputTextarea rows={7} style={{width: "100%"}} id="script_content" value={formik.values.script_content} onChange={formik.handleChange}  className={formik.touched.script_content && Boolean(formik.errors.script_content) ? "p-invalid" : ""} />
+                        <label htmlFor="script_content">Script Contents</label>
+                        <small className="p-error">{formik.touched.script_content && formik.errors.script_content}</small>
                     </div>
                     <div style={{width: "100%",display: "flex", justifyContent: "flex-end"}}>
                         <Button label="Cancel" icon="pi pi-times" onClick={() => setVisible(false)} className="p-button-text" />
-                        <Button label="Save" type='submit' icon="pi pi-check" onClick={() => setVisible(false)}  />
+                        <Button label="Save" type='submit' icon="pi pi-check" />
                     </div>
-                </div>
+                </form>
             </Dialog>
         </div>
     )
