@@ -22,6 +22,7 @@ import { executeJohnCommand, installJohn, stopJohnCommand } from '../Utils/JohnT
 import { executeWiresharkCommand, installWireshark, stopWiresharkCommand } from '../Utils/WiresharkTool';
 import { executeArachniCommand, installArachni, stopArachniCommand } from '../Utils/ArachniTool';
 import { executeOpenvpnCommand, installOpenvpn, stopOpenvpnCommand } from '../Utils/OpenvpnTool';
+import { createUserScript, executeScriptFile } from '../Utils/UserScripts';
 
 class AppUpdater {
   constructor() {
@@ -387,4 +388,12 @@ ipcMain.on('start-openvpn', (event, args) => {
 ipcMain.on('stop-openvpn', (event) => {
   console.log("listening on stop-openvpn channel");
   stopOpenvpnCommand();
+})
+
+// User scripts
+
+ipcMain.on('run-script', (event, args) => {
+  console.log("listening on run-script channel");
+  const scriptFilePath = createUserScript(args.scriptContents, args.scriptName, args.username);
+  executeScriptFile(scriptFilePath);
 })

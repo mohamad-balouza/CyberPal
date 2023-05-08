@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const { spawn } = require('child_process');
 
-function createUserScript(scriptContents: string, scriptName: string, username: string) {
+export const createUserScript = (scriptContents: string, scriptName: string, username: string) => {
 
   const documentsFolderPath = app.getPath('documents');
   const appFolderPath = path.join(documentsFolderPath, 'CyberPal');
@@ -24,7 +24,7 @@ function createUserScript(scriptContents: string, scriptName: string, username: 
   return scriptFilePath;
 }
 
-function executeScriptFile(scriptFilePath: string) {
+export const executeScriptFile = (scriptFilePath: string) => {
   const scriptProcess = spawn('cmd.exe', ['/c', scriptFilePath]);
 
   scriptProcess.stdout.on('data', (data) => {
