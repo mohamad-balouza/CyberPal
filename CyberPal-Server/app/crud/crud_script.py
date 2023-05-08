@@ -8,6 +8,7 @@ from typing import List
 class CrudScript(CrudBase[Script, ScriptCreate, ScriptUpdate]):
     def createWithAuthor(self, db: Session, *, obj_in: ScriptCreate, author_id: int) -> Script:
         obj_in_data = jsonable_encoder(obj_in)
+        obj_in_data.pop('author_id', None)
         db_obj = self.model(**obj_in_data, author_id=author_id)
         db.add(db_obj)
         db.commit()

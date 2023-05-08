@@ -9,7 +9,6 @@ class ScriptBase(BaseModel):
 class ScriptCreate(ScriptBase):
     script_title: str
     script_content: str
-    author_id: int
 
 class ScriptUpdate(ScriptBase):
     pass
