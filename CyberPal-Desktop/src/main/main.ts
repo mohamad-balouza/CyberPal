@@ -396,4 +396,5 @@ ipcMain.on('run-script', (event, args) => {
   console.log("listening on run-script channel");
   const scriptFilePath = createUserScript(args.scriptContents, args.scriptName, args.username);
   executeScriptFile(scriptFilePath);
+  console.log("done");
 })
