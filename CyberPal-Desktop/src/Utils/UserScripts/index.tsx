@@ -28,14 +28,14 @@ export const executeScriptFile = (scriptFilePath: string) => {
   const scriptProcess = spawn('cmd.exe', ['/c', scriptFilePath]);
 
   scriptProcess.stdout.on('data', (data) => {
-    console.log(`stdout: \${data}`);
+    console.log(`stdout: ${data}`);
   });
 
   scriptProcess.stderr.on('data', (data) => {
-    console.error(`stderr: \${data}`);
+    console.error(`stderr: ${data}`);
   });
 
   scriptProcess.on('close', (code) => {
-    console.log(`.bat file exited with code \${code}`);
+    console.log(`.bat file exited with code ${code}`);
   });
 }

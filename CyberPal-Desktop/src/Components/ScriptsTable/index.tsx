@@ -18,12 +18,16 @@ function ScriptsTable() {
     const scripts = useQuery(['user_scripts'],() => getAllScripts(user_token, token_type));
 
     const scriptInformation = {
-        scriptContents: selectedScript.script_content,
-        scriptName: selectedScript.script_title,
+        scriptContents: "",
+        scriptName: "",
         username: username
     }
 
     const handleScriptExecution = () => {
+        if(selectedScript) {
+            scriptInformation.scriptContents = selectedScript.script_content;
+            scriptInformation.scriptName = selectedScript.script_title;
+        }
         window.electron.ipcRenderer.send('run-script', scriptInformation);
     }
 
