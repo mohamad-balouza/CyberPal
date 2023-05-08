@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { createScript, getAllScripts } from 'Apis/Scripts';
 import type { RootState } from '../../Redux/store';
 import { useSelector } from 'react-redux';
@@ -20,11 +20,19 @@ function ScriptsTable() {
     const [selectedScript, setSelectedScript] = useState(null);
     const [scriptTitle, setScriptTitle] = useState("");
     const [scriptContent, setScriptContent] = useState("");
+    
     const user_token = useSelector((state: RootState) => state.userToken.access_token); 
     const token_type = useSelector((state: RootState) => state.userToken.token_type); 
     const username = useSelector((state: RootState) => state.loggedInUserInfo.username);
+    
+    const queryClient = useQueryClient()
     const scripts = useQuery(['user_scripts'],() => getAllScripts(user_token, token_type));
-    const createScriptMutation = useMutation(([script_data, user_token, token_type]) => createScript(script_data, user_token, token_type));
+    const createScriptMutation = useMutation({
+        mutationFn: ([script_data, user_token, token_type]) => createScript(script_data, user_token, token_type),
+        onSuccess: () => {
+            return queryClient.invalidateQueries(["user_scripts"]);
+        }
+    });
 
     const scriptInformation = {
         scriptContents: "",

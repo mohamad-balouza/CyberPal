@@ -47,7 +47,6 @@ function ConnectVpnTable() {
     }
 
 
-
     const handleOpenvpnInstallation = () => {
         try {
             window.electron.ipcRenderer.send('install-openvpn');
