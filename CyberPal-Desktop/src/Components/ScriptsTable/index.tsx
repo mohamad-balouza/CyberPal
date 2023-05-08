@@ -10,6 +10,7 @@ import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
 import { InputText } from 'primereact/inputtext';
 import { InputTextarea } from 'primereact/inputtextarea';
+import * as yup from 'yup';
 
 
 function ScriptsTable() {
@@ -39,6 +40,16 @@ function ScriptsTable() {
     const handleAddingScript = () => {
 
     }
+
+    const validationSchema = yup.object({
+        script_title: yup
+          .string()
+          .required('Script Title is required')
+          .min(4, 'Too short!'),
+        script_content: yup
+          .string()
+          .required('Script contents is required'),
+      });
     
 
     const paginatorLeft = <Button type="button" icon="pi pi-play" text onClick={handleScriptExecution} />;
