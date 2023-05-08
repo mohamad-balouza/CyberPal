@@ -29,15 +29,17 @@ export const installNmap = async (win, options) => {
 
 let nmap;
 
-export const executeNmapCommand = (nmapPath: string, nmapArgs: Array<string>) => {
+export const executeNmapCommand = (nmapPath: string, nmapArgs: Array<string>, event: Electron.IpcMainEvent) => {
     nmap = spawn(nmapPath, nmapArgs);
 
     nmap.stdout.on('data', (data) => {
         console.log(`stdout: ${data}`);
+        event.sender.send('nmap-output', {type: 'stdout', data: data.toString()});
     })
 
     nmap.stderr.on('data', (data) => {
         console.log(`stderr: ${data}`);
+        event.sender.send('nmap-output', {type: 'stderr', data: data.toString()});
     })
 
     nmap.on('close', (code) => {
