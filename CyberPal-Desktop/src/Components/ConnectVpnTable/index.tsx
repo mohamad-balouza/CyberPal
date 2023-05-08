@@ -4,11 +4,13 @@ import { Column } from 'primereact/column';
 import './index.css';
 import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
+import { InputText } from 'primereact/inputtext';
 
 
 function ConnectVpnTable() {
     const[openvpnRunning, setOpenvpnRunning] = useState(false);
-    const[userfiledb, setUserfiledb] = useState([]);
+    const[openvpnPath, setOpenvpnPath] = useState("");
+    const[openvpnFilePath, setOpenvpnFilePath] = useState("");    
     const[visible, setVisible] = useState(false);
     const[userfile, setUserfile] = useState([
         {
@@ -67,7 +69,17 @@ function ConnectVpnTable() {
                 <Button label='Install Openvpn' onClick={handleOpenvpnInstallation} />
                 <Button label='Openvpn Path' onClick={() => setVisible(true)} />
                 <Dialog header="Openvpn Path" visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)} footer={footerContent}>
-                    <h1>Hello</h1>
+                    <div className='openvpn-paths-model-block'>
+                        <h3>Enter the Following Paths</h3>
+                        <div className="p-float-label" style={{width: "70%"}}>
+                            <InputText style={{width: "100%"}} id="openvpn-command-path" value={openvpnPath} onChange={(e) => setOpenvpnPath(e.target.value)} />
+                            <label htmlFor="openvpn-command-path">Openvpn Command Path</label>
+                        </div>
+                        <div className="p-float-label" style={{width: "70%"}}>
+                            <InputText style={{width: "100%"}} id="openvpn-file-path" value={openvpnFilePath} onChange={(e) => setOpenvpnFilePath(e.target.value)} />
+                            <label htmlFor="openvpn-file-path">Openvpn File Path</label>
+                        </div>
+                    </div>
                 </Dialog>
                 <Button label={openvpnRunning ? "Disconnect" : "Connect"} onClick={handleOpenvpnExecution} />
             </div>

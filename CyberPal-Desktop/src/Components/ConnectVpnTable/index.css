@@ -8,3 +8,10 @@
 .profile-openvpn-buttons .p-button{
     background-color: var(--lightish_purple);
 }
+
+.openvpn-paths-model-block{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
