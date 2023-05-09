@@ -41,12 +41,8 @@ function NmapItemContents() {
     if(nmapRunning){
       window.electron.ipcRenderer.send('stop-nmap');
     }else{
-      console.log(temp_nmap_command);
-      // window.electron.ipcRenderer.send('start-nmap', temp_nmap_command);
-
       try {
         const output = await window.electron.ipcRenderer.invoke('start-nmap', temp_nmap_command);
-        console.log("Nmap output:", output);
         setOutput(output);
       } catch (err) {
         console.error("Error executing Nmap command:", err.message);
@@ -55,23 +51,6 @@ function NmapItemContents() {
     }
     setNmapRunning(!nmapRunning);
   }
-  
-  useEffect(() => {
-    
-    console.log("im here")
-    const handleOutput = () => {
-      console.log("I'm in handle output")
-      // setOutput(output + `\n[${type.toUpperCase()}] ${data}`);
-    };
-    
-    window.electron.ipcRenderer.on('start-nmap', function(event, arg){
-      console.log(arg);
-    });
-    
-    // return () => {
-    //   window.electron.ipcRenderer.remove('start-nmap', handleOutput);
-    // }
-  }, [])
   
 
   return (
@@ -91,7 +70,7 @@ function NmapItemContents() {
             </div>
         </div>
         <Dialog header="Nmap Output" visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)}>
-            {output}
+            {output ? output : "Run the Command to Get your output"}
         </Dialog>
     </ScrollPanel>
   )
