@@ -10,19 +10,39 @@ import { useFormik } from 'formik';
 import './index.css';
 import { createUser } from '../../Apis/Auth';
 import { useMutation } from '@tanstack/react-query';
+import { Dialog } from 'primereact/dialog';
+import { updateUser } from '../../Apis/Users';
+import type { RootState } from '../../Redux/store';
+import { useSelector } from 'react-redux';
 
 
 function UserFormPage() {
   const [btnClicked, setBtnClicked] = useState('');
+  const [userid, setUserid] = useState(0);
+  const [visible, setVisible] = useState(false); 
+  const [userData, setUserData] = useState(null);
+  const user_token = useSelector((state: RootState) => state.userToken.access_token); 
+  const token_type = useSelector((state: RootState) => state.userToken.token_type); 
   const toast = useRef(null);
+  let finished_user_data;
 
   const createUserMutation = useMutation(createUser,{
     onSuccess: () => showUserCreatedSuccessfully(),
     onError: () => showUserNotCreated(),
   });
 
+  const updateUserMutation = useMutation({
+    mutationFn: ([userid, user_data, user_token, token_type]) => updateUser(userid, user_data, user_token, token_type),
+    onSuccess:  () => showUserUpdatedSuccessfully(),
+    onError: () => showUserNotCreated(),
+  })
+
   const showUserCreatedSuccessfully = () => {
     toast.current.show({severity:'success', summary: 'Success', detail:'User Created Successfully!', life: 2000});
+  }
+
+  const showUserUpdatedSuccessfully = () => {
+    toast.current.show({severity:'success', summary: 'Success', detail:'User Updated Successfully!', life: 2000});
   }
 
   const showUserNotCreated = () => {
@@ -61,14 +81,29 @@ function UserFormPage() {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       if(btnClicked == "add user"){
-        const user_data = JSON.stringify(values);
-        createUserMutation.mutate(user_data);
+        finished_user_data = JSON.stringify(values);
+        createUserMutation.mutate(finished_user_data);
         formik.resetForm();
       } else {
-        alert("from update");
+        const user_data = JSON.stringify(values);
+        setUserData(user_data);
+        setVisible(true);
       }
     },
   });
+
+  const handleUpdateUser = () => {
+    console.log(userData);
+    updateUserMutation.mutate([userid, userData, user_token, token_type]);
+
+  }
+
+  const footerContent = (
+    <div>
+        <Button label="No" icon="pi pi-times" onClick={() => setVisible(false)} className="p-button-text" />
+        <Button label="Yes" icon="pi pi-check" onClick={handleUpdateUser} autoFocus />
+    </div>
+  );
 
   return (
     <div className='admin-page-block'>
@@ -113,6 +148,13 @@ function UserFormPage() {
                 <Button label='Update User' style={{flex: "1"}} type='submit' onClick={(event) => setBtnClicked("update user")} />
             </div>
         </form>
+        <Dialog header="Update User" visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)} footer={footerContent}>
+                <h3>Provide the user id</h3>
+                <div className="p-float-label" style={{width: "100%", display: "flex", flexDirection: "column", marginTop: "24px"}}>
+                    <InputText id="username" value={userid} onChange={(e) => setUserid(e.target.value)}  style={{flex: "1"}} />
+                    <label htmlFor="username">Username</label>
+                </div>
+        </Dialog>
       </div>
     </div>
   )

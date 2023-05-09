@@ -24,16 +24,16 @@ function AdminNavbar() {
   return (
     <div className='admin-navbar'>
         <div className='admin-search-input'>
-            <div className="p-input-icon-left">
+            {/* <div className="p-input-icon-left">
                 <i className="pi pi-search" />
                 <InputText placeholder="Search" />
-            </div>
+            </div> */}
         </div>
 
         <div className='admin-navigation-icons'>
-            <i className='pi pi-moon' style={{cursor: "pointer"}} />
-            <i className='pi pi-cog' style={{cursor: "pointer"}} />
-            <i className='pi pi-sign-out' style={{cursor: "pointer"}} onClick={handleLogout} />
+            {/* <i className='pi pi-moon' style={{cursor: "pointer"}} />
+            <i className='pi pi-cog' style={{cursor: "pointer"}} /> */}
+            <i className='pi pi-sign-out' style={{cursor: "pointer", fontSize: "1.3rem"}} onClick={handleLogout} />
         </div>
     </div>
   )
