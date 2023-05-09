@@ -6,7 +6,6 @@ import { Button } from 'primereact/button';
 
 
 function TcpdumpItemContents() {
-  const [output, setOutput] = useState("");
   const [tcpdumpRunning, setTcpdumpRunning] = useState(false);
   const [tcpdumpPath, setTcpdumpPath] = useState("");
   const [tcpdumpArgs, setTcpdumpArgs] = useState("");
@@ -16,21 +15,14 @@ function TcpdumpItemContents() {
     tcpdumpArgs: ['-l']
   }
 
-  const handleTcpdumpExecution = async () => {
+  const handleTcpdumpExecution = () => {
     if(tcpdumpRunning){
       window.electron.ipcRenderer.send('stop-tcpdump');
     }else{
       console.log(temp_tcpdump_command);
-      // window.electron.ipcRenderer.send('start-tcpdump', temp_tcpdump_command);
-      setTcpdumpRunning(!tcpdumpRunning);
-      try {
-        const output = await window.electron.ipcRenderer.invoke('start-tcpdump', temp_tcpdump_command);
-        console.log(output);
-        setOutput(output);
-      } catch (err) {
-        console.error("Error executing Tcpdump command:", err.message);
-      }
+      window.electron.ipcRenderer.send('start-tcpdump', temp_tcpdump_command);
     }
+    setTcpdumpRunning(!tcpdumpRunning);
   }
 
   const handleTcpdumpInstallation = async () => {

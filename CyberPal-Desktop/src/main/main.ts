@@ -202,18 +202,14 @@ ipcMain.on('install-tcpdump', async () => {
   return result;
 });
 
-ipcMain.handle('start-tcpdump', async (event, args) => {
+ipcMain.on('start-tcpdump', (event, args) => {
   console.log("listening on start-tcpdump channel");
-  // executeTcpdumpCommand(args.tcpdumpPath, args.tcpdumpArgs);
-  const result = await executeTcpdumpCommand(args.tcpdumpPath, args.tcpdumpArgs);
-  console.log(result);
-  return result
+  executeTcpdumpCommand(args.tcpdumpPath, args.tcpdumpArgs);
 })
 
-ipcMain.handle('stop-tcpdump', (event, args) => {
+ipcMain.on('stop-tcpdump', (event, args) => {
   console.log("listening on stop-tcpdump channel");
-  const result = stopTcpdumpCommand();
-  return result
+  stopTcpdumpCommand();
 })
 
 // Aircrack tool

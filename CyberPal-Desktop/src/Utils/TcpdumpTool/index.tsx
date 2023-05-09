@@ -5,55 +5,27 @@ import extract = require('extract-zip');
 import path = require('path');
 
 let tcpdump;
-let output = '';
 
 export const executeTcpdumpCommand = (tcpdumpPath: string, tcpdumpArgs: Array<string>) => {
     tcpdump = spawn(tcpdumpPath, tcpdumpArgs);
 
-    return new Promise((resolve, reject) => {
-  
-      tcpdump.stdout.on('data', (data) => {
+    tcpdump.stdout.on('data', (data) => {
         console.log(`stdout: ${data}`);
-        output += `[STDOUT] ${data}\n`;
-      });
-  
-      tcpdump.stderr.on('data', (data) => {
+    })
+
+    tcpdump.stderr.on('data', (data) => {
         console.log(`stderr: ${data}`);
-        output += `[STDERR] ${data}\n`;
-      });
-  
-      tcpdump.on('close', (code) => {
+    })
+
+    tcpdump.on('close', (code) => {
         console.log(`tcpdump process exited with code ${code}`);
-        if (code === 0) {
-          resolve(output);
-        } else {
-          reject(new Error(`Tcpdump process exited with code ${code}`));
-        }
-      });
-    });
+    })
 }
-
-// export const executeTcpdumpCommand = (tcpdumpPath: string, tcpdumpArgs: Array<string>) => {
-//     tcpdump = spawn(tcpdumpPath, tcpdumpArgs);
-
-//     tcpdump.stdout.on('data', (data) => {
-//         console.log(`stdout: ${data}`);
-//     })
-
-//     tcpdump.stderr.on('data', (data) => {
-//         console.log(`stderr: ${data}`);
-//     })
-
-//     tcpdump.on('close', (code) => {
-//         console.log(`tcpdump process exited with code ${code}`);
-//     })
-// }
 
 export const stopTcpdumpCommand = () => {
     if(tcpdump) {
         tcpdump.kill();
         console.log('tcpdump stopped');
-        return output;
     }
 }
 
