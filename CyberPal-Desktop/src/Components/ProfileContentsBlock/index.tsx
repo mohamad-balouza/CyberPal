@@ -9,9 +9,9 @@ import ConnectVpnTable from 'Components/ConnectVpnTable';
 function ProfileContentsBlock() {
   return (
     <TabView className='profile-tabview-block'>
-        <TabPanel header="Schedules" className='schedules-panel'>
+        {/* <TabPanel header="Schedules" className='schedules-panel'>
           <SchedulesTable />
-        </TabPanel>
+        </TabPanel> */}
         <TabPanel header="Scripts">
           <ScriptsTable />
         </TabPanel>

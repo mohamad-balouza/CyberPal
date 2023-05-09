@@ -54,10 +54,10 @@ function Navbar() {
         <Image src={Logo} width="60" />
         <div className='navigation'>
             <a className={current_page == "Home" ? "chosen-one" : ""} onClick={handleHomeNavigation}>Home</a>
-            <a>About</a>
+            {/* <a>About</a> */}
             <a className={current_page == "Tools" ? "chosen-one" : ""} onClick={handleToolsNavigation}>Tools</a>
-            <a>Advanced</a>
-            <a>Contact</a>
+            {/* <a>Advanced</a> */}
+            {/* <a>Contact</a> */}
         </div>
         {
           user_is_logged_in ?

@@ -1,0 +1,17 @@
+body .profile-content-table .p-datatable .p-datatable-thead th{
+    background-color: var(--purple);
+    color: white;
+}
+
+body .profile-content-table .p-datatable tr{
+    background-color: var(--lightish_purple);
+    color: white;
+}
+
+body .profile-content-table .p-datatable .p-component  {
+    background-color: var(--lightish_purple);
+}
+
+body .profile-content-table .p-datatable .p-paginator {
+    background-color: var(--purple);
+}

@@ -10,7 +10,9 @@ function ExtraInfoCard(props) {
             <p>{props.description}</p>
             <Button label={props.button_label} />
         </div>
-        <div className={`card-image-block image-${props.color}`}></div>
+        <div className={`card-image-block image-${props.color}`} style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+          <span className={`pi ${props.icon}`} style={{color: `${props.color}`, fontSize: "2.5rem"}}></span>
+        </div>
     </div>  
   )
 }

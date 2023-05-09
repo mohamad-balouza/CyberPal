@@ -18,7 +18,7 @@ function ProfileInfoBlock() {
         <div className='profile-details-block'>
             <h3>{username}</h3>
             <p>{user_type}</p>
-            <a>Edit</a>
+            {/* <a>Edit</a> */}
         </div>
     </div>
   )
