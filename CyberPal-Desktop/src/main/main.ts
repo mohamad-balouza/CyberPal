@@ -84,6 +84,7 @@ const createWindow = async () => {
     height: 728,
     icon: getAssetPath('icon.png'),
     webPreferences: {
+      nodeIntegration: true,
       preload: app.isPackaged
         ? path.join(__dirname, 'preload.js')
         : path.join(__dirname, '../../.erb/dll/preload.js'),
@@ -167,9 +168,11 @@ ipcMain.on('install-nmap', async () => {
   return result;
 });
 
-ipcMain.on('start-nmap', (event, args) => {
+ipcMain.handle('start-nmap', async (event, args) => {
   console.log("listening on start-nmap channel");
-  executeNmapCommand(args.nmapPath, args.nmapArgs, event);
+  const result = await executeNmapCommand(args.nmapPath, args.nmapArgs);
+  console.log(result);
+  return result
 })
 
 ipcMain.on('stop-nmap', (event, args) => {

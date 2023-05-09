@@ -29,22 +29,49 @@ export const installNmap = async (win, options) => {
 
 let nmap;
 
-export const executeNmapCommand = (nmapPath: string, nmapArgs: Array<string>, event: Electron.IpcMainEvent) => {
-    nmap = spawn(nmapPath, nmapArgs);
+// export const executeNmapCommand = async (nmapPath: string, nmapArgs: Array<string>) => {
+//     nmap = spawn(nmapPath, nmapArgs);
+
+//     nmap.stdout.on('data', (data) => {
+//         console.log(`stdout: ${data}`);
+//         // event.sender.send('nmap-output', {type: "stdout", data: data});
+//     })
+
+//     nmap.stderr.on('data', (data) => {
+//         console.log(`stderr: ${data}`);
+//         // event.sender.send('nmap-output', {type: "stderr", data: data});
+//     })
+
+//     nmap.on('close', (code) => {
+//         console.log(`nmap process exited with code ${code}`);
+//     })
+// }
+
+export const executeNmapCommand = async (nmapPath: string, nmapArgs: Array<string>) => {
+  nmap = spawn(nmapPath, nmapArgs);
+
+  return new Promise((resolve, reject) => {
+    let output = '';
 
     nmap.stdout.on('data', (data) => {
-        console.log(`stdout: ${data}`);
-        event.sender.send('nmap-output', {type: 'stdout', data: data.toString()});
-    })
+      console.log(`stdout: ${data}`);
+      output += `[STDOUT] ${data}\n`;
+    });
 
     nmap.stderr.on('data', (data) => {
-        console.log(`stderr: ${data}`);
-        event.sender.send('nmap-output', {type: 'stderr', data: data.toString()});
-    })
+      console.log(`stderr: ${data}`);
+      output += `[STDERR] ${data}\n`;
+    });
 
     nmap.on('close', (code) => {
-        console.log(`nmap process exited with code ${code}`);
-    })
+      console.log(`nmap process exited with code ${code}`);
+      if (code === 0) {
+        resolve(output);
+      } else {
+        reject(new Error(`Nmap process exited with code ${code}`));
+      }
+    });
+  });
 }
 
 export const stopNmapCommand = () => {

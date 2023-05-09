@@ -16,7 +16,7 @@ function NmapItemContents() {
   const [downloadProgress, setDownloadProgress] = useState(0);
 
   const temp_nmap_command = {
-    nmapPath: "C:\\Users\\void\\Downloads\\nmap_trial_license\\nmap.exe",
+    nmapPath: "C:\\Program Files (x86)\\Nmap\\nmap.exe",
     nmapArgs: ["--version"]
   }
 
@@ -31,31 +31,46 @@ function NmapItemContents() {
     }
   };
 
-  const handleNmapCommandExecution = () => {
-    let nmap_path = nmapPath.split("\\");
-    let nmap_path_fixed = nmap_path.join("\\\\");
-    temp_nmap_command.nmapPath = nmap_path_fixed;
+  const handleNmapCommandExecution = async () => {
+    if(nmapPath){
+      let nmap_path = nmapPath.split("\\");
+      let nmap_path_fixed = nmap_path.join("\\\\");
+      temp_nmap_command.nmapPath = nmap_path_fixed;
+    }
 
     if(nmapRunning){
       window.electron.ipcRenderer.send('stop-nmap');
     }else{
       console.log(temp_nmap_command);
-      window.electron.ipcRenderer.send('start-nmap', temp_nmap_command);
+      // window.electron.ipcRenderer.send('start-nmap', temp_nmap_command);
+
+      try {
+        const output = await window.electron.ipcRenderer.invoke('start-nmap', temp_nmap_command);
+        console.log("Nmap output:", output);
+        setOutput(output);
+      } catch (err) {
+        console.error("Error executing Nmap command:", err.message);
+      }
+
     }
     setNmapRunning(!nmapRunning);
   }
-
-  useEffect(() => {
-
-    const handleOutput = (event, { type, data }) => {
-      setOutput(prevOutput => prevOutput + `\n[${type.toUpperCase()}] ${data}`);
-    };
-
-    window.electron.ipcRenderer.on('nmap-output', handleOutput);
   
-    return () => {
-      window.electron.ipcRenderer.remove('nmap-output', handleOutput);
-    }
+  useEffect(() => {
+    
+    console.log("im here")
+    const handleOutput = () => {
+      console.log("I'm in handle output")
+      // setOutput(output + `\n[${type.toUpperCase()}] ${data}`);
+    };
+    
+    window.electron.ipcRenderer.on('start-nmap', function(event, arg){
+      console.log(arg);
+    });
+    
+    // return () => {
+    //   window.electron.ipcRenderer.remove('start-nmap', handleOutput);
+    // }
   }, [])
   
 
