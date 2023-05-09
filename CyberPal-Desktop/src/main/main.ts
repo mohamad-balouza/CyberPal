@@ -202,9 +202,12 @@ ipcMain.on('install-tcpdump', async () => {
   return result;
 });
 
-ipcMain.on('start-tcpdump', (event, args) => {
+ipcMain.handle('start-tcpdump', async (event, args) => {
   console.log("listening on start-tcpdump channel");
-  executeTcpdumpCommand(args.tcpdumpPath, args.tcpdumpArgs);
+  // executeTcpdumpCommand(args.tcpdumpPath, args.tcpdumpArgs);
+  const result = await executeTcpdumpCommand(args.nmapPath, args.nmapArgs);
+  console.log(result);
+  return result
 })
 
 ipcMain.on('stop-tcpdump', (event, args) => {
