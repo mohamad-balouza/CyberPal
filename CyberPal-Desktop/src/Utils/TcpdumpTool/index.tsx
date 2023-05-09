@@ -9,18 +9,45 @@ let tcpdump;
 export const executeTcpdumpCommand = (tcpdumpPath: string, tcpdumpArgs: Array<string>) => {
     tcpdump = spawn(tcpdumpPath, tcpdumpArgs);
 
-    tcpdump.stdout.on('data', (data) => {
+    return new Promise((resolve, reject) => {
+      let output = '';
+  
+      tcpdump.stdout.on('data', (data) => {
         console.log(`stdout: ${data}`);
-    })
-
-    tcpdump.stderr.on('data', (data) => {
+        output += `[STDOUT] ${data}\n`;
+      });
+  
+      tcpdump.stderr.on('data', (data) => {
         console.log(`stderr: ${data}`);
-    })
-
-    tcpdump.on('close', (code) => {
+        output += `[STDERR] ${data}\n`;
+      });
+  
+      tcpdump.on('close', (code) => {
         console.log(`tcpdump process exited with code ${code}`);
-    })
+        if (code === 0) {
+          resolve(output);
+        } else {
+          reject(new Error(`Tcpdump process exited with code ${code}`));
+        }
+      });
+    });
 }
+
+// export const executeTcpdumpCommand = (tcpdumpPath: string, tcpdumpArgs: Array<string>) => {
+//     tcpdump = spawn(tcpdumpPath, tcpdumpArgs);
+
+//     tcpdump.stdout.on('data', (data) => {
+//         console.log(`stdout: ${data}`);
+//     })
+
+//     tcpdump.stderr.on('data', (data) => {
+//         console.log(`stderr: ${data}`);
+//     })
+
+//     tcpdump.on('close', (code) => {
+//         console.log(`tcpdump process exited with code ${code}`);
+//     })
+// }
 
 export const stopTcpdumpCommand = () => {
     if(tcpdump) {
