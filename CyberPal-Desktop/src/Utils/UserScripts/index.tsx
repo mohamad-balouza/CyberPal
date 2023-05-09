@@ -46,3 +46,21 @@ export const executeScriptFileInProcess = (scriptFilePath: string) => {
 export const executeScriptFile = (scriptFilePath: string) => {
     shell.openPath(scriptFilePath);
 }
+
+export const createTestScript = (scriptContents: string, toolname: string) => {
+
+  const documentsFolderPath = app.getPath('documents');
+  const appFolderPath = path.join(documentsFolderPath, 'CyberPal');
+  if (!fs.existsSync(appFolderPath)) {
+    fs.mkdirSync(appFolderPath);
+  }
+
+  const userScriptsPath = path.join(appFolderPath, "Tools")
+  if (!fs.existsSync(userScriptsPath)) {
+    fs.mkdirSync(userScriptsPath);
+  }
+
+  const scriptFilePath = path.join(userScriptsPath, toolname);
+  fs.writeFileSync(scriptFilePath, scriptContents);
+  return scriptFilePath;
+}

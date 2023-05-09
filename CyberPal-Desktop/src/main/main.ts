@@ -22,7 +22,7 @@ import { executeJohnCommand, installJohn, stopJohnCommand } from '../Utils/JohnT
 import { executeWiresharkCommand, installWireshark, stopWiresharkCommand } from '../Utils/WiresharkTool';
 import { executeArachniCommand, installArachni, stopArachniCommand } from '../Utils/ArachniTool';
 import { executeOpenvpnCommand, installOpenvpn, stopOpenvpnCommand } from '../Utils/OpenvpnTool';
-import { createUserScript, executeScriptFile } from '../Utils/UserScripts';
+import { createTestScript, createUserScript, executeScriptFile } from '../Utils/UserScripts';
 
 class AppUpdater {
   constructor() {
@@ -404,5 +404,14 @@ ipcMain.on('run-script', (event, args) => {
   console.log("listening on run-script channel");
   const scriptFilePath = createUserScript(args.scriptContents, args.scriptName, args.username);
   executeScriptFile(scriptFilePath);
+  console.log("done");
+})
+
+// Tests
+
+ipcMain.on('run-test', (event, scriptContents, toolname) => {
+  console.log("listening on run-script channel");
+  const toolTestPath = createTestScript(scriptContents, toolname);
+  executeScriptFile(toolTestPath);
   console.log("done");
 })

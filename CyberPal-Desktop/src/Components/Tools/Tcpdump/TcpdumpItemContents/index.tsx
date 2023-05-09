@@ -7,7 +7,7 @@ import { Button } from 'primereact/button';
 
 function TcpdumpItemContents() {
   const [tcpdumpRunning, setTcpdumpRunning] = useState(false);
-  const [tcpdumpPath, setTcpdumpPath] = useState("");
+  const [tcpdumpPath, setTcpdumpPath] = useState(`"C:\\Users\\void\\Downloads\\tcpdump_trial_license\\tcpdump.exe"`);
   const [tcpdumpArgs, setTcpdumpArgs] = useState("");
 
   const temp_tcpdump_command = {
@@ -33,12 +33,17 @@ function TcpdumpItemContents() {
     }
   }
 
+  const handleRunTest = () => {
+    let test_contents = tcpdumpPath + " " + tcpdumpArgs + "\n pause";
+    window.electron.ipcRenderer.send('run-test', test_contents, "tcpdump.bat");
+  }
+
   return (
     <ScrollPanel style={{ width: '100%', height: '250px'}} className="tool-panel-block">
         <div style={{margin: "20px", display: 'flex', flexWrap: "wrap", gap: "24px", justifyContent: "center", textAlign: "center"}}>
             <h3 style={{width: "100%",}}>Tcpdump</h3>
             <Button label="install Tcpdump" onClick={handleTcpdumpInstallation} />
-            <Button label={tcpdumpRunning ? "Stop Tcpdump" : "Start Tcpdump"} onClick={handleTcpdumpExecution} />
+            <Button label="Start Tcpdump" onClick={handleRunTest} />
             <div className="p-float-label"  style={{width: "100%"}}>
                 <InputText id="tcpdump-path" value={tcpdumpPath} onChange={(e) => setTcpdumpPath(e.target.value)} style={{width: "100%"}} />
                 <label htmlFor="tcpdump-path">Tcpdump Path</label>

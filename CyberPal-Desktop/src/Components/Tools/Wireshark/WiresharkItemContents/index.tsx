@@ -7,7 +7,7 @@ import { Button } from 'primereact/button';
 
 function WiresharkItemContents() {
   const [wiresharkRunning, setWiresharkRunning] = useState(false);
-  const [wiresharkPath, setWiresharkPath] = useState("");
+  const [wiresharkPath, setWiresharkPath] = useState(`"C:\\Program Files\\Wireshark\\tshark.exe"`);
   const [wiresharkArgs, setWiresharkArgs] = useState("");
 
   const temp_wireshark_command = {
@@ -32,12 +32,17 @@ function WiresharkItemContents() {
     }
   }
 
+  const handleRunTest = () => {
+    let test_contents = wiresharkPath + " " + wiresharkArgs + "\n pause";
+    window.electron.ipcRenderer.send('run-test', test_contents, "wireshark.bat");
+  }
+
   return (
     <ScrollPanel style={{ width: '100%', height: '250px'}} className="tool-panel-block">
         <div style={{margin: "20px", display: 'flex', flexWrap: "wrap", gap: "24px", justifyContent: "center", textAlign: "center"}}>
             <h3 style={{width: "100%",}}>Wireshark</h3>
             <Button label="install Wireshark" onClick={handleWiresharkInstallation} />
-            <Button label={wiresharkRunning ? "Stop Wireshark" : "Start Wireshark"} onClick={handleWiresharkExecution} />
+            <Button size='small' label="Start Wireshark" onClick={handleRunTest} />
             <div className="p-float-label"  style={{width: "100%"}}>
                 <InputText id="wireshark-path" value={wiresharkPath} onChange={(e) => setWiresharkPath(e.target.value)} style={{width: "100%"}} />
                 <label htmlFor="wireshark-path">Wireshark Path</label>
