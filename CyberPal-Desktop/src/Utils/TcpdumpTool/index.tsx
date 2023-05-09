@@ -5,12 +5,12 @@ import extract = require('extract-zip');
 import path = require('path');
 
 let tcpdump;
+let output = '';
 
 export const executeTcpdumpCommand = (tcpdumpPath: string, tcpdumpArgs: Array<string>) => {
     tcpdump = spawn(tcpdumpPath, tcpdumpArgs);
 
     return new Promise((resolve, reject) => {
-      let output = '';
   
       tcpdump.stdout.on('data', (data) => {
         console.log(`stdout: ${data}`);
@@ -53,6 +53,7 @@ export const stopTcpdumpCommand = () => {
     if(tcpdump) {
         tcpdump.kill();
         console.log('tcpdump stopped');
+        return output;
     }
 }
 
