@@ -12,9 +12,13 @@ import { useMutation } from '@tanstack/react-query';
 import { useSelector } from 'react-redux';
 import type { RootState } from '../../Redux/store';
 import { Toast } from 'primereact/toast';
+import { Dialog } from 'primereact/dialog';
 
 function FlagFormPage() {
   const [btnClicked, setBtnClicked] = useState('');
+  const [visible, setVisible] = useState(false); 
+  const [flagid, setFlagid] = useState(0);
+  const [flagData, setFlagData] = useState(null);
   const user_token = useSelector((state: RootState) => state.userToken.access_token); 
   const token_type = useSelector((state: RootState) => state.userToken.token_type); 
   const toast = useRef(null);
@@ -33,8 +37,7 @@ function FlagFormPage() {
   const validationSchema = yup.object({
     flag_name: yup
       .string()
-      .required('Flag name is required')
-      .min(4, 'Too short!'),
+      .required('Flag name is required'),
     tool_id: yup
       .number()
       .required('Tool id is required')
@@ -62,6 +65,13 @@ function FlagFormPage() {
       }
     },
   });
+
+  const footerContent = (
+    <div>
+        <Button label="No" icon="pi pi-times" onClick={() => setVisible(false)} className="p-button-text" />
+        <Button label="Yes" icon="pi pi-check" onClick={() => setVisible(false)} autoFocus />
+    </div>
+  );
 
   return (
     <div className='admin-page-block'>
@@ -93,6 +103,13 @@ function FlagFormPage() {
                 <Button label='Update Flag' style={{flex: "1"}} onClick={(event) => setBtnClicked("update flag")} />
             </div>
         </form>
+        <Dialog header="Update Flag " visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)} footer={footerContent}>
+                <h3>Provide the flag id</h3>
+                <div className="p-float-label" style={{width: "100%", display: "flex", flexDirection: "column", marginTop: "24px"}}>
+                    <InputText id="flagid" value={flagid} onChange={(e) => setFlagid(e.target.value)}  style={{flex: "1"}} />
+                    <label htmlFor="flagid">Flag id</label>
+                </div>
+        </Dialog>
       </div>
     </div>
   )
