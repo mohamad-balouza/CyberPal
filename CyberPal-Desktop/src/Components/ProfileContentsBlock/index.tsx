@@ -9,9 +9,13 @@ import ConnectVpnTable from 'Components/ConnectVpnTable';
 function ProfileContentsBlock() {
   return (
     <TabView className='profile-tabview-block'>
+
+      {/* Schedules table will be added when adding tools to the backend so we can schedule them */}
+
         {/* <TabPanel header="Schedules" className='schedules-panel'>
           <SchedulesTable />
         </TabPanel> */}
+        
         <TabPanel header="Scripts">
           <ScriptsTable />
         </TabPanel>

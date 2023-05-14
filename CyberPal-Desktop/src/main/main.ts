@@ -14,6 +14,12 @@ import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
+
+// These functions (install, execute and stop) can and will be implemented in a single function each
+// for less and cleaner code but for now they're not used since I implemented external execution in a single
+// function.
+// note: Internal code execution will be implemented when we need interactions between tools.
+
 import { installNmap, executeNmapCommand, stopNmapCommand } from '../Utils/NmapTool';
 import { executeTcpdumpCommand, installTcpdump, stopTcpdumpCommand } from '../Utils/TcpdumpTool';
 import { executeAircrackCommand, installAircrack, stopAircrackCommand } from '../Utils/AircrackTool';

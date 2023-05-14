@@ -25,6 +25,9 @@ function FlagFormPage() {
 
   const createFlagMutation = useMutation(([flag_data, user_token, token_type]) => createFlag(flag_data, user_token, token_type));
 
+  // updateFlag api call will be added after transfering the tools and flags to the backend instead of being
+  // hardcoded in the frontend.
+
   const updateFlagMutation = useMutation({
     mutationFn: ([flagid, flag_data, user_token, token_type]) => updateFlag(flagid, flag_data, user_token, token_type),
     onSuccess:  () => {
