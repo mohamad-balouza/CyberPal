@@ -7,7 +7,7 @@ import { Button } from 'primereact/button';
 
 function TcpdumpItemContents() {
   const [tcpdumpRunning, setTcpdumpRunning] = useState(false);
-  const [tcpdumpPath, setTcpdumpPath] = useState(`"C:\\Users\\void\\Downloads\\tcpdump_trial_license\\tcpdump.exe"`);
+  const [tcpdumpPath, setTcpdumpPath] = useState("");
   const [tcpdumpArgs, setTcpdumpArgs] = useState("");
   const [snapLength, setSnapLength] = useState("");
   const [interfaceName, setInterfaceName] = useState("");
@@ -40,6 +40,7 @@ function TcpdumpItemContents() {
     if(tcpdumpPath){
       let tcpdump_path = tcpdumpPath.split("\\");
       let tcpdump_path_fixed = tcpdump_path.join("\\\\");
+      tcpdump_path_fixed = `"${tcpdump_path_fixed}"`;
       temp_tcpdump_command.tcpdumpPath = tcpdump_path_fixed;
     }
 

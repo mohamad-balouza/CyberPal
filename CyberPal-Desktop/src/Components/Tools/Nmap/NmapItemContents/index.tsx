@@ -37,6 +37,7 @@ function NmapItemContents() {
     if(nmapPath){
       let nmap_path = nmapPath.split("\\");
       let nmap_path_fixed = nmap_path.join("\\\\");
+      nmap_path_fixed = `"${nmap_path_fixed}"`;
       temp_nmap_command.nmapPath = nmap_path_fixed;
     }
 
