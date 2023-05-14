@@ -7,9 +7,13 @@ import React, { useState } from 'react';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import './index.css';
+import { createFlag } from 'Apis/Flags';
+import { useMutation } from '@tanstack/react-query';
 
 function FlagFormPage() {
   const [btnClicked, setBtnClicked] = useState('');
+
+  const createFlagMutation = useMutation(([flag_data, user_token, token_type]) => createFlag(flag_data, user_token, token_type));
 
   const validationSchema = yup.object({
     flag_name: yup
