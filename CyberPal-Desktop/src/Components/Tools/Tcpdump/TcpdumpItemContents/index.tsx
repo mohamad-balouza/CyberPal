@@ -15,7 +15,7 @@ function TcpdumpItemContents() {
 
   const temp_tcpdump_command = {
     tcpdumpPath: "C:\\Users\\void\\Downloads\\tcpdump_trial_license\\tcpdump.exe",
-    tcpdumpArgs: ['-l']
+    tcpdumpArgs: []
   }
 
   const handleTcpdumpExecution = () => {
@@ -36,8 +36,33 @@ function TcpdumpItemContents() {
     }
   }
 
+  const buildTheTcpdumpCommand = () => {
+    if(tcpdumpPath){
+      let tcpdump_path = tcpdumpPath.split("\\");
+      let tcpdump_path_fixed = tcpdump_path.join("\\\\");
+      temp_tcpdump_command.tcpdumpPath = tcpdump_path_fixed;
+    }
+
+    if(snapLength){
+      temp_tcpdump_command.tcpdumpArgs.push(`-s ${snapLength}`);
+    }
+
+    if(interfaceName){
+      temp_tcpdump_command.tcpdumpArgs.push(`-i ${interfaceName}`);
+    }
+
+    if(packetCount){
+      temp_tcpdump_command.tcpdumpArgs.push(`-c ${packetCount}`);
+    }
+
+    if(tcpdumpArgs){
+      temp_tcpdump_command.tcpdumpArgs.push(tcpdumpArgs);
+    }
+  }
+
   const handleRunTest = () => {
-    let test_contents = tcpdumpPath + " " + tcpdumpArgs + "\n pause";
+    buildTheTcpdumpCommand();
+    let test_contents = temp_tcpdump_command.tcpdumpPath + " " + temp_tcpdump_command.tcpdumpArgs.join(" ") + "\n pause";
     window.electron.ipcRenderer.send('run-test', test_contents, "tcpdump.bat");
   }
 
