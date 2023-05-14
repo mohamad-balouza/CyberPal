@@ -19,7 +19,7 @@ function NmapItemContents() {
 
   const temp_nmap_command = {
     nmapPath: "C:\\Program Files (x86)\\Nmap\\nmap.exe",
-    nmapArgs: ["--version"]
+    nmapArgs: []
   }
 
   const handleNmapInstallation = async () => {
@@ -33,12 +33,29 @@ function NmapItemContents() {
     }
   };
 
-  const handleNmapCommandExecution = async () => {
+  const buildTheNmapCommand = () => {
     if(nmapPath){
       let nmap_path = nmapPath.split("\\");
       let nmap_path_fixed = nmap_path.join("\\\\");
       temp_nmap_command.nmapPath = nmap_path_fixed;
     }
+
+    if(port){
+      temp_nmap_command.nmapArgs.push(`-p ${port}`);
+    }
+
+    if(nmapAdditionalArgs){
+      temp_nmap_command.nmapArgs.push(nmapAdditionalArgs);
+    }
+
+    if(ipAddress){
+      temp_nmap_command.nmapArgs.push(ipAddress);
+    }
+  }
+
+  const handleNmapCommandExecution = async () => {
+
+    buildTheNmapCommand();
 
     if(nmapRunning){
       window.electron.ipcRenderer.send('stop-nmap');
