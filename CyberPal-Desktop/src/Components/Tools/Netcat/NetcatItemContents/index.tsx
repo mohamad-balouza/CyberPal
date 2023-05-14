@@ -32,10 +32,20 @@ function NetcatItemContents() {
         console.error('Failed to install Netcat:', error);
       }
   }
+     
+  const buildTheNetcatCommand = () => {
+    if(netcatPath){
+      let netcat_path = netcatPath.split("\\");
+      let netcat_path_fixed = netcat_path.join("\\\\");
+      netcat_path_fixed = `"${netcat_path_fixed}"`;
+      temp_netcat_command.netcatPath = netcat_path_fixed;
+    }
+  }
 
   const handleExternalExecution = () => {
-    let test_contents = netcatPath + " " + netcatArgs + "\n pause";
-    window.electron.ipcRenderer.send('run-test', test_contents, "netcat.bat");
+    buildTheNetcatCommand();
+    let command_contents = temp_netcat_command.netcatPath + " " + netcatArgs + "\n pause";
+    window.electron.ipcRenderer.send('run-test', command_contents, "netcat.bat");
   }
 
   return (
