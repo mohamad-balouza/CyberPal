@@ -7,7 +7,7 @@ from app.models import Base
 from app.api.api_v1.api_routers import api_router
 from starlette.middleware.cors import CORSMiddleware
 
-app = FastAPI(title="CyberPal")
+app = FastAPI(title=config.settings.APP_NAME)
 
 # Creating the tables in the database
 Base.metadata.create_all(bind=engine)

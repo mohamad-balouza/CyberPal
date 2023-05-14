@@ -4,7 +4,7 @@ from typing import List
 
 class Settings(BaseSettings):
     APP_NAME: str
-    TEMP_EMAIL: str
+    # TEMP_EMAIL: str
 
     DB_TYPE: str
     DB_USERNAME: str
