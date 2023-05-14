@@ -86,11 +86,14 @@ function FlagFormPage() {
     },
   });
   
+  const handleUpdateFlag = () => {
+    updateFlagMutation.mutate([flagid, flagData, user_token, token_type]);
+  }
 
   const footerContent = (
     <div>
         <Button label="No" icon="pi pi-times" onClick={() => setVisible(false)} className="p-button-text" />
-        <Button label="Yes" icon="pi pi-check" onClick={() => setVisible(false)} autoFocus />
+        <Button label="Yes" icon="pi pi-check" onClick={handleUpdateFlag} autoFocus />
     </div>
   );
 
