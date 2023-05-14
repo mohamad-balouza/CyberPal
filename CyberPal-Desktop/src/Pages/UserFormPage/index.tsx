@@ -33,7 +33,10 @@ function UserFormPage() {
 
   const updateUserMutation = useMutation({
     mutationFn: ([userid, user_data, user_token, token_type]) => updateUser(userid, user_data, user_token, token_type),
-    onSuccess:  () => showUserUpdatedSuccessfully(),
+    onSuccess:  () => {
+      showUserUpdatedSuccessfully();
+      setVisible(false);
+    },
     onError: () => showUserNotCreated(),
   })
 
@@ -93,7 +96,6 @@ function UserFormPage() {
   });
 
   const handleUpdateUser = () => {
-    console.log(userData);
     updateUserMutation.mutate([userid, userData, user_token, token_type]);
 
   }

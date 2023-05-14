@@ -28,7 +28,10 @@ function ToolFormPage() {
 
   const updateToolMutation = useMutation({
     mutationFn: ([toolid, tool_data, user_token, token_type]) => updateTool(toolid, tool_data, user_token, token_type),
-    onSuccess:  () => showToolUpdatedSuccessfully(),
+    onSuccess:  () => {
+      showToolUpdatedSuccessfully();
+      setVisible(false);
+    },
     onError: () => showToolNotCreated(),
   })
 
@@ -79,10 +82,14 @@ function ToolFormPage() {
     },
   });
 
+  const handleUpdateTool = () => {
+    updateToolMutation.mutate([toolid, toolData, user_token, token_type]);
+  }
+
   const footerContent = (
     <div>
         <Button label="No" icon="pi pi-times" onClick={() => setVisible(false)} className="p-button-text" />
-        <Button label="Yes" icon="pi pi-check" onClick={() => setVisible(false)} autoFocus />
+        <Button label="Yes" icon="pi pi-check" onClick={handleUpdateTool} autoFocus />
     </div>
   );
 
