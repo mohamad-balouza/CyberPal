@@ -8,7 +8,7 @@ function ExtraInfoCard(props) {
         <div className={`card-info-block info-${props.color}`} >
             <h5>{props.title}</h5>
             <p>{props.description}</p>
-            <Button label={props.button_label} />
+            <Button label={props.button_label} onClick={props.onClick} />
         </div>
         <div className={`card-image-block image-${props.color}`} style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
           <span className={`pi ${props.icon}`} style={{color: `${props.color}`, fontSize: "2.5rem"}}></span>
