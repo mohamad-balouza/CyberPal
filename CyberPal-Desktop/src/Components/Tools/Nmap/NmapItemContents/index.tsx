@@ -84,7 +84,7 @@ function NmapItemContents() {
             </div>
             <div className="p-float-label"  style={{width: "47%"}}>
                 <InputText id="ip-address" value={ipAddress} onChange={(e) => setIpAddress(e.target.value)} style={{width: "100%"}} />
-                <label htmlFor="ip-address">Ip Address to scan*</label>
+                <label htmlFor="ip-address">Ip Address to scan</label>
             </div>
             <div className="p-float-label"  style={{width: "47%"}}>
                 <InputText id="nmap-port" tooltip='For multiple ports use "," for specific ports and "-" for port ranges' tooltipOptions={{ position: 'top' }} value={port} onChange={(e) => setPort(e.target.value)} style={{width: "100%"}} />

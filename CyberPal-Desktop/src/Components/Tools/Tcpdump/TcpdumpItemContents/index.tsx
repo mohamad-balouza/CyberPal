@@ -9,6 +9,9 @@ function TcpdumpItemContents() {
   const [tcpdumpRunning, setTcpdumpRunning] = useState(false);
   const [tcpdumpPath, setTcpdumpPath] = useState(`"C:\\Users\\void\\Downloads\\tcpdump_trial_license\\tcpdump.exe"`);
   const [tcpdumpArgs, setTcpdumpArgs] = useState("");
+  const [snapLength, setSnapLength] = useState("");
+  const [interfaceName, setInterfaceName] = useState("");
+  const [packetCount, setPacketCount] = useState("");
 
   const temp_tcpdump_command = {
     tcpdumpPath: "C:\\Users\\void\\Downloads\\tcpdump_trial_license\\tcpdump.exe",
@@ -48,8 +51,20 @@ function TcpdumpItemContents() {
                 <InputText id="tcpdump-path" value={tcpdumpPath} onChange={(e) => setTcpdumpPath(e.target.value)} style={{width: "100%"}} />
                 <label htmlFor="tcpdump-path">Tcpdump Path</label>
             </div>
-            <div className="p-float-label"  style={{width: "100%"}}>
-                <InputText id="tcpdump-args" value={tcpdumpArgs} onChange={(e) => setTcpdumpArgs(e.target.value)} style={{width: "100%"}} />
+            <div className="p-float-label"  style={{width: "47%"}}>
+                <InputText id="snap-length" tooltip='Snap length is the number of bytes to capture' tooltipOptions={{ position: 'top' }} value={snapLength} onChange={(e) => setSnapLength(e.target.value)} style={{width: "100%"}} />
+                <label htmlFor="snap-length">Snap Length</label>
+            </div>
+            <div className="p-float-label"  style={{width: "47%"}}>
+                <InputText id="interface-name" value={interfaceName} onChange={(e) => setInterfaceName(e.target.value)} style={{width: "100%"}} />
+                <label htmlFor="interface-name">Interface Name</label>
+            </div>
+            <div className="p-float-label"  style={{width: "47%"}}>
+                <InputText id="packet-count" tooltip='Specify the number of packets to capture before tcpdump exits' tooltipOptions={{ position: 'top' }} value={packetCount} onChange={(e) => setPacketCount(e.target.value)} style={{width: "100%"}} />
+                <label htmlFor="packet-count">Packet Count</label>
+            </div>
+            <div className="p-float-label"  style={{width: "47%"}}>
+                <InputText id="tcpdump-args" tooltip='Enter the arguments seperated by space' tooltipOptions={{ position: 'top' }} value={tcpdumpArgs} onChange={(e) => setTcpdumpArgs(e.target.value)} style={{width: "100%"}} />
                 <label htmlFor="tcpdump-args">Tcpdump Arguments</label>
             </div>
         </div>
