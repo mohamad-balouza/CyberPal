@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from "framer-motion";
 import './index.css';
 import ToolMenuItem from 'Components/ToolMenuItem';
@@ -29,12 +29,19 @@ function ToolsMenu() {
   const [selectedid, setSelectedid] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
 
+  useEffect(() => {
+    if(selectedid != 0){
+      setIsOpen(true);
+    }
+  }, [selectedid]);
+  
+
 
   return (
     <div className='tools-menu-block'>
       <motion.div className='tools-menu-carousel'
           drag="x" 
-          dragConstraints={{right: 0, left: -1600}} 
+          dragConstraints={{right: 0, left: isOpen ? -1750 : -1600 }} 
           dragTransition={{ bounceStiffness: 100, bounceDamping: 10 }} 
         >
             <motion.div
