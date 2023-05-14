@@ -63,10 +63,18 @@ function NmapItemContents() {
             <Button label="Execute Nmap" onClick={handleNmapCommandExecution} />
             <div className="p-float-label"  style={{width: "100%"}}>
                 <InputText id="nmap-path" value={nmapPath} onChange={(e) => setNmapPath(e.target.value)} style={{width: "100%"}} />
-                <label htmlFor="nmap-path">Nmap Path</label>
+                <label htmlFor="nmap-path">Nmap Path*</label>
+            </div>
+            <div className="p-float-label"  style={{width: "47%"}}>
+                <InputText id="ip-address" value={ipAddress} onChange={(e) => setIpAddress(e.target.value)} style={{width: "100%"}} />
+                <label htmlFor="ip-address">Ip Address to scan*</label>
+            </div>
+            <div className="p-float-label"  style={{width: "47%"}}>
+                <InputText id="nmap-port" tooltip='For multiple ports use "," for specific ports and "-" for port ranges' tooltipOptions={{ position: 'top' }} value={port} onChange={(e) => setPort(e.target.value)} style={{width: "100%"}} />
+                <label htmlFor="nmap-port">Ports</label>
             </div>
             <div className="p-float-label"  style={{width: "100%"}}>
-                <InputText id="nmap-args" value={nmapAdditionalArgs} onChange={(e) => setNmapAdditionalArgs(e.target.value)} style={{width: "100%"}} />
+                <InputText id="nmap-args" tooltip='Enter the arguments seperated by space' tooltipOptions={{ position: 'top' }} value={nmapAdditionalArgs} onChange={(e) => setNmapAdditionalArgs(e.target.value)} style={{width: "100%"}} />
                 <label htmlFor="nmap-args">Nmap Additional Arguments</label>
             </div>
             <Button label="Show Output" icon="pi pi-external-link" onClick={() => setVisible(true)} />
