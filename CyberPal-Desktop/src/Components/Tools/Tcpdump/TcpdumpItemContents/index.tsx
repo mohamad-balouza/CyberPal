@@ -14,7 +14,7 @@ function TcpdumpItemContents() {
   const [packetCount, setPacketCount] = useState("");
 
   const temp_tcpdump_command = {
-    tcpdumpPath: "C:\\Users\\void\\Downloads\\tcpdump_trial_license\\tcpdump.exe",
+    tcpdumpPath: "",
     tcpdumpArgs: []
   }
 

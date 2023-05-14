@@ -72,11 +72,13 @@
 > Using the wireframes and mockups as a guide, we implemented the CyberPal application with the following features:
 
 ### User Pages
-| Login Page  | Register Page | Home Page |
-| ---| ---| ---|
-| ![login](./readme/demo/implementation/Login%20Page.png) | ![register](./readme/demo/implementation/Signup%20Page.png) | ![landing](./readme/demo/implementation/Landing%20Page.png) |
-| Profile Page  | Tools Page |
-| ![fsdaf](https://placehold.co/900x1600) | ![tools](./readme/demo/implementation/Tools%20Page.png) |
+| Home Page  | Tools Page |
+| ---| ---|
+| ![landing](./readme/demo/implementation/Home%20Page.gif) | ![register](./readme/demo/implementation/Tools%20Page.gif) |
+| Profile Page  | Login Page |
+| ![login](./readme/demo/implementation/Profile%20Page.gif) | ![login](./readme/demo/implementation/Login%20Page.png) |
+| Register Page |
+| ![register](./readme/demo/implementation/Signup%20Page.png) |
 
 ### Admin Page
 | Tables  | Forms |
