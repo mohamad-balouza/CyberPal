@@ -25,6 +25,15 @@ function FlagFormPage() {
 
   const createFlagMutation = useMutation(([flag_data, user_token, token_type]) => createFlag(flag_data, user_token, token_type));
 
+  const updateFlagMutation = useMutation({
+    mutationFn: ([flagid, flag_data, user_token, token_type]) => updateFlag(flagid, flag_data, user_token, token_type),
+    onSuccess:  () => {
+      showFlagUpdatedSuccessfully();
+      setVisible(false);
+    },
+    onError: () => showFlagNotCreated(),
+  })
+
   const showFlagCreatedSuccessfully = () => {
     toast.current.show({severity:'success', summary: 'Success', detail:'Flag Created Successfully!', life: 2000});
   }
@@ -32,6 +41,15 @@ function FlagFormPage() {
   const showFlagNotCreated = () => {
     toast.current.show({severity:'error', summary: 'Error', detail:'Flag Not Created, an Error Has Occured', life: 2000});
   }
+  
+  const showFlagUpdatedSuccessfully = () => {
+    toast.current.show({severity:'success', summary: 'Success', detail:'Flag Updated Successfully!', life: 2000});
+  }
+
+  const showFlagNotUpdated = () => {
+    toast.current.show({severity:'error', summary: 'Error', detail:'Flag Not Updated, an Error Has Occured', life: 2000});
+  }
+
 
 
   const validationSchema = yup.object({
@@ -61,10 +79,13 @@ function FlagFormPage() {
         showFlagCreatedSuccessfully();
         formik.resetForm();
       } else {
-        alert("from update");
+        const flag_data = JSON.stringify(values);
+        setFlagData(flag_data);
+        setVisible(true);
       }
     },
   });
+  
 
   const footerContent = (
     <div>
