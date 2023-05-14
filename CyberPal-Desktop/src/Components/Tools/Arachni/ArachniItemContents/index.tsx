@@ -31,10 +31,20 @@ function ArachniItemContents() {
       console.error('Failed to install Arachni:', error);
     }
   }
+  
+  const buildTheArachniCommand = () => {
+    if(arachniPath){
+      let arachni_path = arachniPath.split("\\");
+      let arachni_path_fixed = arachni_path.join("\\\\");
+      arachni_path_fixed = `"${arachni_path_fixed}"`;
+      temp_arachni_command.arachniPath = arachni_path_fixed;
+    }
+  }
 
   const handleExternalExecution = () => {
-    let test_contents = arachniPath + " " + arachniArgs + "\n pause";
-    window.electron.ipcRenderer.send('run-test', test_contents, "arachni.bat");
+    buildTheArachniCommand();
+    let command_contents = temp_arachni_command.arachniPath + " " + arachniArgs + "\n pause";
+    window.electron.ipcRenderer.send('run-test', command_contents, "arachni.bat");
   }
 
   return (
