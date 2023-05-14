@@ -31,10 +31,20 @@ function WiresharkItemContents() {
       console.error('Failed to install Wireshark:', error);
     }
   }
+       
+  const buildThewiresharkCommand = () => {
+    if(wiresharkPath){
+      let wireshark_path = wiresharkPath.split("\\");
+      let wireshark_path_fixed = wireshark_path.join("\\\\");
+      wireshark_path_fixed = `"${wireshark_path_fixed}"`;
+      temp_wireshark_command.wiresharkPath = wireshark_path_fixed;
+    }
+  }
 
   const handleExternalExecution = () => {
-    let test_contents = wiresharkPath + " " + wiresharkArgs + "\n pause";
-    window.electron.ipcRenderer.send('run-test', test_contents, "wireshark.bat");
+    buildThewiresharkCommand();
+    let command_contents = temp_wireshark_command.wiresharkPath + " " + wiresharkArgs + "\n pause";
+    window.electron.ipcRenderer.send('run-test', command_contents, "wireshark.bat");
   }
 
   return (
