@@ -61,7 +61,7 @@ function TcpdumpItemContents() {
     }
   }
 
-  const handleRunTest = () => {
+  const handleExternalExecution = () => {
     buildTheTcpdumpCommand();
     let test_contents = temp_tcpdump_command.tcpdumpPath + " " + temp_tcpdump_command.tcpdumpArgs.join(" ") + "\n pause";
     window.electron.ipcRenderer.send('run-test', test_contents, "tcpdump.bat");
@@ -72,7 +72,7 @@ function TcpdumpItemContents() {
         <div style={{margin: "20px", display: 'flex', flexWrap: "wrap", gap: "24px", justifyContent: "center", textAlign: "center"}}>
             <h3 style={{width: "100%",}}>Tcpdump</h3>
             <Button label="install Tcpdump" onClick={handleTcpdumpInstallation} />
-            <Button label="Start Tcpdump" onClick={handleRunTest} />
+            <Button label="Start Tcpdump" onClick={handleExternalExecution} />
             <div className="p-float-label"  style={{width: "100%"}}>
                 <InputText id="tcpdump-path" value={tcpdumpPath} onChange={(e) => setTcpdumpPath(e.target.value)} style={{width: "100%"}} />
                 <label htmlFor="tcpdump-path">Tcpdump Path</label>

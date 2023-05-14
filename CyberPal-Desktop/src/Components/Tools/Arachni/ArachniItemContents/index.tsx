@@ -32,7 +32,7 @@ function ArachniItemContents() {
     }
   }
 
-  const handleRunTest = () => {
+  const handleExternalExecution = () => {
     let test_contents = arachniPath + " " + arachniArgs + "\n pause";
     window.electron.ipcRenderer.send('run-test', test_contents, "arachni.bat");
   }
@@ -42,7 +42,7 @@ function ArachniItemContents() {
         <div style={{margin: "20px", display: 'flex', flexWrap: "wrap", gap: "24px", justifyContent: "center", textAlign: "center"}}>
             <h3 style={{width: "100%",}}>Arachni</h3>
             <Button label="install Arachni" onClick={handleArachniInstallation} />
-            <Button label="Start Arachni" onClick={handleRunTest} />
+            <Button label="Start Arachni" onClick={handleExternalExecution} />
             <div className="p-float-label"  style={{width: "100%"}}>
                 <InputText id="arachni-path" value={arachniPath} onChange={(e) => setArachniPath(e.target.value)} style={{width: "100%"}} />
                 <label htmlFor="arachni-path">Arachni Path</label>

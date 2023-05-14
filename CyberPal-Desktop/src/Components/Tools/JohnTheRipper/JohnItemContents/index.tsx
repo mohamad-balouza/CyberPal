@@ -32,7 +32,7 @@ function JohnItemContents() {
     }
   }
 
-  const handleRunTest = () => {
+  const handleExternalExecution = () => {
     let test_contents = johnPath + " " + johnArgs + "\n pause";
     window.electron.ipcRenderer.send('run-test', test_contents, "john.bat");
   }
@@ -42,7 +42,7 @@ function JohnItemContents() {
         <div style={{margin: "20px", display: 'flex', flexWrap: "wrap", gap: "24px", justifyContent: "center", textAlign: "center"}}>
             <h3 style={{width: "100%",}}>John the Ripper</h3>
             <Button label="install John" onClick={handleJohnInstallation} />
-            <Button label="Start John" onClick={handleRunTest} />
+            <Button label="Start John" onClick={handleExternalExecution} />
             <div className="p-float-label"  style={{width: "100%"}}>
                 <InputText id="john-path" value={johnPath} onChange={(e) => setJohnPath(e.target.value)} style={{width: "100%"}} />
                 <label htmlFor="john-path">John the Ripper Path</label>

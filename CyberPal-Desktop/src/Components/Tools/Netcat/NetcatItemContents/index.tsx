@@ -33,7 +33,7 @@ function NetcatItemContents() {
       }
   }
 
-  const handleRunTest = () => {
+  const handleExternalExecution = () => {
     let test_contents = netcatPath + " " + netcatArgs + "\n pause";
     window.electron.ipcRenderer.send('run-test', test_contents, "netcat.bat");
   }
@@ -43,7 +43,7 @@ function NetcatItemContents() {
         <div style={{margin: "20px", display: 'flex', flexWrap: "wrap", gap: "24px", justifyContent: "center", textAlign: "center"}}>
             <h3 style={{width: "100%",}}>Netcat</h3>
             <Button label="Install Netcat" onClick={handleNetcatInstallation}  />
-            <Button label="Start Netcat" onClick={handleRunTest} />
+            <Button label="Start Netcat" onClick={handleExternalExecution} />
             <div className="p-float-label"  style={{width: "100%"}}>
                 <InputText id="netcat-path" value={netcatPath} onChange={(e) => setNetcatPath(e.target.value)} style={{width: "100%"}} />
                 <label htmlFor="netcat-path">Netcat Path</label>

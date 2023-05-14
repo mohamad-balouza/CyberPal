@@ -32,7 +32,7 @@ function WiresharkItemContents() {
     }
   }
 
-  const handleRunTest = () => {
+  const handleExternalExecution = () => {
     let test_contents = wiresharkPath + " " + wiresharkArgs + "\n pause";
     window.electron.ipcRenderer.send('run-test', test_contents, "wireshark.bat");
   }
@@ -42,7 +42,7 @@ function WiresharkItemContents() {
         <div style={{margin: "20px", display: 'flex', flexWrap: "wrap", gap: "24px", justifyContent: "center", textAlign: "center"}}>
             <h3 style={{width: "100%",}}>Wireshark</h3>
             <Button label="install Wireshark" onClick={handleWiresharkInstallation} />
-            <Button size='small' label="Start Wireshark" onClick={handleRunTest} />
+            <Button size='small' label="Start Wireshark" onClick={handleExternalExecution} />
             <div className="p-float-label"  style={{width: "100%"}}>
                 <InputText id="wireshark-path" value={wiresharkPath} onChange={(e) => setWiresharkPath(e.target.value)} style={{width: "100%"}} />
                 <label htmlFor="wireshark-path">Wireshark Path</label>
