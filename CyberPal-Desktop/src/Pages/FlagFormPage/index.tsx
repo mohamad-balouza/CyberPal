@@ -3,17 +3,32 @@ import AdminSidebar from 'Components/AdminSidebar';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { InputTextarea } from 'primereact/inputtextarea';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import './index.css';
 import { createFlag } from 'Apis/Flags';
 import { useMutation } from '@tanstack/react-query';
+import { useSelector } from 'react-redux';
+import type { RootState } from '../../Redux/store';
+import { Toast } from 'primereact/toast';
 
 function FlagFormPage() {
   const [btnClicked, setBtnClicked] = useState('');
+  const user_token = useSelector((state: RootState) => state.userToken.access_token); 
+  const token_type = useSelector((state: RootState) => state.userToken.token_type); 
+  const toast = useRef(null);
 
   const createFlagMutation = useMutation(([flag_data, user_token, token_type]) => createFlag(flag_data, user_token, token_type));
+
+  const showFlagCreatedSuccessfully = () => {
+    toast.current.show({severity:'success', summary: 'Success', detail:'Flag Created Successfully!', life: 2000});
+  }
+
+  const showFlagNotCreated = () => {
+    toast.current.show({severity:'error', summary: 'Error', detail:'Flag Not Created, an Error Has Occured', life: 2000});
+  }
+
 
   const validationSchema = yup.object({
     flag_name: yup
@@ -38,7 +53,10 @@ function FlagFormPage() {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       if(btnClicked == "add flag"){
-        alert("from add");
+        const flag_data = JSON.stringify(values);
+        createFlagMutation.mutate([flag_data, user_token, token_type]);
+        showFlagCreatedSuccessfully();
+        formik.resetForm();
       } else {
         alert("from update");
       }
@@ -47,6 +65,7 @@ function FlagFormPage() {
 
   return (
     <div className='admin-page-block'>
+      <Toast ref={toast} />
       <AdminSidebar />
       <div className='admin-page-content-block'>
         <AdminNavbar />
