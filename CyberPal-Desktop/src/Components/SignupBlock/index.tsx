@@ -39,6 +39,7 @@ function SignupBlock() {
   const handleRegistration = async (data: string) => {
     try {
       const user = await createUser(data);
+      dispatch(changeCurrentPage("Login"));
       navigate("/login");
     } catch(err){
       console.error('Error fetching user:', err);

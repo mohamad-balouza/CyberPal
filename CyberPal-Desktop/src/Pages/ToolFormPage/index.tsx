@@ -12,10 +12,13 @@ import { useFormik } from 'formik';
 import './index.css';
 import { createTool } from 'Apis/Tools';
 import { useMutation } from '@tanstack/react-query';
+import { Dialog } from 'primereact/dialog';
 
 
 function ToolFormPage() {
   const [btnClicked, setBtnClicked] = useState('');
+  const [visible, setVisible] = useState(false); 
+  const [toolid, setToolid] = useState(0);
   const user_token = useSelector((state: RootState) => state.userToken.access_token); 
   const token_type = useSelector((state: RootState) => state.userToken.token_type); 
   const toast = useRef(null);
@@ -55,10 +58,17 @@ function ToolFormPage() {
         showToolCreatedSuccessfully();
         formik.resetForm();
       } else {
-        alert("from update");
+        setVisible(true);
       }
     },
   });
+
+  const footerContent = (
+    <div>
+        <Button label="No" icon="pi pi-times" onClick={() => setVisible(false)} className="p-button-text" />
+        <Button label="Yes" icon="pi pi-check" onClick={() => setVisible(false)} autoFocus />
+    </div>
+  );
 
   return (
     <div className='admin-page-block'>
@@ -85,6 +95,13 @@ function ToolFormPage() {
                 <Button label='Update Tool' style={{flex: "1"}} type='submit' onClick={(event) => setBtnClicked("update tool")}  />
             </div>
         </form>
+        <Dialog header="Update Tool " visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)} footer={footerContent}>
+                <h3>Provide the tool id</h3>
+                <div className="p-float-label" style={{width: "100%", display: "flex", flexDirection: "column", marginTop: "24px"}}>
+                    <InputText id="toolid" value={toolid} onChange={(e) => setToolid(e.target.value)}  style={{flex: "1"}} />
+                    <label htmlFor="toolid">Tool id</label>
+                </div>
+        </Dialog>
       </div>
     </div>
   )

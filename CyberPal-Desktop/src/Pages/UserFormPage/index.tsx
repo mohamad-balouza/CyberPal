@@ -151,8 +151,8 @@ function UserFormPage() {
         <Dialog header="Update User" visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)} footer={footerContent}>
                 <h3>Provide the user id</h3>
                 <div className="p-float-label" style={{width: "100%", display: "flex", flexDirection: "column", marginTop: "24px"}}>
-                    <InputText id="username" value={userid} onChange={(e) => setUserid(e.target.value)}  style={{flex: "1"}} />
-                    <label htmlFor="username">Username</label>
+                    <InputText id="userid" value={userid} onChange={(e) => setUserid(e.target.value)}  style={{flex: "1"}} />
+                    <label htmlFor="userid">Userid</label>
                 </div>
         </Dialog>
       </div>
