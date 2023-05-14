@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import './index.css';
-import { createTool } from 'Apis/Tools';
+import { createTool, updateTool } from 'Apis/Tools';
 import { useMutation } from '@tanstack/react-query';
 import { Dialog } from 'primereact/dialog';
 
@@ -19,12 +19,18 @@ function ToolFormPage() {
   const [btnClicked, setBtnClicked] = useState('');
   const [visible, setVisible] = useState(false); 
   const [toolid, setToolid] = useState(0);
+  const [toolData, setToolData] = useState(null);
   const user_token = useSelector((state: RootState) => state.userToken.access_token); 
   const token_type = useSelector((state: RootState) => state.userToken.token_type); 
   const toast = useRef(null);
 
   const createToolMutation = useMutation(([tool_data, user_token, token_type]) => createTool(tool_data, user_token, token_type));
 
+  const updateToolMutation = useMutation({
+    mutationFn: ([toolid, tool_data, user_token, token_type]) => updateTool(toolid, tool_data, user_token, token_type),
+    onSuccess:  () => showToolUpdatedSuccessfully(),
+    onError: () => showToolNotCreated(),
+  })
 
   const showToolCreatedSuccessfully = () => {
     toast.current.show({severity:'success', summary: 'Success', detail:'Tool Created Successfully!', life: 2000});
@@ -32,6 +38,14 @@ function ToolFormPage() {
 
   const showToolNotCreated = () => {
     toast.current.show({severity:'error', summary: 'Error', detail:'Tool Not Created, an Error Has Occured', life: 2000});
+  }
+
+  const showToolUpdatedSuccessfully = () => {
+    toast.current.show({severity:'success', summary: 'Success', detail:'Tool Updated Successfully!', life: 2000});
+  }
+
+  const showToolNotUpdated = () => {
+    toast.current.show({severity:'error', summary: 'Error', detail:'Tool Not Updated, an Error Has Occured', life: 2000});
   }
 
   const validationSchema = yup.object({
@@ -58,6 +72,8 @@ function ToolFormPage() {
         showToolCreatedSuccessfully();
         formik.resetForm();
       } else {
+        const tool_data = JSON.stringify(values);
+        setToolData(tool_data);
         setVisible(true);
       }
     },
