@@ -11,7 +11,7 @@ function AircrackItemContents() {
   const [aircrackRunning, setAircrackRunning] = useState(false);
 
   const temp_aircrack_command = {
-    aircrackPath: "C:\\Users\\void\\Downloads\\aircrack\\aircrack-ng-1.7-win\\bin\\aircrack-ng.exe",
+    aircrackPath: "",
     aircrackArgs: []
   }
 
@@ -34,9 +34,19 @@ function AircrackItemContents() {
 
   }
 
+  const buildTheAircrackCommand = () => {
+    if(aircrackPath){
+      let aircrack_path = aircrackPath.split("\\");
+      let aircrack_path_fixed = aircrack_path.join("\\\\");
+      aircrack_path_fixed = `"${aircrack_path_fixed}"`;
+      temp_aircrack_command.aircrackPath = aircrack_path_fixed;
+    }
+  }
+
   const handleExternalExecution = () => {
-    let test_contents = aircrackPath + " " + aircrackArgs + "\n pause";
-    window.electron.ipcRenderer.send('run-test', test_contents, "aircrack.bat");
+    buildTheAircrackCommand();
+    let command_contents = temp_aircrack_command.aircrackPath + " " + aircrackArgs + "\n pause";
+    window.electron.ipcRenderer.send('run-test', command_contents, "aircrack.bat");
   }
 
   return (
