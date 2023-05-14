@@ -31,10 +31,20 @@ function JohnItemContents() {
       console.error('Failed to install John The Ripper:', error);
     }
   }
+    
+  const buildTheJohnCommand = () => {
+    if(johnPath){
+      let john_path = johnPath.split("\\");
+      let john_path_fixed = john_path.join("\\\\");
+      john_path_fixed = `"${john_path_fixed}"`;
+      temp_john_command.johnPath = john_path_fixed;
+    }
+  }
 
   const handleExternalExecution = () => {
-    let test_contents = johnPath + " " + johnArgs + "\n pause";
-    window.electron.ipcRenderer.send('run-test', test_contents, "john.bat");
+    buildTheJohnCommand();
+    let command_contents = temp_john_command.johnPath + " " + johnArgs + "\n pause";
+    window.electron.ipcRenderer.send('run-test', command_contents, "john.bat");
   }
 
   return (
