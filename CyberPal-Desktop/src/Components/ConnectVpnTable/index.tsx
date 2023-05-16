@@ -75,16 +75,16 @@ function ConnectVpnTable() {
             <div className='profile-openvpn-buttons' >
                 <Button label='Install Openvpn' onClick={handleOpenvpnInstallation} />
                 <Button label='Openvpn Path' onClick={() => setVisible(true)} />
-                <Dialog header="Openvpn Path" visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)} footer={footerContent}>
+                <Dialog header="OpenVPN Path" visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)} footer={footerContent}>
                     <div className='openvpn-paths-model-block'>
                         <h3>Enter the Following Paths</h3>
                         <div className="p-float-label" style={{width: "70%"}}>
                             <InputText style={{width: "100%"}} id="openvpn-command-path" value={openvpnPath} onChange={(e) => setOpenvpnPath(e.target.value)} />
-                            <label htmlFor="openvpn-command-path">Openvpn Command Path</label>
+                            <label htmlFor="openvpn-command-path">OpenVPN Command Path</label>
                         </div>
                         <div className="p-float-label" style={{width: "70%"}}>
                             <InputText style={{width: "100%"}} id="openvpn-file-path" value={openvpnFilePath} onChange={(e) => setOpenvpnFilePath(e.target.value)} />
-                            <label htmlFor="openvpn-file-path">Openvpn File Path</label>
+                            <label htmlFor="openvpn-file-path">OpenVPN File Path</label>
                         </div>
                     </div>
                 </Dialog>
