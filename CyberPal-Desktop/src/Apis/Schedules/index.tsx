@@ -1,14 +1,9 @@
-import axios from "axios";
+import { defaultAxios, setAuthToken } from "Apis/AxiosConfig";
 
 export function getAllSchedules(token: string, token_type: string){
-    return axios.get(
+    setAuthToken(token, token_type);
+    return defaultAxios.get(
         `http://127.0.0.1:8000/api/v1/schedules`,
-        {
-            headers: {
-                'content-type': 'application/json',
-                'Authorization': `${token_type} ${token}`,
-            },
-        }
     ).then(
         res => res.data
     ).catch(
@@ -17,15 +12,10 @@ export function getAllSchedules(token: string, token_type: string){
 }
 
 export function createSchedule(data: string, token: string, token_type: string){
-    return axios.post(
-        `http://127.0.0.1:8000/api/v1/schedules`,
+    setAuthToken(token, token_type);
+    return defaultAxios.post(
+        `/schedules`,
         data,
-        {
-            headers: {
-                'content-type': 'application/json',
-                'Authorization': `${token_type} ${token}`,
-            },
-        }
     ).then(
         res => res.data
     ).catch(
@@ -34,14 +24,9 @@ export function createSchedule(data: string, token: string, token_type: string){
 }
 
 export function getSchedule(schedule_id : number, token: string, token_type: string){
-    return axios.get(
-        `http://127.0.0.1:8000/api/v1/schedules/${schedule_id}`,
-        {
-            headers: {
-                'content-type': 'application/json',
-                'Authorization': `${token_type} ${token}`,
-            },
-        }
+    setAuthToken(token, token_type);
+    return defaultAxios.get(
+        `/schedules/${schedule_id}`,
     ).then(
         res => res.data
     ).catch(
@@ -50,15 +35,10 @@ export function getSchedule(schedule_id : number, token: string, token_type: str
 }
 
 export function updateSchedule(schedule_id : number, data: string, token: string, token_type: string){
-    return axios.put(
-        `http://127.0.0.1:8000/api/v1/schedules/${schedule_id}`,
+    setAuthToken(token, token_type);
+    return defaultAxios.put(
+        `/schedules/${schedule_id}`,
         data,
-        {
-            headers: {
-                'content-type': 'application/json',
-                'Authorization': `${token_type} ${token}`,
-            },
-        }
     ).then(
         res => res.data
     ).catch(
@@ -67,14 +47,9 @@ export function updateSchedule(schedule_id : number, data: string, token: string
 }
 
 export function deleteSchedule(schedule_id : number, token: string, token_type: string){
-    return axios.delete(
-        `http://127.0.0.1:8000/api/v1/schedules/${schedule_id}`,
-        {
-            headers: {
-                'content-type': 'application/json',
-                'Authorization': `${token_type} ${token}`,
-            },
-        }
+    setAuthToken(token, token_type);
+    return defaultAxios.delete(
+        `/schedules/${schedule_id}`,
     ).then(
         res => res.data
     ).catch(

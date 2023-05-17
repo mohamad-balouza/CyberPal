@@ -1,14 +1,9 @@
-import axios from "axios";
+import { defaultAxios, setAuthToken } from "Apis/AxiosConfig";
 
 export function getAllOpenVpnFiles(token: string, token_type: string){
-    return axios.get(
-        `http://127.0.0.1:8000/api/v1/openvpn_files`,
-        {
-            headers: {
-                'content-type': 'application/json',
-                'Authorization': `${token_type} ${token}`,
-            },
-        }
+    setAuthToken(token, token_type);
+    return defaultAxios.get(
+        `/openvpn_files`,
     ).then(
         res => res.data
     ).catch(

@@ -1,15 +1,10 @@
-import axios from "axios";
+import { defaultAxios, setAuthToken } from "Apis/AxiosConfig";
 
 export function createFlag(data: string, token: string, token_type: string){
-    return axios.post(
-        "http://127.0.0.1:8000/api/v1/flags",
-        data,
-        {
-            headers: {
-                'content-type': 'application/json',
-                'Authorization': `${token_type} ${token}`,
-            },
-        }
+    setAuthToken(token, token_type);
+    return defaultAxios.post(
+        "/flags",
+        data
     ).then(
         res => res.data
     ).catch(
@@ -18,13 +13,8 @@ export function createFlag(data: string, token: string, token_type: string){
 }
 
 export function getFlagsByToolId(tool_id: number){
-    return axios.get(
-        `http://127.0.0.1:8000/api/v1/flags/?tool_id=${tool_id}`,
-        {
-            headers: {
-                'content-type': 'application/json',
-            },
-        }
+    return defaultAxios.get(
+        `/flags/?tool_id=${tool_id}`,
     ).then(
         res => res.data
     ).catch(

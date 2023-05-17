@@ -1,15 +1,10 @@
-import axios from "axios";
+import { defaultAxios, setAuthToken } from "Apis/AxiosConfig";
 
 
 export function getCurrentUser(token: string, token_type: string){
-    return axios.get(
-        "http://127.0.0.1:8000/api/v1/users/me",
-        {
-            headers: {
-                'content-type': 'application/json',
-                'Authorization': `${token_type} ${token}`,
-            },
-        }
+    setAuthToken(token, token_type);
+    return defaultAxios.get(
+        "/users/me",
     ).then(
         res => res.data
     ).catch(
@@ -18,13 +13,8 @@ export function getCurrentUser(token: string, token_type: string){
 }
 
 export function getAllUsers(){
-    return axios.get(
-        "http://127.0.0.1:8000/api/v1/users",
-        {
-            headers: {
-                'content-type': 'application/json',
-            },
-        }
+    return defaultAxios.get(
+        "/users",
     ).then(
         res => res.data
     ).catch(
@@ -32,16 +22,11 @@ export function getAllUsers(){
     );
 }
 
-export function updateUser(user_id:number, data: string, token: string, token_type: string){
-    return axios.put(
-        `http://127.0.0.1:8000/api/v1/users/${user_id}`,
+export function updateUser(user_id: number, data: string, token: string, token_type: string){
+    setAuthToken(token, token_type);
+    return defaultAxios.put(
+        `/users/${user_id}`,
         data,
-        {
-            headers: {
-                'content-type': 'application/json',
-                'Authorization': `${token_type} ${token}`,
-            },
-        }
     ).then(
         res => res.data
     ).catch(
@@ -50,14 +35,9 @@ export function updateUser(user_id:number, data: string, token: string, token_ty
 }
 
 export function deleteUser(user_id:number, token: string, token_type: string){
-    return axios.delete(
-        `http://127.0.0.1:8000/api/v1/users/${user_id}`,
-        {
-            headers: {
-                'content-type': 'application/json',
-                'Authorization': `${token_type} ${token}`,
-            },
-        }
+    setAuthToken(token, token_type);
+    return defaultAxios.delete(
+        `/users/${user_id}`,
     ).then(
         res => res.data
     ).catch(
