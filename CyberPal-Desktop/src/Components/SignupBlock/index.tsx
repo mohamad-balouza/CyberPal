@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import LoginImage from '../../../assets/LoginImage.png';
 import { InputText } from "primereact/inputtext";
 import { Button } from 'primereact/button';                             
@@ -10,15 +10,21 @@ import { createUser } from '../../Apis/Auth';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { changeCurrentPage } from 'Redux/slices/currentPageSlice';
+import { Toast } from 'primereact/toast';
 
         
 function SignupBlock() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const toast = useRef(null);
 
   const handleLoginNavigation = () => {
     navigate("/login");
     dispatch(changeCurrentPage("Login"));
+  }
+
+  const showSignupError = () => {
+    toast.current.show({severity:'error', summary: 'Error', detail:'Email is already in use.\nPlease use a different Email.', life: 3000});
   }
 
   const validationSchema = yup.object({
@@ -42,6 +48,7 @@ function SignupBlock() {
       dispatch(changeCurrentPage("Login"));
       navigate("/login");
     } catch(err){
+      showSignupError();
       console.error('Error fetching user:', err);
     }
   }
@@ -63,6 +70,7 @@ function SignupBlock() {
 
   return (
     <div className='login-block'>
+      <Toast ref={toast} />
       <div className='login-image-block'>
         <img src={LoginImage} className='login-image' />
       </div>

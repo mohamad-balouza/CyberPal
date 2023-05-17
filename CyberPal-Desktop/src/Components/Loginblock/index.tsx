@@ -29,7 +29,7 @@ function LoginBlock() {
   }
 
   const showLoginError = () => {
-    toast.current.show({severity:'error', summary: 'Error', detail:'Wrong Email or Password!', life: 3000});
+    toast.current.show({severity:'error', summary: 'Error', detail:'Wrong Email or Password.', life: 3000});
   }
 
   const validationSchema = yup.object({
