@@ -12,7 +12,10 @@ export function login(data: URLSearchParams) {
     ).then(
         res => res.data
     ).catch(
-        err => console.error(err)
+        err => {
+            console.error(err);
+            throw err;
+        }
     )
 }
 

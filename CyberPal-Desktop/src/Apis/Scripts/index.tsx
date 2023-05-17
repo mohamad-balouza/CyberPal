@@ -7,7 +7,10 @@ export function getAllScripts(token: string, token_type: string){
     ).then(
         res => res.data
     ).catch(
-        err => console.error(err)
+        err => {
+            console.error(err);
+            throw err;
+        }
     );
 }
 
@@ -19,7 +22,10 @@ export function createScript(data: string, token: string, token_type: string){
     ).then(
         res => res.data
     ).catch(
-        err => console.error(err)
+        err => {
+            console.error(err);
+            throw err;
+        }
     );
 }
 
@@ -30,7 +36,10 @@ export function getAllFavoriteScripts(token: string, token_type: string){
     ).then(
         res => res.data
     ).catch(
-        err => console.error(err)
+        err => {
+            console.error(err);
+            throw err;
+        }
     );
 }
 
@@ -42,7 +51,10 @@ export function favoriteScript(data: string, token: string, token_type: string){
     ).then(
         res => res.data
     ).catch(
-        err => console.error(err)
+        err => {
+            console.error(err);
+            throw err;
+        }
     );
 }
 
@@ -53,7 +65,10 @@ export function unfavoriteScript(script_favorited_id : number, token: string, to
     ).then(
         res => res.data
     ).catch(
-        err => console.error(err)
+        err => {
+            console.error(err);
+            throw err;
+        }
     );
 }
 
@@ -64,7 +79,10 @@ export function getScript(script_id : number, token: string, token_type: string)
     ).then(
         res => res.data
     ).catch(
-        err => console.error(err)
+        err => {
+            console.error(err);
+            throw err;
+        }
     );
 }
 
@@ -76,7 +94,10 @@ export function updateScript(script_id : number, data: string, token: string, to
     ).then(
         res => res.data
     ).catch(
-        err => console.error(err)
+        err => {
+            console.error(err);
+            throw err;
+        }
     );
 }
 
@@ -87,6 +108,9 @@ export function deleteScript(script_id : number, token: string, token_type: stri
     ).then(
         res => res.data
     ).catch(
-        err => console.error(err)
+        err => {
+            console.error(err);
+            throw err;
+        }
     );
 }

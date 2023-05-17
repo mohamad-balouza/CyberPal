@@ -8,7 +8,10 @@ export function createFlag(data: string, token: string, token_type: string){
     ).then(
         res => res.data
     ).catch(
-        err => console.error(err)
+        err => {
+            console.error(err);
+            throw err;
+        }
     );
 }
 
@@ -18,6 +21,9 @@ export function getFlagsByToolId(tool_id: number){
     ).then(
         res => res.data
     ).catch(
-        err => console.error(err)
+        err => {
+            console.error(err);
+            throw err;
+        }
     );
 }

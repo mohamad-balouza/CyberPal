@@ -7,6 +7,9 @@ export function getAllOpenVpnFiles(token: string, token_type: string){
     ).then(
         res => res.data
     ).catch(
-        err => console.error(err)
+        err => {
+            console.error(err);
+            throw err;
+        }
     );
 }

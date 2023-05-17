@@ -8,7 +8,10 @@ export function createTool(data: string, token: string, token_type: string){
     ).then(
         res => res.data
     ).catch(
-        err => console.error(err)
+        err => {
+            console.error(err);
+            throw err;
+        }
     );
 }
 
@@ -18,7 +21,10 @@ export function getAllTools(){
     ).then(
         res => res.data
     ).catch(
-        err => console.error(err)
+        err => {
+            console.error(err);
+            throw err;
+        }
     );
 }
 
@@ -28,7 +34,10 @@ export function getTool(tool_id: number){
     ).then(
         res => res.data
     ).catch(
-        err => console.error(err)
+        err => {
+            console.error(err);
+            throw err;
+        }
     );
 }
 
@@ -40,7 +49,10 @@ export function updateTool(tool_id: number, data: string, token: string, token_t
     ).then(
         res => res.data
     ).catch(
-        err => console.error(err)
+        err => {
+            console.error(err);
+            throw err;
+        }
     );
 }
 
@@ -51,6 +63,9 @@ export function deleteTool(tool_id: number, token: string, token_type: string){
     ).then(
         res => res.data
     ).catch(
-        err => console.error(err)
+        err => {
+            console.error(err);
+            throw err;
+        }
     );
 }

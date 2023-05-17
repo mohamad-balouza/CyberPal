@@ -8,7 +8,10 @@ export function getCurrentUser(token: string, token_type: string){
     ).then(
         res => res.data
     ).catch(
-        err => console.error(err)
+        err => {
+            console.error(err);
+            throw err;
+        }
     );
 }
 
@@ -18,7 +21,10 @@ export function getAllUsers(){
     ).then(
         res => res.data
     ).catch(
-        err => console.error(err)
+        err => {
+            console.error(err);
+            throw err;
+        }
     );
 }
 
@@ -30,7 +36,10 @@ export function updateUser(user_id: number, data: string, token: string, token_t
     ).then(
         res => res.data
     ).catch(
-        err => console.error(err)
+        err => {
+            console.error(err);
+            throw err;
+        }
     );
 }
 
@@ -41,6 +50,9 @@ export function deleteUser(user_id:number, token: string, token_type: string){
     ).then(
         res => res.data
     ).catch(
-        err => console.error(err)
+        err => {
+            console.error(err);
+            throw err;
+        }
     );
 }
