@@ -49,7 +49,7 @@ export function getSchedule(schedule_id : number, token: string, token_type: str
     );
 }
 
-export function updateSchedule(schedule_id : number,data: string, token: string, token_type: string){
+export function updateSchedule(schedule_id : number, data: string, token: string, token_type: string){
     return axios.put(
         `http://127.0.0.1:8000/api/v1/schedules/${schedule_id}`,
         data,
