@@ -83,7 +83,7 @@ export function updateScript(script_id : number, data: string, token: string, to
 export function deleteScript(script_id : number, token: string, token_type: string){
     setAuthToken(token, token_type);
     return defaultAxios.delete(
-        `http://127.0.0.1:8000/api/v1/scripts/${script_id}`,
+        `/scripts/${script_id}`,
     ).then(
         res => res.data
     ).catch(

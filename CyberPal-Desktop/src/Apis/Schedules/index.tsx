@@ -3,7 +3,7 @@ import { defaultAxios, setAuthToken } from "Apis/AxiosConfig";
 export function getAllSchedules(token: string, token_type: string){
     setAuthToken(token, token_type);
     return defaultAxios.get(
-        `http://127.0.0.1:8000/api/v1/schedules`,
+        `/schedules`,
     ).then(
         res => res.data
     ).catch(
