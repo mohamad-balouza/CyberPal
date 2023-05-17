@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import LoginImage from '../../../assets/LoginImage.png';
 import { InputText } from "primereact/inputtext";
 import { Button } from 'primereact/button';                             
@@ -12,6 +12,7 @@ import type { RootState } from '../../Redux/store';
 import { changeToken } from 'Redux/slices/userTokenSlice';
 import { useNavigate } from 'react-router-dom';
 import { changeCurrentPage } from 'Redux/slices/currentPageSlice';
+import { Toast } from 'primereact/toast';
 
 
         
@@ -20,10 +21,15 @@ function LoginBlock() {
   const current_page = useSelector((state: RootState) => state.currentPage.value); 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const toast = useRef(null);
 
   const handleSignupNavigation = () => {
     navigate("/signup");
     dispatch(changeCurrentPage("Signup"));
+  }
+
+  const showLoginError = () => {
+    toast.current.show({severity:'error', summary: 'Error', detail:'Wrong Email or Password!', life: 3000});
   }
 
   const validationSchema = yup.object({
@@ -43,6 +49,7 @@ function LoginBlock() {
       dispatch(changeToken(user.access_token));
       navigate("/");
     } catch(err){
+      showLoginError();
       console.error('Error fetching user:', err);
     }
   }
@@ -65,6 +72,7 @@ function LoginBlock() {
 
   return (
     <div className='login-block'>
+      <Toast ref={toast} />
       <div className='login-image-block'>
         <img src={LoginImage} className='login-image' />
       </div>
